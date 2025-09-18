@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="id">
+<style>
+:root {
+    --bg-color: #2b2b2b;
+    --text-color: #f0f0f0;
+    --primary-color: #1a1a1a;
+    --secondary-color: #f7f7f7;
+    --accent-color: #ffcc00; /* Yellow accent for tabs */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section {
+    padding: 6rem 0;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+.section-description {
+    max-width: 600px;
+    margin-top: 1rem;
+    color: #b0b0b0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    position: relative;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('https://media.licdn.com/dms/image/v2/C561BAQG8PEkCzPRZxg/company-background_10000/company-background_10000/0/1588838169061/b201_telematics_laboratory_cover?e=2147483647&v=beta&t=fqU63mmu-3wS5DCD5HUZlFLtZqOLbo47GNBNmGKmHc4') no-repeat center center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.created-by {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+/* --- About Section --- */
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+}
+
+.about-text-left {
+    width: 40%;
+}
+
+.about-text-left h2 {
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+.about-image-left img {
+    border-radius: 10px;
+}
+
+.about-content-right {
+    width: 60%;
+    max-width: 600px;
+}
+
+.about-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.about-header h3 {
+    font-size: 2rem;
+}
+
+.about-image-right {
+    width: 150px;
+}
+
+.about-image-right img {
+    border-radius: 10px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.stat-item h4 {
+    font-size: 2.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.stat-item p {
+    font-weight: 400;
+    color: #b0b0b0;
+}
+
+/* --- Culture & Values Section --- */
+.values-section {
+    background-color: var(--primary-color);
+}
+
+.values-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+.values-content-left {
+    width: 50%;
+}
+
+.values-content-left h2 {
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid transparent;
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tab-button.active {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.values-image-right {
+    width: 50%;
+}
+
+.values-image-right img {
+    border-radius: 10px;
+    object-fit: cover;
+    height: 100%;
+}
+
+/* --- What We Do Section --- */
+.what-we-do-section h2 {
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.service-card {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.service-card img {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* --- Our Clients Section --- */
+.clients-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.clients-text-left {
+    width: 40%;
+}
+
+.clients-text-left h2 {
+    color: var(--secondary-color);
+}
+
+.clients-logos-right {
+    width: 60%;
+}
+
+.big-company-title {
+    background-color: var(--primary-color);
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    border-radius: 50px;
+    margin-bottom: 2rem;
+}
+
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 2rem;
+    align-items: center;
+}
+
+.logo {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter 0.3s, opacity 0.3s;
+}
+
+.logo:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.clients-image-full-width img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* --- Meet Our Team Section --- */
+.team-section {
+    background-color: var(--primary-color);
+}
+
+.team-section h2 {
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.team-member-card {
+    text-align: center;
+    flex-basis: 200px;
+    flex-grow: 1;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.team-member-card h4 {
+    margin-bottom: 0.2rem;
+}
+
+.team-member-card p {
+    color: #b0b0b0;
+}
+
+.team-description {
+    text-align: center;
+    margin: 3rem auto 0;
+}
+
+/* --- Contact Section --- */
+.contact-section {
+    background-color: var(--bg-color);
+}
+
+.contact-container {
+    text-align: center;
+}
+
+.contact-container h2 {
+    color: var(--secondary-color);
+    margin-bottom: 4rem;
+}
+
+.contact-content-grid {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    align-items: center;
+}
+
+.contact-image img {
+    width: 400px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 400px;
+}
+
+.contact-box {
+    background-color: var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.contact-box p:first-child {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact-box p:last-child {
+    color: #b0b0b0;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #111;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* --- Responsive Design (Mobile) --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.5rem; }
+
+    .about-container, .values-container, .contact-content-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-text-left, .about-content-right, .values-content-left, .values-image-right, .clients-text-left, .clients-logos-right, .contact-image, .contact-details {
+        width: 100%;
+    }
+
+    .about-header {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    
+    .about-image-right {
+        width: 100px;
+    }
+
+    .stats-grid, .services-grid, .logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .services-grid, .logo-grid, .team-grid {
+        justify-items: center;
+    }
+
+    .clients-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .clients-logos-right {
+        text-align: center;
+        width: 100%;
+    }
+    .big-company-title {
+        margin: 0 auto 2rem;
+    }
+
+    .contact-image img {
+        width: 100%;
+        height: auto;
+    }
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://media.licdn.com/dms/image/v2/C561BAQG8PEkCzPRZxg/company-background_10000/company-background_10000/0/1588838169061/b201_telematics_laboratory_cover?e=2147483647&v=beta&t=fqU63mmu-3wS5DCD5HUZlFLtZqOLbo47GNBNmGKmHc4" rel="stylesheet">
+</head>
+<body>
+
+    <header class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>LABORATORY B201</h1>
+            <p class="created-by">Kelompok 1</p>
+        </div>
+    </header>
+
+    <section class="about-section">
+        <div class="container about-container">
+            <div class="about-text-left">
+                <h2>About <br> Company.</h2>
+                <div class="about-image-left">
+                    <img src="https://images.unsplash.com/photo-1542385108-1f1f2a36a287?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Modern building with greenery">
+                </div>
+            </div>
+            <div class="about-content-right">
+                <div class="about-header">
+                    <h3>About Our Company</h3>  
+                </div>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                </p>
+                <div class="stats-grid">
+                    <div class="stat-item"><h4>2022</h4><p>Projects</p></div>
+                    <div class="stat-item"><h4>96</h4><p>Clients</p></div>
+                    <div class="stat-item"><h4>140</h4><p>Projects Done</p></div>
+                    <div class="stat-item"><h4>61</h4><p>5-Stars Reviews</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="container values-container">
+            <div class="values-content-left">
+                <h2>Our <br> Culture <br> & Values</h2>
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="innovation">Innovation</button>
+                    <button class="tab-button" data-tab="reliability">Reliability</button>
+                    <button class="tab-button" data-tab="customer-satisfaction">Customer Satisfaction</button>
+                </div>
+                <div id="tab-content" class="tab-content">
+                    <div id="innovation" class="tab-pane active">
+                        <p>Our values on innovation is everything we do. How we provide our services to our clients, our employees and to the people we serve in every way. We believe that innovation is a key to success for every one.</p>
+                    </div>
+                    <div id="reliability" class="tab-pane">
+                        <p>We are committed to delivering reliable and consistent results. Our clients can trust us to provide high-quality services and solutions that meet their needs, every time.</p>
+                    </div>
+                    <div id="customer-satisfaction" class="tab-pane">
+                        <p>Customer satisfaction is our top priority. We go above and beyond to ensure our clients are happy with our work and the results we deliver. Your success is our success.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="values-image-right">
+                <img src="https://images.unsplash.com/photo-1610438289658-05244093847e?q=80&w=2800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Man in a suit">
+            </div>
+        </div>
+    </section>
+
+    <section class="what-we-do-section">
+        <div class="container">
+            <h2>What we do?</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=2600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Web design illustration">
+                    <h4>Web Design <br> & Development</h4>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1563729781845-a7c364e0a9d8?q=80&w=2862&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="E-commerce illustration">
+                    <h4>E-commerce <br> Development</h4>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1551033045-3165ac555197?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mobile app illustration">
+                    <h4>Mobile App <br> Development</h4>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2850&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Digital marketing illustration">
+                    <h4>Digital <br> Marketing</h4>
+                </div>
+            </div>
+            <p class="section-description">
+                Our services are tailored to meet the unique needs of every client, ensuring that we provide the best possible solutions for their business goals.
+            </p>
+        </div>
+    </section>
+
+    <section class="clients-section">
+        <div class="container clients-container">
+            <div class="clients-text-left">
+                <h2>Our Clients</h2>
+                <p class="section-description">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                </p>
+            </div>
+            <div class="clients-logos-right">
+                <div class="big-company-title">
+                    <h4>A Big Company with us</h4>
+                </div>
+                <div class="logo-grid">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Apple_inc_logo.svg/1000px-Apple_inc_logo.svg.png" alt="Apple logo" class="logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tesla_logo.png/1024px-Tesla_logo.png" alt="Tesla logo" class="logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Google_logo_%282013-2015%29.svg/1000px-Google_logo_%282013-2015%29.svg.png" alt="Google logo" class="logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Amazon_logo.svg/1000px-Amazon_logo.svg.png" alt="Amazon logo" class="logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Microsoft_Azure_logo.svg/1000px-Microsoft_Azure_logo.svg.png" alt="Microsoft logo" class="logo">
+                </div>
+            </div>
+        </div>
+        <div class="clients-image-full-width">
+            <img src="https://images.unsplash.com/photo-1629904853716-95e297801f11?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Office workers">
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <h2>Meet our Team</h2>
+            <div class="team-grid">
+                <div class="team-member-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a3dd7872ba6?q=80&w=2500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team member 1" class="profile-pic">
+                    <h4>Henry Smith</h4>
+                    <p>CEO & Founder</p>
+                </div>
+                <div class="team-member-card">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team member 2" class="profile-pic">
+                    <h4>Sofia McDonal</h4>
+                    <p>Head of Design</p>
+                </div>
+                <div class="team-member-card">
+                    <img src="https://images.unsplash.com/photo-1520341285210-9942a033c5e7?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team member 3" class="profile-pic">
+                    <h4>Petronia Wens</h4>
+                    <p>Lead Developer</p>
+                </div>
+                <div class="team-member-card">
+                    <img src="https://images.unsplash.com/photo-1627882046465-983177894a4c?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team member 4" class="profile-pic">
+                    <h4>Grey Warner</h4>
+                    <p>CTO</p>
+                </div>
+            </div>
+            <p class="section-description team-description">
+                Our team is made up of experienced and passionate who are very passionate about our duty and dedicated to bringing businesses
+                together. We believe in the power of strong relationships, constant and clear communication, and dedication to our clients to bring the best
+                talent and knowledge to deliver exceptional results.
+            </p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container contact-container">
+            <h2>Contact us</h2>
+            <div class="contact-content-grid">
+                <div class="contact-image">
+                    <img src="https://images.unsplash.com/photo-1529626462615-ef3503f2719a?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Contact person">
+                </div>
+                <div class="contact-details">
+                    <div class="contact-box">
+                        <p>Address</p>
+                        <p>3557 Orion Lane, Addison Springs - Area 145267</p>
+                    </div>
+                    <div class="contact-box">
+                        <p>Email</p>
+                        <p>info@companyprofile.com</p>
+                    </div>
+                    <div class="contact-box">
+                        <p>Phone</p>
+                        <p>+97 767 65922</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Company Profile. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
