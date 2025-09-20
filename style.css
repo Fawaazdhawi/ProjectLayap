@@ -3,7 +3,10 @@
     --text-color: #f0f0f0;
     --primary-color: #1a1a1a;
     --secondary-color: #f7f7f7;
+
     --accent-color: #ffcc00; /* Yellow accent for tabs */
+
+    --accent-color: #ffcc00;
 }
 
 * {
