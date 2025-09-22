@@ -1,3 +1,78 @@
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #800000; /* maroon gelap */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 100;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.lab-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff; /* putih */
+    letter-spacing: 1px;
+}
+
+.lab-subtitle {
+    font-size: 0.9rem;
+    color: #fff; /* putih */
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #fff; /* putih */
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #ffcc00; /* aksen kuning saat hover */
+}
+
+.nav-link.active {
+    color: #ffcc00;
+    font-weight: 700;
+}
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ffcc00; /* garis bawah kuning */
+    border-radius: 2px;
+}
+@media (max-width: 768px) {
+    .header-container {
+        padding: 0 1rem;
+    }
+    .nav-menu {
+        gap: 1.2rem;
+    }
+    .lab-title {
+        font-size: 1rem;
+    }
+}
+/* Khusus gambar praktikum biar lebih lebar */
+.praktikum-card .praktikum-img {
+    width: 100%;         /* gambar isi penuh card */
+    max-width: 600px;    /* boleh atur lebar maksimal */
+    height: 300px;       /* tinggi tetap proporsional */
+    object-fit: cover;   /* tetap rapi proporsional */
+    margin: 0 auto 1rem; /* center + ada jarak bawah */
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 0 0 4px #222;
+    background: #222;
+}
 /* Khusus gambar praktikum biar lebih lebar */
 .praktikum-card .praktikum-img {
     width: 100%;         /* gambar isi penuh card */
