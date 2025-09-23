@@ -1,168 +1,16 @@
-.main-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #800000; /* maroon gelap */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    z-index: 100;
-    height: 80px;
-    display: flex;
-    align-items: center;
-}
-
-.lab-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #fff; /* putih */
-    letter-spacing: 1px;
-}
-
-.lab-subtitle {
-    font-size: 0.9rem;
-    color: #fff; /* putih */
-}
-
-.nav-link {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #fff; /* putih */
-    text-decoration: none;
-    transition: color 0.2s;
-    position: relative;
-    padding: 85px;
-}
-
-.nav-link:hover {
-    color: #ffcc00; /* aksen kuning saat hover */
-}
-
-.nav-link.active {
-    color: #ffcc00;
-    font-weight: 700;
-}
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #ffcc00; /* garis bawah kuning */
-    border-radius: 2px;
-}
-@media (max-width: 768px) {
-    .header-container {
-        padding: 0 1rem;
-    }
-    .nav-menu {
-        gap: 1.2rem;
-        
-    }
-    .lab-title {
-        font-size: 1rem;
-    }
-}
-/* Khusus gambar praktikum biar lebih lebar */
-.praktikum-card .praktikum-img {
-    width: 100%;         /* gambar isi penuh card */
-    max-width: 600px;    /* boleh atur lebar maksimal */
-    height: 300px;       /* tinggi tetap proporsional */
-    object-fit: cover;   /* tetap rapi proporsional */
-    margin: 0 auto 1rem; /* center + ada jarak bawah */
-    display: block;
-    border-radius: 10px;
-    box-shadow: 0 0 0 4px #222;
-    background: #222;
-}
-/* Khusus gambar praktikum biar lebih lebar */
-.praktikum-card .praktikum-img {
-    width: 100%;         /* gambar isi penuh card */
-    max-width: 600px;    /* boleh atur lebar maksimal */
-    height: 300px;        /* tinggi otomatis */
-    object-fit: cover;   /* tetap rapi proporsional */
-    margin: 0 auto 1rem; /* center + ada jarak bawah */
-    display: block;
-}
-/* --- Praktikum Section --- */
-.praktikum-section h2 {
-    text-align: center;
-    color: var(--secondary-color);
-}
-
-.praktikum-img {
-    height: 240px;
-    width: 100%;
-    max-width: 480px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    background: #222;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 0 0 4px #222;
-}
-
-.praktikum-img {
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    background: #ccc;
-    display: block;
-}
-.praktikum-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-    align-items: start;
-}
-
-.praktikum-card {
-    background-color: var(--primary-color);
-    border-radius: 10px;
-    padding: 2rem;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.praktikum-card img {
-    height: 120px;
-    width: 120px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    background: #ccc;
-    display: block;
-}
-
-.praktikum-card h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    text-align: center;
-}
-
-.praktikum-card p {
-    font-size: 1rem;
-    color: #b0b0b0;
-    text-align: center;
-}
+/* === ROOT VARIABLES === */
 :root {
     --bg-color: #2b2b2b;
     --text-color: #f0f0f0;
     --primary-color: #1a1a1a;
     --secondary-color: #f7f7f7;
-
-    --accent-color: #ffcc00; /* Yellow accent for tabs */
-
-    --accent-color: #ffcc00;
+    --accent-color: #cc0000; /* Changed from yellow to red */
+    --maroon-color: #800000;
+    --light-gray: #cccccc;
+    --dark-gray: #666666;
 }
 
+/* === GLOBAL STYLES === */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -174,6 +22,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    padding-top: 100px; /* Space for fixed header */
 }
 
 .container {
@@ -208,49 +57,103 @@ img {
     display: block;
 }
 
-/* --- Hero Section --- */
-.hero-section {
-    position: relative;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: url('https://media.licdn.com/dms/image/v2/C561BAQG8PEkCzPRZxg/company-background_10000/company-background_10000/0/1588838169061/b201_telematics_laboratory_cover?e=2147483647&v=beta&t=fqU63mmu-3wS5DCD5HUZlFLtZqOLbo47GNBNmGKmHc4') no-repeat center center/cover;
-}
-
-.hero-overlay {
-    position: absolute;
+/* === HEADER STYLES === */
+.main-header {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    background: var(--maroon-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 100;
+    height: 100px;
+    display: flex;
+    align-items: center;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
+.header-container {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding-left: 3rem;
+    padding-right: 3rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.hero-content h1 {
-    font-size: 4.5rem;
-    font-weight: 700;
-    color: var(--secondary-color);
+.logo-area {
+    display: flex; 
+    align-items: center; 
+    gap: 1.5rem;
+    margin-left: 1rem;
 }
 
-.created-by {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 0.5rem 1.5rem;
-    border-radius: 50px;
+.header-logo {
+    height: 64px; 
+    width: auto; 
+    margin-left: 0; 
+    margin-right: 0.5rem; 
+    display: block;
+}
+
+.text-container {
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start;
+}
+
+.lab-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+}
+
+.lab-subtitle {
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 400;
+}
+
+.nav-menu {
+    display: flex; 
+    gap: 2.5rem;
+    margin-right: 1rem;
+}
+
+.nav-link {
+    font-size: 1.1rem;
     font-weight: 500;
-    margin-top: 1rem;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
 }
 
-/* --- About Section --- */
+.nav-link:hover {
+    color: #cccccc; /* Changed to light gray */
+}
+
+.nav-link.active {
+    color: #cccccc; /* Changed to light gray */
+    font-weight: 700;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #cccccc; /* Changed to light gray */
+    border-radius: 2px;
+}
+
+/* === ABOUT SECTION === */
 .about-container {
     display: flex;
     justify-content: space-between;
@@ -305,6 +208,7 @@ img {
 .stat-item h4 {
     font-size: 2.5rem;
     margin-bottom: 0.2rem;
+    color: var(--secondary-color); /* Changed from yellow to white */
 }
 
 .stat-item p {
@@ -312,7 +216,7 @@ img {
     color: #b0b0b0;
 }
 
-/* --- Culture & Values Section --- */
+/* === VALUES SECTION === */
 .values-section {
     background-color: var(--primary-color);
 }
@@ -347,29 +251,17 @@ img {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+    background-color: #444;
 }
 
 .tab-button.active {
-    background-color: var(--accent-color);
-    color: var(--primary-color);
+    background-color: var(--accent-color); /* Red accent */
+    color: var(--secondary-color); /* White text */
     font-weight: 600;
-}
-
-.tab-image { /* TAMBAHAN */
-    position: absolute;  
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    opacity: 0;          
-    transition: opacity 0.5s ease-in-out; 
-}
-
-.tab-image.active { /* TAMBAHAN */
-    opacity: 1;          
 }
 
 .tab-pane {
@@ -381,20 +273,35 @@ img {
     display: block;
 }
 
-.values-image-right { /* TAMBAHAN */
+.values-image-right {
     width: 50%;
     position: relative; 
     height: 400px;     
     overflow: hidden;  
 }
 
-.values-image-right img {
-    border-radius: 10px;
-    object-fit: cover;
+.tab-image {
+    position: absolute;  
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    opacity: 0;          
+    transition: opacity 0.5s ease-in-out; 
 }
 
-/* --- What We Do Section --- */
+.tab-image.active {
+    opacity: 1;          
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* === WHAT WE DO SECTION === */
 .what-we-do-section h2 {
     text-align: center;
     color: var(--secondary-color);
@@ -412,16 +319,33 @@ img {
     border-radius: 10px;
     padding: 2rem;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .service-card img {
     height: 200px;
+    width: 100%;
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 1rem;
+    background: #444;
 }
 
-/* --- Praktikum Section --- */
+.service-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* === PRAKTIKUM SECTION === */
+.praktikum-section {
+    background-color: var(--primary-color);
+}
+
 .praktikum-section h2 {
     text-align: center;
     color: var(--secondary-color);
@@ -432,26 +356,50 @@ img {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-top: 3rem;
+    align-items: start;
 }
 
 .praktikum-card {
-    background-color: var(--primary-color);
+    background-color: var(--bg-color);
     border-radius: 10px;
     padding: 2rem;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.praktikum-card img {
-    height: 200px;
+.praktikum-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.praktikum-img {
+    height: 240px;
+    width: 100%;
+    max-width: 480px;
     object-fit: cover;
     border-radius: 10px;
-    margin-bottom: 1rem;
+    margin: 0 auto 1rem;
+    background: #444;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+.praktikum-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color); /* Changed from yellow to white */
+}
 
-/* --- Meet Our Team Section --- */
+.praktikum-card p {
+    font-size: 1rem;
+    color: #b0b0b0;
+    text-align: left;
+    line-height: 1.6;
+}
+
+/* === TEAM SECTION === */
 .team-section {
-    background-color: var(--primary-color);
+    background-color: var(--bg-color);
 }
 
 .team-section h2 {
@@ -471,7 +419,16 @@ img {
     text-align: center;
     flex-basis: 200px;
     flex-grow: 1;
-    margin: auto;
+    max-width: 250px;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .profile-pic {
@@ -479,27 +436,31 @@ img {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 1rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 1rem;
+    border: 4px solid var(--light-gray); /* Changed from yellow to light gray */
+    background: #444;
 }
 
 .team-member-card h4 {
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
 }
 
 .team-member-card p {
     color: #b0b0b0;
+    font-size: 0.9rem;
 }
 
 .team-description {
     text-align: center;
     margin: 3rem auto 0;
+    max-width: 800px;
 }
 
-/* --- Contact Section --- */
+/* === CONTACT SECTION === */
 .contact-section {
-    background-color: var(--bg-color);
+    background-color: var(--primary-color);
 }
 
 .contact-container {
@@ -533,22 +494,29 @@ img {
 }
 
 .contact-box {
-    background-color: var(--primary-color);
+    background-color: var(--bg-color);
     padding: 1.5rem;
     border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
 .contact-box p:first-child {
     font-weight: 600;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+    color: var(--secondary-color); /* Changed from yellow to white */
 }
 
 .contact-box p:last-child {
     color: #b0b0b0;
 }
 
-/* --- Footer --- */
+/* === FOOTER === */
 footer {
     background-color: #111;
     text-align: center;
@@ -557,8 +525,61 @@ footer {
     color: #888;
 }
 
-/* --- Responsive Design (Mobile) --- */
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 1024px) {
+    .header-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
+    /* Header adjustments */
+    .main-header {
+        height: 80px;
+    }
+    
+    body {
+        padding-top: 80px;
+    }
+    
+    .header-container {
+        padding: 0 1rem;
+        flex-direction: column;
+        gap: 1rem;
+        height: 100%;
+        justify-content: center;
+    }
+    
+    .logo-area {
+        margin-left: 0;
+        justify-content: center;
+    }
+    
+    .lab-title {
+        font-size: 1.5rem;
+    }
+    
+    .lab-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .nav-menu {
+        gap: 1.2rem;
+        margin-right: 0;
+        justify-content: center;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.8rem;
+    }
+    
+    /* General mobile adjustments */
     .container {
         padding: 0 1rem;
     }
@@ -566,12 +587,13 @@ footer {
     h1 { font-size: 3rem; }
     h2 { font-size: 2.5rem; }
 
+    /* Section layouts */
     .about-container, .values-container, .contact-content-grid {
         flex-direction: column;
         text-align: center;
     }
 
-    .about-text-left, .about-content-right, .values-content-left, .values-image-right, .clients-text-left, .clients-logos-right, .contact-image, .contact-details {
+    .about-text-left, .about-content-right, .values-content-left, .values-image-right {
         width: 100%;
     }
 
@@ -585,31 +607,116 @@ footer {
         width: 100px;
     }
 
-    .stats-grid, .services-grid, .logo-grid {
+    /* Grid adjustments */
+    .stats-grid, .services-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 
-    .services-grid, .logo-grid, .team-grid {
+    .praktikum-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid, .team-grid {
         justify-items: center;
     }
 
-    .clients-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    /* Values section mobile */
+    .values-image-right {
+        height: 300px;
+        margin-top: 2rem;
     }
 
-    .clients-logos-right {
-        text-align: center;
-        width: 100%;
-    }
-    .big-company-title {
-        margin: 0 auto 2rem;
+    .tabs {
+        justify-content: center;
     }
 
+    .tab-button {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    /* Contact section mobile */
     .contact-image img {
         width: 100%;
         height: auto;
+        max-width: 350px;
+    }
+
+    .contact-content-grid {
+        gap: 2rem;
+    }
+
+    /* Team section mobile */
+    .team-grid {
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .team-member-card {
+        max-width: 200px;
+    }
+
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Praktikum images mobile */
+    .praktikum-img {
+        height: 200px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small screens */
+    .main-header {
+        height: 120px; /* Taller for two-row layout */
+    }
+    
+    body {
+        padding-top: 120px;
+    }
+    
+    .header-container {
+        gap: 0.5rem;
+    }
+    
+    .lab-title {
+        font-size: 1.3rem;
+    }
+    
+    .lab-subtitle {
+        font-size: 0.7rem;
+    }
+    
+    .nav-menu {
+        gap: 1rem;
+    }
+    
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    h2 { font-size: 2rem; }
+    
+    .stats-grid, .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .contact-details {
+        gap: 1.5rem;
+    }
+    
+    .team-member-card {
+        max-width: 180px;
+    }
+    
+    .profile-pic {
+        width: 100px;
+        height: 100px;
     }
 }
