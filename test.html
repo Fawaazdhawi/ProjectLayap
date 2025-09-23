@@ -57,27 +57,75 @@
             <div class="values-content-left">
                 <h2>Our <br> Culture <br> & Values</h2>
                 <div class="tabs">
-                    <button class="tab-button active" data-tab="innovation">Innovation</button>
-                    <button class="tab-button" data-tab="reliability">Reliability</button>
-                    <button class="tab-button" data-tab="customer-satisfaction">Customer Satisfaction</button>
+                    <button class="tab-button active" data-tab="collaboration">Collaboration</button>
+                    <button class="tab-button" data-tab="innovation">Innovation</button>
+                    <button class="tab-button" data-tab="advanced-technology">Advanced Technology</button>
                 </div>
                 <div id="tab-content" class="tab-content">
-                    <div id="innovation" class="tab-pane active">
+                    <div id="collaboration" class="tab-pane active">
+                        <p>Our team is the best of the best. Collaboration isn't just about working together, but also about working in a structured and efficient manner.</p>
+                    </div>
+                    <div id="innovation" class="tab-pane">
                         <p>Our values on innovation is everything we do. How we provide our services to our clients, our employees and to the people we serve in every way. We believe that innovation is a key to success for every one.</p>
                     </div>
-                    <div id="reliability" class="tab-pane">
-                        <p>We are committed to delivering reliable and consistent results. Our clients can trust us to provide high-quality services and solutions that meet their needs, every time.</p>
-                    </div>
-                    <div id="customer-satisfaction" class="tab-pane">
-                        <p>Customer satisfaction is our top priority. We go above and beyond to ensure our clients are happy with our work and the results we deliver. Your success is our success.</p>
+                    <div id="advanced-technology" class="tab-pane">
+                        <p>Our technology is proof that we are serious. With our sophistication, we can support all elements of society.</p>
                     </div>
                 </div>
             </div>
             <div class="values-image-right">
-                <img src="Kondisi_lab1.jpg" alt="Man in a suit">
+                <img src="gambar/Kondisi_lab3.jpg" alt="collaboration" class="tab-image active" data-tab="collaboration">
+                <img src="gambar/Kondisi_lab2.jpg" alt="innovation" class="tab-image" data-tab="innovation">
+                <img src="gambar/Kondisi_lab1.jpg" alt="advanced technology" class="tab-image" data-tab="advanced-technology">
             </div>
         </div>
     </section>
+
+    <script>
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        const tabImages = document.querySelectorAll('.tab-image');
+
+        function activateTab(targetTab) {
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            tabPanes.forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            tabImages.forEach(image => {
+                image.classList.remove('active');
+            });
+
+            const activeButton = document.querySelector(`.tab-button[data-tab="${targetTab}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            const activePane = document.getElementById(targetTab);
+            if (activePane) {
+                activePane.classList.add('active');
+            }
+
+            const activeImage = document.querySelector(`.tab-image[data-tab="${targetTab}"]`);
+            if (activeImage) {
+                activeImage.classList.add('active');
+            }
+        }
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                activateTab(targetTab);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            activateTab('collaboration');
+        });
+    </script>
 
     <section class="what-we-do-section">
         <div class="container">

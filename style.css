@@ -354,6 +354,22 @@ img {
     font-weight: 600;
 }
 
+.tab-image { /* TAMBAHAN */
+    position: absolute;  
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    opacity: 0;          
+    transition: opacity 0.5s ease-in-out; 
+}
+
+.tab-image.active { /* TAMBAHAN */
+    opacity: 1;          
+}
+
 .tab-pane {
     display: none;
     animation: fadeIn 0.5s ease-in-out;
@@ -363,8 +379,11 @@ img {
     display: block;
 }
 
-.values-image-right {
+.values-image-right { /* TAMBAHAN */
     width: 50%;
+    position: relative; 
+    height: 400px;     
+    overflow: hidden;  
 }
 
 .values-image-right img {
