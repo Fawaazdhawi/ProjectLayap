@@ -30,9 +30,9 @@
     <section class="about-section">
         <div class="container about-container">
             <div class="about-text-left">
-                <h2>About <br> Our Lab.</h2>
+                <h2>Welcome to <br> Our Lab.</h2>
                 <div class="about-image-left">
-                    <img src="https://images.unsplash.com/photo-1542385108-1f1f2a36a287?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Modern building with greenery">
+                    <img src="https://images.unsplash.com/photo-1542385108-1f1f2a36a287?q=80&w=2940&auto=format&fit=crop&ixlib-rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Modern building with greenery">
                 </div>
             </div>
             <div class="about-content-right">
@@ -80,52 +80,6 @@
             </div>
         </div>
     </section>
-
-    <script>
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabPanes = document.querySelectorAll('.tab-pane');
-        const tabImages = document.querySelectorAll('.tab-image');
-
-        function activateTab(targetTab) {
-            tabButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-
-            tabPanes.forEach(pane => {
-                pane.classList.remove('active');
-            });
-
-            tabImages.forEach(image => {
-                image.classList.remove('active');
-            });
-
-            const activeButton = document.querySelector(`.tab-button[data-tab="${targetTab}"]`);
-            if (activeButton) {
-                activeButton.classList.add('active');
-            }
-
-            const activePane = document.getElementById(targetTab);
-            if (activePane) {
-                activePane.classList.add('active');
-            }
-
-            const activeImage = document.querySelector(`.tab-image[data-tab="${targetTab}"]`);
-            if (activeImage) {
-                activeImage.classList.add('active');
-            }
-        }
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const targetTab = button.getAttribute('data-tab');
-                activateTab(targetTab);
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            activateTab('collaboration');
-        });
-    </script>
 
     <section class="what-we-do-section">
         <div class="container">
@@ -202,27 +156,27 @@
             <div class="team-grid">
                 <div class="team-member-card">
                     <img src="" alt="Pak Fuad" class="profile-pic">
-                    <h4>Test</h4>
+                    <h4>Reza Fuad Rachmadi S.T., M.T., Ph.D</h4>
                 </div>
                 <div class="team-member-card">
                     <img src="" alt="Pak Surya" class="profile-pic">
-                    <h4>Test</h4>
+                    <h4>Dr. Surya Sumpeno, S.T., M.Sc.</h4>
                 </div>
             <div class="team-member-card">
                     <img src="" alt="Pak Hariadi" class="profile-pic">
-                    <h4>Test</h4>
+                    <h4>Mochamad Hariadi, ST., M.Sc., PhD.</h4>
                 </div>
                 <div class="team-member-card">
                     <img src="" alt="Prof Ketut" class="profile-pic">
-                    <h4>Test</h4>
+                    <h4>Dr. I Ketut Eddy Purnama, S.T., M.T.</h4>
                 </div>
             <div class="team-member-card">
                     <img src="" alt="Bu Susi" class="profile-pic">
-                    <h4>Test</h4>
+                    <h4>Susi Juniastuti, S.T.,M.Eng.</h4>
                 </div>
                 <div class="team-member-card">
                     <img src="" alt="Pak Arta" class="profile-pic">
-                    <h4>Test</h4>
+                    <h4>Arta Kusuma Hernanda, S.T., M.T.</h4>
                 </div>
             </div>
             <p class="section-description team-description">
@@ -232,18 +186,78 @@
             </p>
         </div>
     </section>
+    
+    <section class="whats-on-section">
+        <div class="container">
+            <div class="whats-on-header">
+                <h2>What's on B201</h2>
+                <div class="news-nav-buttons">
+                    <button id="scroll-left-btn" aria-label="Scroll Left">&lt;</button>
+                    <button id="scroll-right-btn" aria-label="Scroll Right">&gt;</button>
+                </div>
+            </div>
+            <div class="news-scroll-container">
+                <div class="news-card news-card-large">
+                    <img src="gambar/Kondisi_lab3.jpg" alt="Suasana Lab B201" class="news-card-image">
+                    <div class="news-card-overlay"></div>
+                    <div class="news-card-content">
+                        <h3>Project Kolaborasi Industri Dibuka untuk Mahasiswa</h3>
+                        <p>Lab B201 membuka kesempatan bagi para anggota lab untuk terlibat dalam proyek nyata bersama perusahaan teknologi terkemuka.</p>
+                        <span class="news-card-category">PROJECTS</span>
+                    </div>
+                </div>
+    
+                <div class="news-card news-card-small">
+                    <img src="gambar/Proglan-Layap2.jpg" alt="Praktikum Proglan" class="news-card-image">
+                    <div class="news-card-overlay"></div>
+                    <div class="news-card-content">
+                        <h4>Pendaftaran Praktikum Pemrograman Lanjut Dibuka!</h4>
+                        <span class="news-card-category">PRAKTIKUM</span>
+                    </div>
+                </div>
+    
+                <div class="news-card news-card-small">
+                    <img src="gambar/Basdat-Layap.jpeg" alt="Praktikum Basdat" class="news-card-image">
+                    <div class="news-card-overlay"></div>
+                    <div class="news-card-content">
+                        <h4>Batch Baru Kelas Basis Data Intensif Dimulai</h4>
+                        <span class="news-card-category">PRAKTIKUM</span>
+                    </div>
+                </div>
+                
+                <div class="news-card news-card-small">
+                    <img src="gambar/Anggota.png" alt="Warga Lab" class="news-card-image">
+                    <div class="news-card-overlay"></div>
+                    <div class="news-card-content">
+                        <h4>Selamat Datang Anggota Baru Lab B201 Angkatan 2023</h4>
+                        <span class="news-card-category">NEWS</span>
+                    </div>
+                </div>
+    
+                <div class="news-card news-card-small">
+                    <img src="gambar/Legion-2.png" alt="Juara Kompetisi" class="news-card-image">
+                    <div class="news-card-overlay"></div>
+                    <div class="news-card-content">
+                        <h4>Tim Game Development Lab B201 Juarai Kompetisi Game Nasional</h4>
+                        <span class="news-card-category">ACHIEVEMENT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="contact-section">
         <div class="container contact-container">
             <h2>Contact us</h2>
             <div class="contact-content-grid">
                 <div class="contact-image">
-                    <img src="https://images.unsplash.com/photo-1529626462615-ef3503f2719a?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Contact person">
+                    <img src="https://images.unsplash.com/photo-1529626462615-ef3503f2719a?q=80&w=2788&auto=format&fit=crop&ixlib-rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Contact person">
                 </div>
                 <div class="contact-details">
                     <div class="contact-box">
                         <p>Address</p>
-                        <p>3557 Orion Lane, Addison Springs - Area 145267</p>
+                        <p>Laboratorium B201 Telematika, Departemen Teknik Komputer, Insitut Teknologi Sepuluh Nopember
+Departemen Teknik Komputer, Fakultas Teknologi Elektro dan Informatika Cerdas, Gedung A, B dan AJ, Kampus ITS Sukolilo, Surabaya, Jawa Timur 60111, ID</p>
                     </div>
                     <div class="contact-box">
                         <p>Email</p>
@@ -262,7 +276,78 @@
         <p>&copy; 2025 Lab B201 Profile. All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // --- Script untuk Tab di Values Section ---
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        const tabImages = document.querySelectorAll('.tab-image');
 
+        function activateTab(targetTab) {
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            tabPanes.forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            tabImages.forEach(image => {
+                image.classList.remove('active');
+            });
+
+            const activeButton = document.querySelector(`.tab-button[data-tab="${targetTab}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            const activePane = document.getElementById(targetTab);
+            if (activePane) {
+                activePane.classList.add('active');
+            }
+
+            const activeImage = document.querySelector(`.tab-image[data-tab="${targetTab}"]`);
+            if (activeImage) {
+                activeImage.classList.add('active');
+            }
+        }
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                activateTab(targetTab);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            activateTab('collaboration');
+        });
+    </script>
+
+    <script>
+        // --- Script untuk Tombol Navigasi What's On Section ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollContainer = document.querySelector('.news-scroll-container');
+            const leftBtn = document.getElementById('scroll-left-btn');
+            const rightBtn = document.getElementById('scroll-right-btn');
+            
+            if (scrollContainer && leftBtn && rightBtn) {
+                const scrollAmount = 300; // Jarak scroll dalam pixel
+
+                rightBtn.addEventListener('click', () => {
+                    scrollContainer.scrollBy({
+                        left: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                });
+
+                leftBtn.addEventListener('click', () => {
+                    scrollContainer.scrollBy({
+                        left: -scrollAmount,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>

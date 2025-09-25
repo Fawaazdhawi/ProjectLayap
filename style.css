@@ -1,168 +1,14 @@
-.main-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #800000; /* maroon gelap */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    z-index: 100;
-    height: 80px;
-    display: flex;
-    align-items: center;
-}
-
-.lab-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #fff; /* putih */
-    letter-spacing: 1px;
-}
-
-.lab-subtitle {
-    font-size: 0.9rem;
-    color: #fff; /* putih */
-}
-
-.nav-link {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #fff; /* putih */
-    text-decoration: none;
-    transition: color 0.2s;
-    position: relative;
-    padding: 85px;
-}
-
-.nav-link:hover {
-    color: #ffcc00; /* aksen kuning saat hover */
-}
-
-.nav-link.active {
-    color: #ffcc00;
-    font-weight: 700;
-}
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #ffcc00; /* garis bawah kuning */
-    border-radius: 2px;
-}
-@media (max-width: 768px) {
-    .header-container {
-        padding: 0 1rem;
-    }
-    .nav-menu {
-        gap: 1.2rem;
-        
-    }
-    .lab-title {
-        font-size: 1rem;
-    }
-}
-/* Khusus gambar praktikum biar lebih lebar */
-.praktikum-card .praktikum-img {
-    width: 100%;         /* gambar isi penuh card */
-    max-width: 600px;    /* boleh atur lebar maksimal */
-    height: 300px;       /* tinggi tetap proporsional */
-    object-fit: cover;   /* tetap rapi proporsional */
-    margin: 0 auto 1rem; /* center + ada jarak bawah */
-    display: block;
-    border-radius: 10px;
-    box-shadow: 0 0 0 4px #222;
-    background: #222;
-}
-/* Khusus gambar praktikum biar lebih lebar */
-.praktikum-card .praktikum-img {
-    width: 100%;         /* gambar isi penuh card */
-    max-width: 600px;    /* boleh atur lebar maksimal */
-    height: 300px;        /* tinggi otomatis */
-    object-fit: cover;   /* tetap rapi proporsional */
-    margin: 0 auto 1rem; /* center + ada jarak bawah */
-    display: block;
-}
-/* --- Praktikum Section --- */
-.praktikum-section h2 {
-    text-align: center;
-    color: var(--secondary-color);
-}
-
-.praktikum-img {
-    height: 240px;
-    width: 100%;
-    max-width: 480px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    background: #222;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 0 0 4px #222;
-}
-
-.praktikum-img {
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    background: #ccc;
-    display: block;
-}
-.praktikum-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-    align-items: start;
-}
-
-.praktikum-card {
-    background-color: var(--primary-color);
-    border-radius: 10px;
-    padding: 2rem;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.praktikum-card img {
-    height: 120px;
-    width: 120px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    background: #ccc;
-    display: block;
-}
-
-.praktikum-card h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    text-align: center;
-}
-
-.praktikum-card p {
-    font-size: 1rem;
-    color: #b0b0b0;
-    text-align: center;
-}
+/* === ROOT VARIABLES === */
 :root {
     --bg-color: #2b2b2b;
     --text-color: #f0f0f0;
     --primary-color: #1a1a1a;
     --secondary-color: #f7f7f7;
-
-    --accent-color: #ffcc00; /* Yellow accent for tabs */
-
-    --accent-color: #ffcc00;
+    --accent-color: #ffcc00; /* Yellow accent */
+    --maroon-color: #800000;
 }
 
+/* === GLOBAL STYLES === */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -196,19 +42,75 @@ h2 {
     line-height: 1.2;
 }
 
-.section-description {
-    max-width: auto;
-    margin-top: 1rem;
-    color: #b0b0b0;
-}
-
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* --- Hero Section --- */
+.section-description {
+    max-width: auto;
+    margin-top: 1rem;
+    color: #b0b0b0;
+}
+
+/* === HEADER === */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--maroon-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 100;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.lab-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.lab-subtitle {
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+}
+
+.nav-link.active {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+/* === HERO SECTION === */
 .hero-section {
     position: relative;
     height: 600px;
@@ -250,7 +152,7 @@ img {
     margin-top: 1rem;
 }
 
-/* --- About Section --- */
+/* === ABOUT SECTION === */
 .about-container {
     display: flex;
     justify-content: space-between;
@@ -262,9 +164,9 @@ img {
     width: 40%;
 }
 
-.about-text-left h2 {
+.about-text-left h2, .values-content-left h2, .what-we-do-section h2, 
+.praktikum-section h2, .team-section h2, .contact-container h2, .whats-on-section h2 {
     color: var(--secondary-color);
-    margin-bottom: 2rem;
 }
 
 .about-image-left img {
@@ -312,7 +214,7 @@ img {
     color: #b0b0b0;
 }
 
-/* --- Culture & Values Section --- */
+/* === CULTURE & VALUES SECTION === */
 .values-section {
     background-color: var(--primary-color);
 }
@@ -325,11 +227,6 @@ img {
 
 .values-content-left {
     width: 50%;
-}
-
-.values-content-left h2 {
-    color: var(--secondary-color);
-    margin-bottom: 2rem;
 }
 
 .tabs {
@@ -356,22 +253,6 @@ img {
     font-weight: 600;
 }
 
-.tab-image { /* TAMBAHAN */
-    position: absolute;  
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    opacity: 0;          
-    transition: opacity 0.5s ease-in-out; 
-}
-
-.tab-image.active { /* TAMBAHAN */
-    opacity: 1;          
-}
-
 .tab-pane {
     display: none;
     animation: fadeIn 0.5s ease-in-out;
@@ -381,23 +262,32 @@ img {
     display: block;
 }
 
-.values-image-right { /* TAMBAHAN */
+.values-image-right {
     width: 50%;
-    position: relative; 
-    height: 400px;     
-    overflow: hidden;  
+    position: relative;
+    height: 400px;
+    overflow: hidden;
 }
 
-.values-image-right img {
-    border-radius: 10px;
-    object-fit: cover;
+.tab-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
-/* --- What We Do Section --- */
+.tab-image.active {
+    opacity: 1;
+}
+
+/* === WHAT WE DO SECTION === */
 .what-we-do-section h2 {
     text-align: center;
-    color: var(--secondary-color);
 }
 
 .services-grid {
@@ -421,10 +311,9 @@ img {
     margin-bottom: 1rem;
 }
 
-/* --- Praktikum Section --- */
+/* === PRAKTIKUM SECTION === */
 .praktikum-section h2 {
     text-align: center;
-    color: var(--secondary-color);
 }
 
 .praktikum-grid {
@@ -432,6 +321,7 @@ img {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-top: 3rem;
+    align-items: start;
 }
 
 .praktikum-card {
@@ -439,24 +329,39 @@ img {
     border-radius: 10px;
     padding: 2rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.praktikum-card img {
-    height: 200px;
+.praktikum-card .praktikum-img {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
     object-fit: cover;
+    margin: 0 auto 1rem;
+    display: block;
     border-radius: 10px;
-    margin-bottom: 1rem;
+    background: #222;
 }
 
+.praktikum-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
 
-/* --- Meet Our Team Section --- */
+.praktikum-card p {
+    font-size: 1rem;
+    color: #b0b0b0;
+}
+
+/* === TEAM SECTION === */
 .team-section {
     background-color: var(--primary-color);
 }
 
 .team-section h2 {
     text-align: center;
-    color: var(--secondary-color);
 }
 
 .team-grid {
@@ -479,9 +384,7 @@ img {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 1rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 1rem;
 }
 
 .team-member-card h4 {
@@ -497,7 +400,138 @@ img {
     margin: 3rem auto 0;
 }
 
-/* --- Contact Section --- */
+/* === WHAT'S ON B201 SECTION (NEW GRID LAYOUT) === */
+.whats-on-section {
+    background-color: var(--primary-color);
+}
+
+.whats-on-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.whats-on-section h2 {
+    margin-bottom: 0;
+}
+
+.news-nav-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.news-nav-buttons button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.news-nav-buttons button:hover {
+    background-color: #444;
+    border-color: var(--accent-color);
+}
+
+.news-scroll-container {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1.5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.news-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.news-card {
+    position: relative;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+}
+
+.news-card-large {
+    width: 500px;
+    height: 400px;
+}
+
+.news-card-small {
+    width: 280px;
+    height: 400px;
+}
+
+.news-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.news-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0) 60%);
+    z-index: 2;
+}
+
+.news-card-content {
+    position: relative;
+    z-index: 3;
+    padding: 1.5rem;
+}
+
+.news-card-content h3 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.news-card-content h4 {
+    font-size: 1.3rem;
+    line-height: 1.3;
+}
+
+.news-card-content p {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+}
+
+.news-card-category {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--accent-color, #ffcc00);
+}
+
+/* === CONTACT SECTION === */
 .contact-section {
     background-color: var(--bg-color);
 }
@@ -507,7 +541,6 @@ img {
 }
 
 .contact-container h2 {
-    color: var(--secondary-color);
     margin-bottom: 4rem;
 }
 
@@ -548,7 +581,7 @@ img {
     color: #b0b0b0;
 }
 
-/* --- Footer --- */
+/* === FOOTER === */
 footer {
     background-color: #111;
     text-align: center;
@@ -557,7 +590,7 @@ footer {
     color: #888;
 }
 
-/* --- Responsive Design (Mobile) --- */
+/* === RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
     .container {
         padding: 0 1rem;
@@ -566,12 +599,25 @@ footer {
     h1 { font-size: 3rem; }
     h2 { font-size: 2.5rem; }
 
+    .header-container {
+        padding: 0 1rem;
+    }
+
+    .nav-menu {
+        gap: 1.2rem;
+    }
+
+    .lab-title {
+        font-size: 1rem;
+    }
+
     .about-container, .values-container, .contact-content-grid {
         flex-direction: column;
         text-align: center;
     }
 
-    .about-text-left, .about-content-right, .values-content-left, .values-image-right, .clients-text-left, .clients-logos-right, .contact-image, .contact-details {
+    .about-text-left, .about-content-right, .values-content-left, 
+    .values-image-right, .contact-image, .contact-details {
         width: 100%;
     }
 
@@ -585,31 +631,32 @@ footer {
         width: 100px;
     }
 
-    .stats-grid, .services-grid, .logo-grid {
+    .stats-grid, .services-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 
-    .services-grid, .logo-grid, .team-grid {
+    .services-grid, .team-grid {
         justify-items: center;
-    }
-
-    .clients-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .clients-logos-right {
-        text-align: center;
-        width: 100%;
-    }
-    .big-company-title {
-        margin: 0 auto 2rem;
     }
 
     .contact-image img {
         width: 100%;
         height: auto;
+    }
+    
+    .news-card-large {
+        width: 320px;
+        height: 350px;
+    }
+    .news-card-small {
+        width: 250px;
+        height: 350px;
+    }
+    .news-card-content h3 {
+        font-size: 1.5rem;
+    }
+    .news-card-content h4 {
+        font-size: 1.1rem;
     }
 }
