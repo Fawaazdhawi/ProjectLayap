@@ -4,15 +4,10 @@
     --text-color: #f0f0f0;
     --primary-color: #1a1a1a;
     --secondary-color: #f7f7f7;
-<<<<<<< HEAD
-    --accent-color: #cc0000; /* Changed from yellow to red */
+    --accent-color: #cc0000; /* Red accent color */
     --maroon-color: #800000;
     --light-gray: #cccccc;
     --dark-gray: #666666;
-=======
-    --accent-color: #ffcc00; /* Yellow accent */
-    --maroon-color: #800000;
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
 }
 
 /* === GLOBAL STYLES === */
@@ -56,87 +51,15 @@ img {
     display: block;
 }
 
-<<<<<<< HEAD
-/* === HEADER STYLES === */
-.main-header {
-    position: fixed;
-=======
 .section-description {
     max-width: auto;
     margin-top: 1rem;
     color: #b0b0b0;
 }
 
-/* === HEADER === */
+/* === HEADER STYLES === */
 .main-header {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: var(--maroon-color);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    z-index: 100;
-    height: 80px;
-    display: flex;
-    align-items: center;
-}
-
-.lab-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 1px;
-}
-
-.lab-subtitle {
-    font-size: 0.9rem;
-    color: #fff;
-}
-
-.nav-link {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.2s;
-    position: relative;
-    padding: 0.5rem 1rem;
-}
-
-.nav-link:hover {
-    color: var(--accent-color);
-}
-
-.nav-link.active {
-    color: var(--accent-color);
-    font-weight: 700;
-}
-
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: var(--accent-color);
-    border-radius: 2px;
-}
-
-/* === HERO SECTION === */
-.hero-section {
-    position: relative;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: url('https://media.licdn.com/dms/image/v2/C561BAQG8PEkCzPRZxg/company-background_10000/company-background_10000/0/1588838169061/b201_telematics_laboratory_cover?e=2147483647&v=beta&t=fqU63mmu-3wS5DCD5HUZlFLtZqOLbo47GNBNmGKmHc4') no-repeat center center/cover;
-}
-
-.hero-overlay {
-    position: absolute;
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
     top: 0;
     left: 0;
     width: 100%;
@@ -210,13 +133,12 @@ img {
     padding: 0.5rem 1rem;
 }
 
-<<<<<<< HEAD
 .nav-link:hover {
-    color: #cccccc; /* Changed to light gray */
+    color: var(--light-gray);
 }
 
 .nav-link.active {
-    color: #cccccc; /* Changed to light gray */
+    color: var(--light-gray);
     font-weight: 700;
 }
 
@@ -227,12 +149,10 @@ img {
     left: 0;
     width: 100%;
     height: 3px;
-    background-color: #cccccc; /* Changed to light gray */
+    background-color: var(--light-gray);
     border-radius: 2px;
 }
 
-=======
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
 /* === ABOUT SECTION === */
 .about-container {
     display: flex;
@@ -288,7 +208,7 @@ img {
 .stat-item h4 {
     font-size: 2.5rem;
     margin-bottom: 0.2rem;
-    color: var(--secondary-color); /* Changed from yellow to white */
+    color: var(--secondary-color);
 }
 
 .stat-item p {
@@ -296,11 +216,7 @@ img {
     color: #b0b0b0;
 }
 
-<<<<<<< HEAD
 /* === VALUES SECTION === */
-=======
-/* === CULTURE & VALUES SECTION === */
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
 .values-section {
     background-color: var(--primary-color);
 }
@@ -338,8 +254,8 @@ img {
 }
 
 .tab-button.active {
-    background-color: var(--accent-color); /* Red accent */
-    color: var(--secondary-color); /* White text */
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
     font-weight: 600;
 }
 
@@ -360,18 +276,13 @@ img {
 }
 
 .tab-image {
-<<<<<<< HEAD
     position: absolute;  
-=======
-    position: absolute;
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
-<<<<<<< HEAD
     opacity: 0;          
     transition: opacity 0.5s ease-in-out; 
 }
@@ -383,14 +294,6 @@ img {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
-=======
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.tab-image.active {
-    opacity: 1;
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
 }
 
 /* === WHAT WE DO SECTION === */
@@ -437,10 +340,6 @@ img {
     background-color: var(--primary-color);
 }
 
-<<<<<<< HEAD
-=======
-/* === PRAKTIKUM SECTION === */
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
 .praktikum-section h2 {
     text-align: center;
 }
@@ -458,7 +357,6 @@ img {
     border-radius: 10px;
     padding: 2rem;
     text-align: center;
-<<<<<<< HEAD
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -471,50 +369,25 @@ img {
     height: 240px;
     width: 100%;
     max-width: 480px;
-=======
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.praktikum-card .praktikum-img {
-    width: 100%;
-    max-width: 600px;
-    height: 300px;
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
     object-fit: cover;
     margin: 0 auto 1rem;
     display: block;
     border-radius: 10px;
-<<<<<<< HEAD
-    margin: 0 auto 1rem;
     background: #444;
-    display: block;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .praktikum-card h4 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
-    color: var(--secondary-color); /* Changed from yellow to white */
-=======
-    background: #222;
-}
-
-.praktikum-card h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
+    color: var(--secondary-color);
 }
 
 .praktikum-card p {
     font-size: 1rem;
     color: #b0b0b0;
-<<<<<<< HEAD
     text-align: left;
     line-height: 1.6;
-=======
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
 }
 
 /* === TEAM SECTION === */
@@ -556,11 +429,8 @@ img {
     border-radius: 50%;
     object-fit: cover;
     margin: 0 auto 1rem;
-<<<<<<< HEAD
-    border: 4px solid var(--light-gray); /* Changed from yellow to light gray */
+    border: 4px solid var(--light-gray);
     background: #444;
-=======
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
 }
 
 .team-member-card h4 {
@@ -580,9 +450,7 @@ img {
     max-width: 800px;
 }
 
-<<<<<<< HEAD
-=======
-/* === WHAT'S ON B201 SECTION (NEW GRID LAYOUT) === */
+/* === WHAT'S ON B201 SECTION === */
 .whats-on-section {
     background-color: var(--primary-color);
 }
@@ -710,10 +578,9 @@ img {
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 1px;
-    color: var(--accent-color, #ffcc00);
+    color: var(--accent-color);
 }
 
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
 /* === CONTACT SECTION === */
 .contact-section {
     background-color: var(--primary-color);
@@ -764,7 +631,7 @@ img {
     font-weight: 600;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: var(--secondary-color); /* Changed from yellow to white */
+    color: var(--secondary-color);
 }
 
 .contact-box p:last-child {
@@ -781,7 +648,6 @@ footer {
 }
 
 /* === RESPONSIVE DESIGN === */
-<<<<<<< HEAD
 @media (max-width: 1024px) {
     .header-container {
         padding-left: 2rem;
@@ -793,8 +659,6 @@ footer {
     }
 }
 
-=======
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
 @media (max-width: 768px) {
     /* Header adjustments */
     .main-header {
@@ -845,33 +709,14 @@ footer {
     h1 { font-size: 3rem; }
     h2 { font-size: 2.5rem; }
 
-<<<<<<< HEAD
     /* Section layouts */
-=======
-    .header-container {
-        padding: 0 1rem;
-    }
-
-    .nav-menu {
-        gap: 1.2rem;
-    }
-
-    .lab-title {
-        font-size: 1rem;
-    }
-
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
     .about-container, .values-container, .contact-content-grid {
         flex-direction: column;
         text-align: center;
     }
 
-<<<<<<< HEAD
-    .about-text-left, .about-content-right, .values-content-left, .values-image-right {
-=======
     .about-text-left, .about-content-right, .values-content-left, 
     .values-image-right, .contact-image, .contact-details {
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
         width: 100%;
     }
 
@@ -885,27 +730,20 @@ footer {
         width: 100px;
     }
 
-<<<<<<< HEAD
     /* Grid adjustments */
-=======
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
     .stats-grid, .services-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 
-<<<<<<< HEAD
     .praktikum-grid {
         grid-template-columns: 1fr;
     }
 
-=======
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
     .services-grid, .team-grid {
         justify-items: center;
     }
 
-<<<<<<< HEAD
     /* Values section mobile */
     .values-image-right {
         height: 300px;
@@ -922,8 +760,6 @@ footer {
     }
 
     /* Contact section mobile */
-=======
->>>>>>> 8d60532fffab960181f7e7d9b454d41f4050f342
     .contact-image img {
         width: 100%;
         height: auto;
@@ -953,6 +789,25 @@ footer {
     .praktikum-img {
         height: 200px;
         max-width: 100%;
+    }
+    
+    /* News cards mobile */
+    .news-card-large {
+        width: 320px;
+        height: 350px;
+    }
+    
+    .news-card-small {
+        width: 250px;
+        height: 350px;
+    }
+    
+    .news-card-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .news-card-content h4 {
+        font-size: 1.1rem;
     }
 }
 
@@ -1008,17 +863,20 @@ footer {
     }
     
     .news-card-large {
-        width: 320px;
-        height: 350px;
+        width: 300px;
+        height: 320px;
     }
+    
     .news-card-small {
-        width: 250px;
-        height: 350px;
+        width: 240px;
+        height: 320px;
     }
+    
     .news-card-content h3 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
+    
     .news-card-content h4 {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 }
