@@ -498,7 +498,6 @@ img {
     overflow-x: auto;
     padding-bottom: 1.5rem;
     -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
 .news-scroll-container::-webkit-scrollbar {
