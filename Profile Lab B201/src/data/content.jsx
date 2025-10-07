@@ -78,7 +78,7 @@ export const teamData = {
   ],
   teamTeachingTitle: 'Team Teaching',
   teamTeaching: [
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/198504032012121001_Departemen-Teknik-Komputer-682x1024.jpg', name: 'Dr. Ahmad Fuad Rahman, S.T., M.T.', role: 'Dosen Pengampu' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/198504032012121001_Departemen-Teknik-Komputer-682x1024.jpg', name: 'Reza Fuad Rachmadi, S.T., M.T., Ph.D', role: 'Dosen Pengampu' },
     { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/Pak-surya.png', name: 'Dr. Surya Sumpeno, S.T., M.Sc.', role: 'Dosen Pengampu' },
     { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/196912091997031002_Departemen-Teknik-Komputer-1-682x1024.png', name: 'Mochamad Hariadi, S.T.,M.Sc.,Ph.D', role: 'Dosen Pengampu' },
     { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/Pak-ketut.jpg', name: 'Prof. Dr. I Ketut Eddy Purnama, S.T., M.T.', role: 'Dosen Pengampu' },
