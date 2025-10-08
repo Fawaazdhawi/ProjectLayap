@@ -5,23 +5,16 @@ import '../styles/main.css';
 const About = () => {
   return (
     <section className="about-section" id="about">
-      <div className="container about-container">
+      <div className="container about-container background-image">
         <div className="about-text-left">
-          <h2>Welcome to <br /> Our Lab.</h2>
+          <h2>Welcome to <br /> B201 Lab</h2>
+          <p>{aboutData.description}</p>  
         </div>
         <div className="about-content-right">
           <div className="about-header">
-            <h3>{aboutData.aboutTitle}</h3>
+            <a className="about-link about-hover" href="https://www.youtube.com/watch?v=pJ7XZRFgeBU&t=2s">{aboutData.aboutTitle}</a>
           </div>
-          <p>{aboutData.description}</p>
-          <div className="stats-grid">
-            {aboutData.stats.map((stat, index) => (
-              <div key={index} className="stat-item">
-                <h4>{stat.value}</h4>
-                <p>{stat.label}</p>
-              </div>
-            ))}
-          </div>
+          <img src={aboutData.image} alt="About Lab B201" className='about-image-right' />
         </div>
       </div>
     </section>

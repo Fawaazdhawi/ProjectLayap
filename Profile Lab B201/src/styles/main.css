@@ -159,6 +159,33 @@ img {
     justify-content: space-between;
     align-items: center;
     gap: 4rem;
+    background: url("/images/BG_About.png") no-repeat center center/cover ;
+    padding: 4rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    background-color: var(--primary-color);
+    background-blend-mode: overlay;
+    color: var(--text-color);
+    height: 600px;
+}
+
+.about-link {
+    color:white;
+    text-decoration: none;
+    font-weight: 600px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    font-family: 'Inter',sans-serif;
+    position: relative;
+    flex-direction: column;
+    padding-left: 100px;
+}
+.about-link:hover {
+    color:maroon;
+    text-decoration: none;
 }
 
 .about-text-left {
@@ -177,6 +204,7 @@ img {
 .about-content-right {
     width: 60%;
     max-width: 600px;
+    flex-direction: column;
 }
 
 .about-header {
@@ -191,7 +219,15 @@ img {
 }
 
 .about-image-right {
-    width: 150px;
+    width: auto;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    background: #444;
+    padding: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);  
 }
 
 .about-image-right img {
@@ -583,10 +619,13 @@ img {
 /* === CONTACT SECTION === */
 .contact-section {
     background-color: var(--primary-color);
+    padding: 50px 0;
 }
 
 .contact-container {
     text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .contact-container h2 {
@@ -598,6 +637,7 @@ img {
     justify-content: center;
     gap: 4rem;
     align-items: center;
+    flex-wrap: wrap;    
 }
 
 .contact-image img {
@@ -609,9 +649,10 @@ img {
 
 .contact-details {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 2rem;
-    max-width: 400px;
+    flex-wrap: wrap;
+    justify-content: center;    
 }
 
 .contact-box {
@@ -619,6 +660,8 @@ img {
     padding: 1.5rem;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1;
+    max-width: 850px;
 }
 
 .contact-box:hover {

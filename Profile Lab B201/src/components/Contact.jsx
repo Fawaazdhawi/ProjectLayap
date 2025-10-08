@@ -8,9 +8,6 @@ const Contact = () => {
       <div className="container contact-container">
         <h2>{contactData.title}</h2>
         <div className="contact-content-grid">
-          <div className="contact-image">
-            <img src={contactData.image} alt="Contact person" />
-          </div>
           <div className="contact-details">
             {contactData.details.map((detail, index) => (
               <div key={index} className="contact-box">
