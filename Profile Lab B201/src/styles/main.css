@@ -154,19 +154,21 @@ img {
 }
 
 /* === ABOUT SECTION === */
+.about-section {
+    background-color: var(--bg-color);
+    background-image: url("/images/BG_About.png");
+    background-size: cover;
+    background-position: center;
+    color: var(--text-color);
+    box-shadow: inset 0 0 0 2000px rgba(0,0,0,0.8);
+}
+
 .about-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 4rem;
-    background: url("/images/BG_About.png") no-repeat center center/cover ;
     padding: 4rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    background-color: var(--primary-color);
-    background-blend-mode: overlay;
-    color: var(--text-color);
-    height: 600px;
 }
 
 .about-link {

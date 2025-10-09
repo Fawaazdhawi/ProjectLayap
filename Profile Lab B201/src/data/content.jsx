@@ -110,17 +110,18 @@ export const footerData = {
   text: '© 2025 Lab B201 Profile. All Rights Reserved.',
 };
 
+// src/data/content.js
 export const serviceCardsData = [
   {
     title: 'Reservasi PC',
-    href: '/login',
+    path: '/reservasi-pc'
   },
   {
     title: 'Printer Lab',
-    href: '',
+    path: '/printer-lab'
   },
   {
     title: 'Inventaris B201',
-    href: '',
-  }
+    path: '/inventaris'
+  },
 ];

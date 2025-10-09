@@ -1,10 +1,18 @@
 // src/components/ServiceCards.jsx
 import React from 'react';
 import { serviceCardsData } from '../data/content';
+import { useNavigate } from 'react-router';
 import '../styles/main.css';
 import '../styles/service.css';
 
-const Book = ({ onNavigate }) => {
+const Book = () => {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/reservasi-pc');
+  }
+
   return (
     <section className="service-cards-section">
       <div className="container">
@@ -13,7 +21,7 @@ const Book = ({ onNavigate }) => {
             <div
               key={index}
               className="service-card-item"
-              onClick={() => onNavigate(service.href)}
+              onClick={handleClick}
             >
               <div className="service-card-image-placeholder">
                 {/* Tambahkan elemen gambar jika Anda memiliki gambar untuk kartu */}

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import '../styles/main.css';
 import '../styles/masuk.css';
 
@@ -6,10 +8,16 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     console.log('Login attempt with:', { email, password });
+  };
+
+  const handleSubmit = () => {
+    alert('Login successful!');
+    navigate('/reservasi');
   };
 
   return (
@@ -41,10 +49,12 @@ const Login = () => {
             >
             </span>
           </div>
-          <button type="submit" href="/reservasi" className="login-button">Masuk</button>
+          <button type="submit" onClick={handleSubmit} className="login-button">Masuk</button>
         </form>
         <div className="register-link">
-          <p>Belum punya akun? <a href="">Daftar</a></p>
+          <p>Belum punya akun? 
+            <Link to="/register">Daftar</Link>
+          </p>
         </div>
       </div>
     </div>
