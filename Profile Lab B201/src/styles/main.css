@@ -218,19 +218,24 @@ img {
     font-size: 2rem;
 }
 
-.about-image-right {
-    width: auto;
-    height: auto;
-    flex-direction: column;
-    align-items: center;
+/* === ABOUT SECTION - VIDEO EMBED === */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Rasio aspek 16:9 (9 / 16 * 100) */
+    height: 0;
+    overflow: hidden;
     margin-top: 1rem;
-    margin-left: 1rem;
-    background: #444;
-    padding: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);  
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 10px;
 }
 
-.about-image-right img {
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; /* Menghilangkan border default dari iframe */
     border-radius: 10px;
 }
 

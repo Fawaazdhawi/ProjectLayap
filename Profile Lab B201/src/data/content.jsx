@@ -13,10 +13,11 @@ export const headerData = {
 };
 
 export const aboutData = {
-  title: 'Welcome to Our Lab.',
-  aboutTitle: 'Computer Engineering ITS Video Profile',
-  description: 'B201 Lab - Telematics and Intelligent Multimedia is a laboratory under the Department of Computer Engineering at ITS that focuses on research and development in telematics, multimedia, deep learning and game technology.',
-  image: '/images/Thumbnail.png',
+    title: 'Welcome to Our Lab.',
+    aboutTitle: 'Computer Engineering ITS Video Profile',
+    description: 'B201 Lab - Telematics and Intelligent Multimedia is a laboratory under the Department of Computer Engineering at ITS that focuses on research and development in telematics, multimedia, deep learning and game technology.',
+    image: '/images/Thumbnail.png',
+    videoUrl: 'https://www.youtube.com/embed/pJ7XZRFgeBU',
 };
 
 export const valuesData = {
