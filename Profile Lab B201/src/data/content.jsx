@@ -92,8 +92,8 @@ export const whatsOnData = {
     { type: 'large', image: '/images/Alumni.png', title: 'Congratulations to B201 Lab Assistants Graduating on Wisuda- 132!', description: '', category: 'PROJECTS' },
     { type: 'small', image: '/images/Proglan-Layap2.jpg', title: 'Advanced Programming Practicum Registration is Finally Open!', category: 'PRACTICUM' },
     { type: 'small', image: '/images/Basdat-Layap.jpeg', title: 'Database Management System Practicum Registration is Now Open!', category: 'PRACTICUM' },
-    { type: 'small', image: '/images/23.png', title: 'Welcome to Lab B201, Class of 2023!', category: 'NEWS' },
-    { type: 'small', image: '/images/Legion-2.png', title: 'Lab B201 Game Development Team Wins National Game Competition!', category: 'ACHIEVEMENT' },
+    { type: 'small', image: '/images/23.png', title: 'Welcome to Lab ! , Class of 2023.', category: 'NEWS' },
+    { type: 'small', image: '/images/Legion-2.png', title: 'B201 lab Game Development Team Wins National Game Competition!', category: 'ACHIEVEMENT' },
   ],
 };
 
