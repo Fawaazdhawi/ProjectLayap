@@ -51,7 +51,7 @@ export const whatWeDoData = {
     { image: '/images/App.png', title: 'Web & App Development' },
     { image: '/images/Legion-2.png', title: 'Game Design & Development' },
     { image: '/images/deep_learning.png', title: 'Artificial Intelligence & Deep Learning Application' },
-    { image: '/images/Praktikum.png', title: 'Project & Praktikum' },
+    { image: '/images/Praktikum.png', title: 'Project & Practicum' },
   ],
 };
 
@@ -89,9 +89,9 @@ export const teamData = {
 export const whatsOnData = {
   title: 'What\'s on B201',
   news: [
-    { type: 'large', image: '/images/Alumni.png', title: 'Congratulations to Lab B201 Assistants Graduating on Wisuda- 132!', description: '', category: 'PROJECTS' },
-    { type: 'small', image: '/images/Proglan-Layap2.jpg', title: 'Advanced Programming Practicum Registration is Finally Open!', category: 'PRAKTIKUM' },
-    { type: 'small', image: '/images/Basdat-Layap.jpeg', title: 'Database Management System Practicum Registration is Now Open!', category: 'PRAKTIKUM' },
+    { type: 'large', image: '/images/Alumni.png', title: 'Congratulations to B201 Lab Assistants Graduating on Wisuda- 132!', description: '', category: 'PROJECTS' },
+    { type: 'small', image: '/images/Proglan-Layap2.jpg', title: 'Advanced Programming Practicum Registration is Finally Open!', category: 'PRACTICUM' },
+    { type: 'small', image: '/images/Basdat-Layap.jpeg', title: 'Database Management System Practicum Registration is Now Open!', category: 'PRACTICUM' },
     { type: 'small', image: '/images/23.png', title: 'Welcome to Lab B201, Class of 2023!', category: 'NEWS' },
     { type: 'small', image: '/images/Legion-2.png', title: 'Lab B201 Game Development Team Wins National Game Competition!', category: 'ACHIEVEMENT' },
   ],
