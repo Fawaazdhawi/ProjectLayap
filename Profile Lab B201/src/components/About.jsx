@@ -12,13 +12,12 @@ const About = () => {
         </div>
         <div className="about-content-right">
           <div className="about-header">
-            {/* Teks "Computer Engineering ITS Video Profile" tetap sebagai tautan,
-                tapi video disematkan di bawahnya */}
+          
             <a className="about-link about-hover" href="https://www.youtube.com/watch?v=pJ7XZRFgeBU&t=2s" target="_blank">
               {aboutData.aboutTitle}
             </a>
           </div>
-          {/* Bagian ini telah diganti dengan iframe video YouTube */}
+          
           <div className="video-container">
             <iframe
               src="https://www.youtube.com/embed/pJ7XZRFgeBU"

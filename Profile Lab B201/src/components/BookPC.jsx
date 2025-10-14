@@ -1,4 +1,4 @@
-// src/components/ServiceCards.jsx
+
 import React, { useState } from 'react';
 import { serviceCardsData } from '../data/reserve';
 import ReservationModal from './ReservationModal';
@@ -36,7 +36,6 @@ const BookPC = () => {
               onClick={() => handleCardClick(service)}
             >
               <div className="service-card-image-placeholder">  
-                {/* Check if service.image exists before rendering */}
                 {service.Image && <img src={service.Image} alt={service.title} />}
               </div>
               <h4>{service.title}</h4>

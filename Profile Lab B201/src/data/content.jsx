@@ -110,7 +110,7 @@ export const footerData = {
   text: '© 2025 Lab B201 Profile. All Rights Reserved.',
 };
 
-// src/data/content.js
+
 export const serviceCardsData = [
   {
     title: 'Reservasi PC',

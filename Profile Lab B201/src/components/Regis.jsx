@@ -22,15 +22,15 @@ const Regis = () => {
     setLoading(true);
     
     try {
-      // Create user account
+      
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       
-      // Update user profile with name
+      
       await updateProfile(userCredential.user, {
         displayName: name
       });
       
-      // Save additional user data to Firestore
+      
       await setDoc(doc(db, 'users', userCredential.user.uid), {
         name: name,
         email: email,
@@ -43,7 +43,7 @@ const Regis = () => {
     } catch (error) {
       console.error('Registration error:', error);
       
-      // Handle specific error messages
+      
       switch (error.code) {
         case 'auth/email-already-in-use':
           setError('Email sudah digunakan');

@@ -25,7 +25,7 @@ const Login = () => {
     } catch (error) {
       console.error('Login error:', error);
       
-      // Handle specific error messages
+      
       switch (error.code) {
         case 'auth/invalid-email':
           setError('Email tidak valid');

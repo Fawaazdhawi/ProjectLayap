@@ -54,7 +54,7 @@
     color: var(--secondary-color);
 }
 
-/* src/styles/modal.css */
+
 
 .modal-overlay {
   position: fixed;
@@ -134,15 +134,15 @@
 }
 
 .reservation-form .input-field input[type="date"] {
-  /* Styling khusus untuk input date agar terlihat konsisten */
-  color-scheme: dark; /* Untuk browser modern, membuat kalender pop-up menjadi dark */
+  
+  color-scheme: dark; 
 }
 
 
 .reserve-button {
   width: 100%;
   padding: 15px;
-  background-color: #b00000; /* Warna merah gelap sesuai gambar */
+  background-color: #b00000; 
   color: #fff;
   border: none;
   border-radius: 8px;

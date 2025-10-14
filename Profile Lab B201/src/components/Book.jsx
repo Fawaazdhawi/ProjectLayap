@@ -24,8 +24,6 @@ const Book = () => {
               onClick={handleClick}
             >
               <div className="service-card-image-placeholder">
-                {/* Tambahkan elemen gambar jika Anda memiliki gambar untuk kartu */}
-                {/* <img src={service.image} alt={service.title} /> */}
               </div>
               <h4>{service.title}</h4>
             </div>

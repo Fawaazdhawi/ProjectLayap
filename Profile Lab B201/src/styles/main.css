@@ -1,16 +1,16 @@
-/* === ROOT VARIABLES === */
+
 :root {
     --bg-color: #2b2b2b;
     --text-color: #f0f0f0;
     --primary-color: #1a1a1a;
     --secondary-color: #f7f7f7;
-    --accent-color: #cc0000; /* Red accent color */
+    --accent-color: #cc0000; 
     --maroon-color: #800000;
     --light-gray: #cccccc;
     --dark-gray: #666666;
 }
 
-/* === GLOBAL STYLES === */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -22,7 +22,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
-    padding-top: 100px; /* Space for fixed header */
+    padding-top: 100px; 
 }
 
 .container {
@@ -57,7 +57,7 @@ img {
     color: #b0b0b0;
 }
 
-/* === HEADER STYLES === */
+
 .main-header {
     position: fixed;
     top: 0;
@@ -153,7 +153,7 @@ img {
     border-radius: 2px;
 }
 
-/* === ABOUT SECTION === */
+
 .about-section {
     background-color: var(--bg-color);
     background-image: url("/images/BG_About.png");
@@ -220,10 +220,10 @@ img {
     font-size: 2rem;
 }
 
-/* === ABOUT SECTION - VIDEO EMBED === */
+
 .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* Rasio aspek 16:9 (9 / 16 * 100) */
+    padding-bottom: 56.25%; 
     height: 0;
     overflow: hidden;
     margin-top: 1rem;
@@ -237,7 +237,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    border: none; /* Menghilangkan border default dari iframe */
+    border: none; 
     border-radius: 10px;
 }
 
@@ -259,7 +259,7 @@ img {
     color: #b0b0b0;
 }
 
-/* === VALUES SECTION === */
+
 .values-section {
     background-color: var(--primary-color);
 }
@@ -339,7 +339,7 @@ img {
     to { opacity: 1; }
 }
 
-/* === WHAT WE DO SECTION === */
+
 .what-we-do-section h2 {
     text-align: center;
 }
@@ -378,7 +378,7 @@ img {
     margin-bottom: 0.5rem;
 }
 
-/* === PRAKTIKUM SECTION === */
+
 .praktikum-section {
     background-color: var(--primary-color);
 }
@@ -433,7 +433,7 @@ img {
     line-height: 1.6;
 }
 
-/* === TEAM SECTION === */
+
 .team-section {
     background-color: var(--bg-color);
 }
@@ -493,7 +493,7 @@ img {
     max-width: 800px;
 }
 
-/* === WHAT'S ON B201 SECTION === */
+
 .whats-on-section {
     background-color: var(--primary-color);
 }
@@ -623,7 +623,7 @@ img {
     color: var(--accent-color);
 }
 
-/* === CONTACT SECTION === */
+
 .contact-section {
     background-color: var(--primary-color);
     padding: 50px 0;
@@ -687,7 +687,7 @@ img {
     color: #b0b0b0;
 }
 
-/* === FOOTER === */
+
 footer {
     background-color: #111;
     text-align: center;
@@ -696,7 +696,7 @@ footer {
     color: #888;
 }
 
-/* === RESPONSIVE DESIGN === */
+
 @media (max-width: 1024px) {
     .header-container {
         padding-left: 2rem;
@@ -709,7 +709,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-    /* Header adjustments */
+   
     .main-header {
         height: 80px;
     }
@@ -750,7 +750,7 @@ footer {
         padding: 0.3rem 0.8rem;
     }
     
-    /* General mobile adjustments */
+   
     .container {
         padding: 0 1rem;
     }
@@ -758,7 +758,7 @@ footer {
     h1 { font-size: 3rem; }
     h2 { font-size: 2.5rem; }
 
-    /* Section layouts */
+   
     .about-container, .values-container, .contact-content-grid {
         flex-direction: column;
         text-align: center;
@@ -779,7 +779,7 @@ footer {
         width: 100px;
     }
 
-    /* Grid adjustments */
+    
     .stats-grid, .services-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
@@ -793,7 +793,7 @@ footer {
         justify-items: center;
     }
 
-    /* Values section mobile */
+    
     .values-image-right {
         height: 300px;
         margin-top: 2rem;
@@ -808,7 +808,7 @@ footer {
         padding: 0.6rem 1.2rem;
     }
 
-    /* Contact section mobile */
+    
     .contact-image img {
         width: 100%;
         height: auto;
@@ -819,7 +819,7 @@ footer {
         gap: 2rem;
     }
 
-    /* Team section mobile */
+    
     .team-grid {
         justify-content: center;
         gap: 1.5rem;
@@ -834,13 +834,13 @@ footer {
         height: 120px;
     }
 
-    /* Praktikum images mobile */
+    
     .praktikum-img {
         height: 200px;
         max-width: 100%;
     }
     
-    /* News cards mobile */
+    
     .news-card-large {
         width: 320px;
         height: 350px;
@@ -861,9 +861,9 @@ footer {
 }
 
 @media (max-width: 480px) {
-    /* Extra small screens */
+    
     .main-header {
-        height: 120px; /* Taller for two-row layout */
+        height: 120px; 
     }
     
     body {

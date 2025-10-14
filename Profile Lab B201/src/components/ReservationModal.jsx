@@ -12,7 +12,7 @@ const ReservationModal = ({ pc, onClose, onSubmit }) => {
   const [error, setError] = useState('');
 
   const checkExistingReservation = async () => {
-    // Check if PC is already reserved for the selected date
+    
     const reservationsRef = collection(db, 'reservations');
     const q = query(
       reservationsRef,
@@ -30,14 +30,14 @@ const ReservationModal = ({ pc, onClose, onSubmit }) => {
     setLoading(true);
     
     try {
-      // Check if user is logged in
+      
       if (!auth.currentUser) {
         alert('Silakan login terlebih dahulu');
         setLoading(false);
         return;
       }
 
-      // Check if PC is already reserved for this date
+      
       const isReserved = await checkExistingReservation();
       if (isReserved) {
         setError('PC sudah direservasi untuk tanggal ini');
@@ -58,7 +58,7 @@ const ReservationModal = ({ pc, onClose, onSubmit }) => {
         createdAt: new Date()
       };
       
-      // Save to Firestore
+      
       const docRef = await addDoc(collection(db, 'reservations'), reservationData);
       console.log('Reservation saved with ID:', docRef.id);
       
