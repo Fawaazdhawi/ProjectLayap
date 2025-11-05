@@ -21,7 +21,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert('Login successful!');
-      navigate('/reservasi');
+      navigate('/admin');
     } catch (error) {
       console.error('Login error:', error);
       

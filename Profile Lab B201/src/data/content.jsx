@@ -8,7 +8,6 @@ export const headerData = {
     { name: 'Projects', href: '#projects' },
     { name: 'Practicum', href: '#practicum' },
     { name: 'Lectures', href: '#lectures' },
-    { name: 'Login', href: '/login' },
   ],
 };
 
@@ -112,16 +111,18 @@ export const footerData = {
 
 
 export const serviceCardsData = [
-  {
-    title: 'Reservasi PC',
-    path: '/reservasi-pc'
-  },
-  {
-    title: 'Printer Lab',
-    path: '/printer-lab'
-  },
-  {
-    title: 'Inventaris B201',
-    path: '/inventaris'
-  },
+  { title: 'Reservasi PC', path: '/reservasi-pc' },
+  { title: 'Printer LAB', path: '/printer-lab' },
+  { title: 'Inventaris LAB', path: '/inventaris' },
+  { title: 'Create & Edit Page', path: '/admin-edit' },
+  // ...item lain
+];
+
+// src/data/cardData.js
+
+export const cardData = [
+    { id: 1, title: 'Home Page', path: '/-edit-home' },
+    { id: 2, title: 'What We Do?', path: '/edit-what-we-do' },
+    { id: 3, title: 'Practicum', path: '/edit-practicum'},
+    { id: 4, title: "What's on B201", path: '/editwhats-on-b201' },
 ];
