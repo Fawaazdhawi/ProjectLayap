@@ -1,5 +1,5 @@
 import Book from '../components/Book';
-import Header from '../components/Header2';
+import Header from '../components/Header3';
 import Footer from '../components/Footer';
 
 const Booking = () => {

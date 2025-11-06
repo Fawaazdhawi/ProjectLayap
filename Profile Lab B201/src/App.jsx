@@ -5,11 +5,11 @@ import { Routes, Route } from 'react-router';
 import NotFound from './pages/NotFound';
 import LoginPage from './pages/LoginPage';
 import Booking from './pages/Booking';
-import Regis from './components/Regis';
 import RegisterPage from './pages/RegisterPage';
 import ReservasiPC from './pages/ReservasiPC';
 import Inventaris from './pages/Inventaris';
 import PrinterPage from './pages/PrinterPage';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   return (
@@ -18,7 +18,8 @@ function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/reservasi" element={<Booking />} />
+      <Route path="/admin-edit" element={<AdminPage />} />
+      <Route path="/admin" element={<Booking />} />
       <Route path="/reservasi-pc" element={<ReservasiPC />} />
       <Route path="/inventaris" element={<Inventaris />} />
       <Route path="/printer-lab" element={<PrinterPage />} />

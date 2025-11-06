@@ -1,11 +1,11 @@
 // src/components/ServiceCards.jsx
 import React from 'react';
-import { serviceCardsData } from '../data/content';
+import { cardData } from '../data/content';
 import { useNavigate } from 'react-router';
 import '../styles/main.css';
-import '../styles/service.css';
+import '../styles/admin.css';
 
-const Book = () => {
+const AdminEdit = () => {
 
   const navigate = useNavigate();
 
@@ -15,17 +15,16 @@ const Book = () => {
   }
 
   return (
-    <section className="service-cards-section">
+    <section className="service-edit-section">
       <div className="container">
-        <div className="service-cards-grid">
-          {serviceCardsData.map((service, index) => (
+        <h2 style={{fontSize: 50, fontStyle: 'italic'}}>Create & Edit Page</h2> <br />
+        <div className="service-edit-grid">
+          {cardData.map((service, index) => (
             <div
               key={index}
-              className="service-card-item"
+              className="service-edit-item"
               onClick={() => handleClick(service.path)}
             >
-              <div className="service-card-image-placeholder">
-              </div>
               <h4>{service.title}</h4>
             </div>
           ))}
@@ -35,4 +34,4 @@ const Book = () => {
   );
 };
 
-export default Book;
+export default AdminEdit;
