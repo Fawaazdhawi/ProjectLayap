@@ -5,7 +5,6 @@ import { Routes, Route } from 'react-router';
 import NotFound from './pages/NotFound';
 import LoginPage from './pages/LoginPage';
 import Booking from './pages/Booking';
-import Regis from './components/Regis';
 import RegisterPage from './pages/RegisterPage';
 import ReservasiPC from './pages/ReservasiPC';
 import Inventaris from './pages/Inventaris';
