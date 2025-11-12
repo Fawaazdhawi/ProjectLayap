@@ -623,7 +623,6 @@ img {
     color: var(--accent-color);
 }
 
-
 .contact-section {
     background-color: var(--primary-color);
     padding: 50px 0;
@@ -669,6 +668,19 @@ img {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex: 1;
     max-width: 850px;
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.contact-box img.contact-icon {
+    position: absolute; 
+    top: 1.5rem;       
+    left: 1.5rem;     
+    width: 25px;   
+    height: 25px;
+    object-fit: contain;
+    z-index: 1; 
 }
 
 .contact-box:hover {
@@ -676,17 +688,20 @@ img {
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-.contact-box p:first-child {
+.contact-text-content {
+    text-align: center;  
+}
+
+.contact-text-content p:first-child {
     font-weight: 600;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--secondary-color);
 }
 
-.contact-box p:last-child {
+.contact-text-content p:last-child {
     color: #b0b0b0;
 }
-
 
 footer {
     background-color: #111;

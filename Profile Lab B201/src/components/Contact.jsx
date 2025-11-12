@@ -11,8 +11,15 @@ const Contact = () => {
           <div className="contact-details">
             {contactData.details.map((detail, index) => (
               <div key={index} className="contact-box">
-                <p>{detail.label}</p>
-                <p>{detail.value}</p>
+                <img 
+                  src={detail.icon} 
+                  alt={`${detail.label} icon`} 
+                  className="contact-icon" 
+                />
+                <div className="contact-text-content">
+                  <p>{detail.label}</p>
+                  <p>{detail.value}</p>
+                </div>
               </div>
             ))}
           </div>

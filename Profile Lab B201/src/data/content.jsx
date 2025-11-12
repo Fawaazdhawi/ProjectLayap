@@ -99,11 +99,32 @@ export const whatsOnData = {
 export const contactData = {
   title: 'Contact us',
   details: [
-    { label: 'Address', value: 'Laboratorium B201 Telematika, Departemen Teknik Komputer, Institut Teknologi Sepuluh Nopember, Gedung A, B dan AJ, Kampus ITS Sukolilo, Surabaya, Jawa Timur 60111, ID' },
-    { label: 'Email', value: 'lab.b201@its.ac.id' },
-    { label: 'Phone', value: '+62 31 5994251' },
+    { 
+      label: 'Address', 
+      value: 'Laboratorium B201 Telematika, Departemen Teknik Komputer, Institut Teknologi Sepuluh Nopember, Gedung A, B dan AJ, Kampus ITS Sukolilo, Surabaya, Jawa Timur 60111, ID',
+      icon: '/images/address.png' // Ganti dengan nama file ikon alamat Anda
+    },
+    { 
+      label: 'Email', 
+      value: 'lab.b201@its.ac.id',
+      icon: '/images/email.png' // Ganti dengan nama file ikon email Anda
+    },
+    { 
+      label: 'Phone', 
+      value: '+62 31 5994251',
+      icon: '/images/phone.png' // Ganti dengan nama file ikon telepon Anda
+    },
   ],
 };
+
+// export const contactData = {
+//   title: 'Contact us',
+//   details: [
+//     { label: 'Address', value: 'Laboratorium B201 Telematika, Departemen Teknik Komputer, Institut Teknologi Sepuluh Nopember, Gedung A, B dan AJ, Kampus ITS Sukolilo, Surabaya, Jawa Timur 60111, ID' },
+//     { label: 'Email', value: 'lab.b201@its.ac.id' },
+//     { label: 'Phone', value: '+62 31 5994251' },
+//   ],
+// };
 
 export const footerData = {
   text: '© 2025 Lab B201 Profile. All Rights Reserved.',
