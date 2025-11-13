@@ -1,5 +1,6 @@
 import Admin from '../components/Admin.jsx';
 import Header from '../components/Header3.jsx';
+import Footer from '../components/Footer.jsx';
 
 const AdminPage = () => {
   return (
@@ -8,6 +9,7 @@ const AdminPage = () => {
         <main>
             <Admin />
         </main>
+        <Footer />
     </>
   );  
 };
