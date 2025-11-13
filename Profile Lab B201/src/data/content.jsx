@@ -142,8 +142,8 @@ export const serviceCardsData = [
 // src/data/cardData.js
 
 export const cardData = [
-    { id: 1, title: 'Home Page', path: '/-edit-home' },
+    { id: 1, title: 'Home Page', path: '/edit-home' },
     { id: 2, title: 'What We Do?', path: '/edit-what-we-do' },
     { id: 3, title: 'Practicum', path: '/edit-practicum'},
-    { id: 4, title: "What's on B201", path: '/editwhats-on-b201' },
+    { id: 4, title: "What's on B201", path: '/edit-whats-on-b201' },
 ];
