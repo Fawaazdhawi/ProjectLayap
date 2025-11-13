@@ -139,8 +139,6 @@ export const serviceCardsData = [
   // ...item lain
 ];
 
-// src/data/cardData.js
-
 export const cardData = [
     { id: 1, title: 'Home Page', path: '/edit-home' },
     { id: 2, title: 'What We Do?', path: '/edit-what-we-do' },
