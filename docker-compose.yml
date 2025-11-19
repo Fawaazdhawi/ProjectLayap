@@ -1,0 +1,104 @@
+services:
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik-lb
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:8080:8080"
+    volumes:
+      - //var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - lab-network
+    restart: unless-stopped
+
+  # Frontend dengan 2 cara akses: via Traefik dan direct port
+  lab-frontend-1:
+    build: 
+      context: "./Profile Lab B201"
+      dockerfile: Dockerfile
+    container_name: lab-frontend-1
+    ports:
+      - "0.0.0.0:3001:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend1.rule=Host(`10.125.178.72`)"
+      - "traefik.http.routers.frontend1.entrypoints=web"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+    networks:
+      - lab-network
+    restart: unless-stopped
+
+  lab-frontend-2:
+    build: 
+      context: "./Profile Lab B201"
+      dockerfile: Dockerfile
+    container_name: lab-frontend-2
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend2.rule=Host(`10.125.178.72`)"
+      - "traefik.http.routers.frontend2.entrypoints=web"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+    networks:
+      - lab-network
+    restart: unless-stopped
+
+  backend-api:
+    build: ./backend
+    container_name: backend-api
+    ports:
+      - "0.0.0.0:3000:3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`10.125.178.72`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.backend.entrypoints=web"
+      - "traefik.http.services.backend.loadbalancer.server.port=3000"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=database
+    depends_on:
+      - database
+    networks:
+      - lab-network
+    restart: unless-stopped
+
+  simple-page:
+    image: nginx:alpine
+    container_name: simple-static
+    ports:
+      - "0.0.0.0:3002:80"
+    volumes:
+      - ./nginx-simple:/usr/share/nginx/html:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.simple.rule=Host(`10.125.178.72`) && PathPrefix(`/simple`)"
+      - "traefik.http.routers.simple.entrypoints=web"
+      - "traefik.http.services.simple.loadbalancer.server.port=80"
+    networks:
+      - lab-network
+    restart: unless-stopped
+
+  database:
+    image: mysql:8.0
+    container_name: lab-database
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass123
+      MYSQL_DATABASE: lab_b201
+      MYSQL_USER: labuser
+      MYSQL_PASSWORD: labpass123
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - lab-network
+    restart: unless-stopped
+
+networks:
+  lab-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
