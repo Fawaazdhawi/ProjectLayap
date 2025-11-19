@@ -1,16 +1,316 @@
 .edit-home-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 2rem;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background-image: url('../images/BG_Reservasi.JPG');
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.7);
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+}
+
+/* Container kartu berita */
+.news-container {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+}
+
+/* Kartu berita */
+.news-card {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #222;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Gambar dalam kartu */
+.news-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay gelap dan teks */
+.news-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.1));
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+/* Tombol edit & delete */
+.news-buttons {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-btn, .delete-btn {
+  background: rgba(150, 0, 0, 0.8);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  padding: 0.3rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  background: rgba(200, 0, 0, 1);
+}
+
+/* Teks di bagian bawah kartu */
+.news-text h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.news-text span {
+  color: #ff4747;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+/* Kartu tambah berita */
+.add-card {
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.add-icon {
+  margin-bottom: 0.5rem;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-box {
+    background-color: #1f1f1f;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 900px;
+    position: relative;
+    color: white;
+    border: 1px solid #555;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: red;
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal-title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-content {
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+    gap: 2rem;
+}
+
+.image-upload {
+    width: 50%;
+    height: 260px;
+    border: 2px dashed #bbb;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    padding: 2rem;
-    box-sizing: border-box;
-    align-items: center;
     justify-content: center;
-    gap: 2rem;
-    background-image: url('../images/BG_Reservasi.JPG');
-    background-size: cover;
-    background-position: center;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.7);
+    align-items: center;
+    color: #ccc;
+}
+
+.input-side {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-side input {
+    background-color: #333;
+    border: 1px solid #555;
+    padding: 0.7rem;
+    border-radius: 8px;
+    color: white;
+}
+
+.desc-box {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.desc-box textarea {
+    background: #333;
+    border: 1px solid #555;
+    height: 150px;
+    padding: 1rem;
+    border-radius: 8px;
+    resize: none;
+    color: white;
+}
+
+.btn-publish {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 40px;
+    background: #8b0000;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-publish:hover {
+    background: #a30000;
+}
+
+/* Area upload saat hover */
+.image-upload:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,0.05);
+    transition: 0.25s ease;
+}
+
+/* Ikon upload */
+.upload-icon {
+    font-size: 3rem;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+/* Text "Click to upload" */
+.upload-text {
+    font-size: 1rem;
+    opacity: 0.7;
+    text-align: center;
+}
+
+/* Preview image */
+.image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animasi masuk */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Tombol upload (hidden input file) */
+.hidden-file-input {
+    display: none;
+}
+
+/* Tombol Add Image (versi kecil / dalam modal) */
+.btn-add-image {
+    padding: 0.6rem 1rem;
+    background: #444;
+    border-radius: 8px;
+    border: 1px solid #666;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+.btn-add-image:hover {
+    background: #555;
+    border-color: #888;
+}
+
+/* Membuat preview dan tombol saling menumpuk (opsional) */
+.image-upload.relative {
+    position: relative;
+}
+
+.change-image-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 0.4rem 0.8rem;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.change-image-btn:hover {
+    background: rgba(0,0,0,0.9);
 }

@@ -3,7 +3,6 @@ import React from 'react';
 import { serviceCardsData } from '../data/content';
 import { useNavigate } from 'react-router';
 import '../styles/main.css';
-import '../styles/service.css';
 
 const Book = () => {
 
@@ -25,7 +24,9 @@ const Book = () => {
               onClick={() => handleClick(service.path)}
             >
               <div className="service-card-image-placeholder">
+                <img src={service.image} alt={service.title} />
               </div>
+              
               <h4>{service.title}</h4>
             </div>
           ))}

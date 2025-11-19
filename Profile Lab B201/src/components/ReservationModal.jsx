@@ -75,7 +75,7 @@ const ReservationModal = ({ pc, onClose, onSubmit }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-content-reservasi">
         <button className="modal-close-button" onClick={onClose}>&times;</button>
         <h3 className="modal-title">Reservasi {pc.title}</h3>
         {error && <p style={{ color: '#ff4444', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>{error}</p>}

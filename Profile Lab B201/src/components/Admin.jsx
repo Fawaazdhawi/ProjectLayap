@@ -1,4 +1,3 @@
-// src/components/ServiceCards.jsx
 import React from 'react';
 import { cardData } from '../data/content';
 import { useNavigate } from 'react-router';
@@ -10,8 +9,7 @@ const AdminEdit = () => {
   const navigate = useNavigate();
 
   const handleClick = (path) => {
-    if (path) navigate(path);
-    else navigate('/reservasi-pc');
+  if (path) navigate(path);
   }
 
   return (

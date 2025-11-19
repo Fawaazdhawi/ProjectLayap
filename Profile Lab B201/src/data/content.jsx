@@ -132,16 +132,38 @@ export const footerData = {
 
 
 export const serviceCardsData = [
-  { title: 'Reservasi PC', path: '/reservasi-pc' },
-  { title: 'Printer LAB', path: '/printer-lab' },
+  { title: 'Reservasi PC', path: '/reservasi-pc', image:'/images/PC-1.jpg' },
+  { title: 'Printer LAB', path: '/printer-lab', image: '' },
   { title: 'Inventaris LAB', path: '/inventaris' },
   { title: 'Create & Edit Page', path: '/admin-edit' },
-  // ...item lain
 ];
 
 export const cardData = [
     { id: 1, title: 'Home Page', path: '/edit-home' },
     { id: 2, title: 'What We Do?', path: '/edit-what-we-do' },
     { id: 3, title: 'Practicum', path: '/edit-practicum'},
-    { id: 4, title: "What's on B201", path: '/edit-whats-on-b201' },
+    { id: 4, title: "What's on B201", path: '/edit-whats-on' },
 ];
+
+const newsData = [
+  {
+    id: 1,
+    title: "Congratulations to B201 Lab Assistants Graduating on Wisuda-132!",
+    category: "PROJECTS",
+    image: "/images/Alumni.png",
+  },
+  {
+    id: 2,
+    title: "Advanced Programming Practicum Registration is Finally Open!",
+    category: "PRACTICUM",
+    image: "/images/Proglan-Layap2.jpg",
+  },
+  {
+    id: 3,
+    title: "Database Management System Practicum Registration is Open!",
+    category: "PRACTICUM",
+    image: "/images/Basdat-Layap.jpeg",
+  },
+];
+
+export default newsData;
