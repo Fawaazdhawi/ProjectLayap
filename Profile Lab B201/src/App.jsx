@@ -10,6 +10,7 @@ import ReservasiPC from './pages/ReservasiPC';
 import Inventaris from './pages/Inventaris';
 import PrinterPage from './pages/PrinterPage';
 import AdminPage from './pages/AdminPage';
+import HomeEditPage from './pages/HomeEditPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/reservasi-pc" element={<ReservasiPC />} />
       <Route path="/inventaris" element={<Inventaris />} />
       <Route path="/printer-lab" element={<PrinterPage />} />
+      <Route path="/edit-home" element={<HomeEditPage />} /> 
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
