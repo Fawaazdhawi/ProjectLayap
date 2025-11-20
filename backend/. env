@@ -1,0 +1,8 @@
+PORT=3000
+NODE_ENV=development
+DB_HOST=database
+DB_PORT=3306
+DB_USER=labuser
+DB_PASSWORD=labpass123
+DB_NAME=lab_b201
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production

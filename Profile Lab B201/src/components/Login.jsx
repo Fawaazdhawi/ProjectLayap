@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../config/firebase';
 import '../styles/main.css';
 import '../styles/masuk.css';
 
@@ -19,29 +17,34 @@ const Login = () => {
     setLoading(true);
     
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      alert('Login successful!');
-      navigate('/admin');
+      // API call ke backend
+      const response = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Login gagal');
+        return;
+      }
+
+      // Simpan token ke localStorage
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('admin', JSON.stringify(data.admin));
+
+      alert('Login berhasil!');
+      navigate('/admin-dashboard');
     } catch (error) {
       console.error('Login error:', error);
-      
-      
-      switch (error.code) {
-        case 'auth/invalid-email':
-          setError('Email tidak valid');
-          break;
-        case 'auth/user-not-found':
-          setError('Akun tidak ditemukan');
-          break;
-        case 'auth/wrong-password':
-          setError('Password salah');
-          break;
-        case 'auth/invalid-credential':
-          setError('Email atau password salah');
-          break;
-        default:
-          setError('Terjadi kesalahan. Silakan coba lagi.');
-      }
+      setError('Terjadi kesalahan. Pastikan backend running di localhost:3000');
     } finally {
       setLoading(false);
     }
