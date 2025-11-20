@@ -65,16 +65,12 @@ export const praktikumData = {
 
 export const teamData = {
   title: 'Meet our Team',
-  head: {
-    image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/197003131995120001_Departemen-Teknik-Komputer-683x1024.jpg',
-    name: 'Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.',
-    role: 'Head of B201 Lab',
-  },
   members: [
     { image: '/images/Anggota.png', name: 'Lab Assistant', role: '' },
   ],
   teamTeachingTitle: 'Lecturer',
   teamTeaching: [
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/197003131995120001_Departemen-Teknik-Komputer-683x1024.jpg', name: 'Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.', role: 'Head of Lab B201' },
     { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/198504032012121001_Departemen-Teknik-Komputer-682x1024.jpg', name: 'Reza Fuad Rachmadi, S.T., M.T., Ph.D', role: 'Dosen Pengampu' },
     { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/Pak-surya.png', name: 'Dr. Surya Sumpeno, S.T., M.Sc.', role: 'Dosen Pengampu' },
     { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/196912091997031002_Departemen-Teknik-Komputer-1-682x1024.png', name: 'Mochamad Hariadi, S.T.,M.Sc.,Ph.D', role: 'Dosen Pengampu' },
@@ -131,7 +127,6 @@ export const serviceCardsData = [
 
 export const cardData = [
     { id: 1, title: 'Home Page', path: '/edit-home' },
-    { id: 2, title: 'What We Do?', path: '/edit-what-we-do' },
     { id: 3, title: 'Practicum', path: '/edit-practicum'},
     { id: 4, title: "What's on B201", path: '/edit-whats-on' },
 ];

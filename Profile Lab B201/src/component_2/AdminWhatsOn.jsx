@@ -36,7 +36,7 @@ const EditHomeSection = () => {
 
       <div className="news-container">
         {/* Card Tambah News */}
-        <div className="news-card add-card" onClick={() => setShowModal(true)}>
+        <div className="news-card-admin add-card" onClick={() => setShowModal(true)}>
           <div className="add-icon">
             <Plus size={113} />
           </div>
@@ -45,7 +45,7 @@ const EditHomeSection = () => {
 
         {/* Card Berita */}
         {newsData.map((item) => (
-          <div className="news-card" key={item.id}>
+          <div className="news-card-admin" key={item.id}>
             <img src={item.image} alt={item.title} className="news-image" />
 
             <div className="news-overlay">
