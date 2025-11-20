@@ -18,8 +18,7 @@ const Contact = () => {
                 />
                 
                   <p className="contact-label">{detail.label}</p> 
-                  <p className="contact-value">{detail.value}</p> 
-                
+                  <p className="contact-value">{detail.value}</p>                 
               </div>
             ))}
           </div>

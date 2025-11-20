@@ -58,7 +58,6 @@ img {
     text-align: center;
 }
 
-
 .main-header {
     position: fixed;
     top: 0;
@@ -669,7 +668,6 @@ img {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex: 1;
     max-width: 850px;
-    /* position: relative; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -678,32 +676,23 @@ img {
 }
 
 .contact-box img.contact-icon {
-    /* position: absolute;  */
-    /* top: 1.5rem;       
-    left: 1.5rem;      */
     width: 25px;   
     height: 25px;
     object-fit: contain;
-    /* z-index: 1;  */
     margin-bottom: 0.8rem;
     display: block;
     flex-shrink: 0;
-    /* margin-left: auto;
-    margin-right: auto; */
 }
 
-.contact-label { /* Gunakan class baru .contact-label */
+.contact-label { 
     font-weight: 600;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--secondary-color);
 }
 
-/* Style untuk value (misal: alamat email) */
-.contact-value { /* Gunakan class baru .contact-value */
+.contact-value { 
     color: #b0b0b0;
-    /* Jika ini adalah link (email/telepon), bisa diberi warna aksen */
-    /* Contoh: color: var(--accent-color); */
 }
 
 .contact-box:hover {
