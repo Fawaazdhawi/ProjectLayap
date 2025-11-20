@@ -16,10 +16,10 @@ const Contact = () => {
                   alt={`${detail.label} icon`} 
                   className="contact-icon" 
                 />
-                <div className="contact-text-content">
-                  <p>{detail.label}</p>
-                  <p>{detail.value}</p>
-                </div>
+                
+                  <p className="contact-label">{detail.label}</p> 
+                  <p className="contact-value">{detail.value}</p> 
+                
               </div>
             ))}
           </div>
