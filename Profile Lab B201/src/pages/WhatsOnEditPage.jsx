@@ -1,4 +1,4 @@
-import AdminHome from '../component_2/AdminHome.jsx';
+import AdminHome from '../component_2/AdminWhatsOn.jsx';
 import Header from '../components/Header3.jsx';
 import Footer from '../components/Footer.jsx';
 

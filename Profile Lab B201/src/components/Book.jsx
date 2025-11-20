@@ -25,7 +25,9 @@ const Book = () => {
               onClick={() => handleClick(service.path)}
             >
               <div className="service-card-image-placeholder">
+                <img src={service.image} alt={service.title} />
               </div>
+              
               <h4>{service.title}</h4>
             </div>
           ))}
