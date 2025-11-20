@@ -3,6 +3,7 @@ import React from 'react';
 import { serviceCardsData } from '../data/content';
 import { useNavigate } from 'react-router';
 import '../styles/main.css';
+import '../styles/service.css';
 
 const Book = () => {
 
