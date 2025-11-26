@@ -11,6 +11,7 @@ import Inventaris from './pages/Inventaris';
 import PrinterPage from './pages/PrinterPage';
 import AdminPage from './pages/AdminPage';
 import WhatsOnEditPage from './pages/WhatsOnEditPage';
+import PracticumEdit from './pages/PracticumEdit.jsx';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path="/inventaris" element={<Inventaris />} />
       <Route path="/printer-lab" element={<PrinterPage />} />
       <Route path="/edit-whats-on" element={<WhatsOnEditPage />} /> 
+      <Route path="/edit-practicum" element={<PracticumEdit />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
