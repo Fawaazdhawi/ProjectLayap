@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import '../styles/edit2.css';
 
-// --- Icons ---
 const EditIcon = () => (
   <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>
 );
@@ -74,7 +73,7 @@ const AdminPracticum = () => {
         {practicums.map((item) => (
           <div key={item.id} className="practicum-card">
             <div className="card-image-wrapper">
-                {/* Ensure the image path is handled correctly */}
+                {/*x */}
                 <img src={item.image} alt={item.title} className="card-image" />
                 <div className="card-actions-overlay">
                     <button className="action-btn" title="Edit"><EditIcon/></button>
@@ -99,7 +98,7 @@ const AdminPracticum = () => {
             <form onSubmit={handleSubmit}>
               <div className="modal-top-section">
                 
-                {/* 1. Image Upload (Left) */}
+                {/*image */}
                 <div className="image-upload-box" onClick={() => fileInputRef.current.click()}>
                     <input type="file" hidden ref={fileInputRef} onChange={handleFileChange} />
                     {imagePreview ? (
@@ -112,7 +111,7 @@ const AdminPracticum = () => {
                     )}
                 </div>
 
-                {/* 2. Title Input (Right) */}
+                {/*image right */}
                 <div className="modal-inputs-right">
                     <div className="form-group">
                         <label className="form-label">Title<span className="required">*</span></label>
@@ -127,7 +126,7 @@ const AdminPracticum = () => {
                 </div>
               </div>
 
-              {/* 3. Description (Bottom) */}
+              {/* desc */}
               <div className="form-group">
                   <label className="form-label">Practicum Description</label>
                   <textarea 
