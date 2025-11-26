@@ -17,7 +17,7 @@ const Book = () => {
   return (
     <section className="service-cards-section">
       <div className="container">
-        <div className="service-cards-grid">
+        <div className="service-edit-grid-2colomn">
           {serviceCardsData.map((service, index) => (
             <div
               key={index}

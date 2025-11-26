@@ -24,6 +24,14 @@
     flex-wrap: wrap;
 }
 
+.service-edit-grid-2colomn {
+    display: grid;  
+    grid-template-columns: repeat(2, 1fr);  
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
 .service-edit-item {
     background-color: var(--primary-color);
     border-radius: 10px;
@@ -154,4 +162,11 @@
 
 .reserve-button:hover {
   background-color: #cc0000;
+}
+
+@media (max-width: 768px) {
+    .service-edit-grid {
+        grid-template-columns: 1fr;  
+        gap: 1.5rem;
+    }
 }

@@ -27,8 +27,8 @@ const BookPC = () => {
   return (
     <section className="service-cards-section">
       <div className="container">
-        <h1 style={{ marginBottom: '50px', textAlign: 'center', color: 'white' }}>Lab B201 PC Reservation</h1>
-        <div className="service-cards-grid">
+        <h1 style={{ marginBottom: '50px', textAlign: 'center', color: 'white' }}>Lab B201 PC Reservation</h1>        
+        <div className="service-edit-grid">
           {serviceCardsData.map((service, index) => (
             <div
               key={index}
