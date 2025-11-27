@@ -4,18 +4,46 @@ import { Edit, Trash2, Plus, Image as ImageIcon } from "lucide-react";
 import newsData from "../data/content";
 
 const EditHomeSection = () => {
+  // ✅ State untuk manage news list
+  const [newsList, setNewsList] = useState(newsData);
   const [showModal, setShowModal] = useState(false);
-
-  // State untuk upload
+  const [editingId, setEditingId] = useState(null); // ✅ Track editing item
+  const [formData, setFormData] = useState({ title: '', category: '', description: '' });
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
 
-  // Klik area upload
+  // ✅ Open modal for ADD
+  const handleOpenModal = () => {
+    setShowModal(true);
+    setEditingId(null);
+    setFormData({ title: '', category: '', description: '' });
+    setSelectedImage(null);
+  };
+
+  // ✅ Open modal for EDIT
+  const handleEditModal = (item) => {
+    setShowModal(true);
+    setEditingId(item.id);
+    setFormData({ 
+      title: item.title, 
+      category: item.category,
+      description: item.description || ''
+    });
+    setSelectedImage(item.image);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setEditingId(null);
+    setFormData({ title: '', category: '', description: '' });
+    setSelectedImage(null);
+  };
+
+  // ✅ Handle file upload
   const handleUploadClick = () => {
     fileInputRef.current.click();
   };
 
-  // Saat user pilih file
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -24,10 +52,52 @@ const EditHomeSection = () => {
     }
   };
 
-  const handlePublish = () => {
-    alert("News Published!");
-    setSelectedImage(null);
-    setShowModal(false);
+  // ✅ Handle SUBMIT (Add or Edit)
+  const handlePublish = (e) => {
+    e.preventDefault();
+
+    if (!formData.title || !formData.category || !selectedImage) {
+      alert("Please complete all required fields!");
+      return;
+    }
+
+    if (editingId) {
+      // UPDATE existing news
+      setNewsList(newsList.map(item => 
+        item.id === editingId 
+          ? { 
+              ...item, 
+              title: formData.title, 
+              category: formData.category,
+              description: formData.description,
+              image: selectedImage 
+            }
+          : item
+      ));
+      alert("News updated successfully!");
+    } else {
+      // ADD new news
+      const newItem = {
+        id: Date.now(),
+        title: formData.title,
+        category: formData.category,
+        description: formData.description,
+        image: selectedImage
+      };
+      setNewsList([newItem, ...newsList]);
+      alert("News published successfully!");
+    }
+
+    handleCloseModal();
+  };
+
+  // ✅ Handle DELETE
+  const handleDelete = (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this news?");
+    if (confirmDelete) {
+      setNewsList(newsList.filter(item => item.id !== id));
+      alert("News deleted successfully!");
+    }
   };
 
   return (
@@ -36,7 +106,7 @@ const EditHomeSection = () => {
 
       <div className="news-container">
         {/* Card Tambah News */}
-        <div className="news-card-admin add-card" onClick={() => setShowModal(true)}>
+        <div className="news-card-admin add-card" onClick={handleOpenModal}>
           <div className="add-icon">
             <Plus size={113} />
           </div>
@@ -44,16 +114,26 @@ const EditHomeSection = () => {
         </div>
 
         {/* Card Berita */}
-        {newsData.map((item) => (
+        {newsList.map((item) => (
           <div className="news-card-admin" key={item.id}>
             <img src={item.image} alt={item.title} className="news-image" />
 
             <div className="news-overlay">
               <div className="news-buttons">
-                <button className="edit-btn">
+                {/* ✅ EDIT BUTTON */}
+                <button 
+                  className="edit-btn"
+                  onClick={() => handleEditModal(item)}
+                  title="Edit"
+                >
                   <Edit size={18} />
                 </button>
-                <button className="delete-btn">
+                {/* ✅ DELETE BUTTON */}
+                <button 
+                  className="delete-btn"
+                  onClick={() => handleDelete(item.id)}
+                  title="Delete"
+                >
                   <Trash2 size={18} />
                 </button>
               </div>
@@ -68,7 +148,7 @@ const EditHomeSection = () => {
       </div>
 
       {/* ==============================================================
-                            MODAL ADD NEWS
+                            MODAL ADD/EDIT NEWS
       =============================================================== */}
       {showModal && (
         <div className="modal-overlay">
@@ -76,59 +156,80 @@ const EditHomeSection = () => {
             {/* Close Modal */}
             <button
               className="modal-close"
-              onClick={() => {
-                setShowModal(false);
-                setSelectedImage(null);
-              }}
+              onClick={handleCloseModal}
             >
               X
             </button>
 
-            <h2 className="modal-title">Add News</h2>
+            {/* ✅ Dynamic modal title */}
+            <h2 className="modal-title">
+              {editingId ? 'Edit News' : 'Add News'}
+            </h2>
 
-            <div className="modal-content">
-              {/* Upload Image */}
-              <div className="image-upload" onClick={handleUploadClick}>
-                {selectedImage ? (
-                  <img
-                    src={selectedImage}
-                    alt="preview"
-                    className="image-preview"
+            <form onSubmit={handlePublish}>
+              <div className="modal-content">
+                {/* Upload Image */}
+                <div className="image-upload" onClick={handleUploadClick}>
+                  {selectedImage ? (
+                    <img
+                      src={selectedImage}
+                      alt="preview"
+                      className="image-preview"
+                    />
+                  ) : (
+                    <>
+                      <ImageIcon size={50} className="upload-icon" />
+                      <p className="upload-text">Add Image</p>
+                    </>
+                  )}
+                </div>
+
+                {/* hidden input file */}
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  className="hidden-file-input"
+                  onChange={handleImageChange}
+                />
+
+                {/* Input Fields */}
+                <div className="input-side">
+                  <label>Title*</label>
+                  <input 
+                    type="text" 
+                    placeholder="Enter Title"
+                    value={formData.title}
+                    onChange={(e) => setFormData({...formData, title: e.target.value})}
+                    required
                   />
-                ) : (
-                  <>
-                    <ImageIcon size={50} className="upload-icon" />
-                    <p className="upload-text">Add Image</p>
-                  </>
-                )}
+
+                  <label>Tag*</label>
+                  <input 
+                    type="text" 
+                    placeholder="Add Tag (e.g., PROJECTS, PRACTICUM)"
+                    value={formData.category}
+                    onChange={(e) => setFormData({...formData, category: e.target.value})}
+                    required
+                  />
+                </div>
               </div>
 
-              {/* hidden input file */}
-              <input
-                type="file"
-                accept="image/*"
-                ref={fileInputRef}
-                className="hidden-file-input"
-                onChange={handleImageChange}
-              />
-
-              {/* Input Fields */}
-              <div className="input-side">
-                <label>Title*</label>
-                <input type="text" placeholder="Enter Title" />
-
-                <label>Tag*</label>
-                <input type="text" placeholder="Add Tag" />
+              {/* Description */}
+              <div className="desc-box">
+                <label>News Content</label>
+                <textarea 
+                  placeholder="Enter News Description"
+                  value={formData.description}
+                  onChange={(e) => setFormData({...formData, description: e.target.value})}
+                />
               </div>
-            </div>
 
-            {/* Description */}
-            <div className="desc-box">
-              <label>News Content</label>
-              <textarea placeholder="Enter News Description"></textarea>
-            </div>
-
-            <button className="btn-publish" onClick={handlePublish}>Publish News</button>
+              {/* ✅ Dynamic button text */}
+              <button type="submit" className="btn-publish">
+                {editingId ? 'Update News' : 'Publish News'}
+              </button>
+            </form>
           </div>
         </div>
       )}

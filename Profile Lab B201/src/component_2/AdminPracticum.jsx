@@ -29,30 +29,81 @@ const AdminPracticum = () => {
   const [formData, setFormData] = useState({ title: '', description: '' });
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [editingId, setEditingId] = useState(null); // ✅ Track editing item
   const fileInputRef = useRef(null);
 
+  // ✅ Open modal for ADD
   const handleOpenModal = () => {
     setShowModal(true);
+    setEditingId(null); // Reset editing mode
     setFormData({ title: '', description: '' });
     setImagePreview(null);
+    setImageFile(null);
   };
-  const handleCloseModal = () => setShowModal(false);
 
+  // ✅ Open modal for EDIT
+  const handleEditModal = (item) => {
+    setShowModal(true);
+    setEditingId(item.id); // Set editing mode
+    setFormData({ title: item.title, description: item.description });
+    setImagePreview(item.image);
+    setImageFile(null);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setEditingId(null);
+    setFormData({ title: '', description: '' });
+    setImagePreview(null);
+    setImageFile(null);
+  };
+
+  // ✅ Handle SUBMIT (Add or Edit)
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.title || !formData.description || !imageFile) {
-        alert("Please complete all fields"); return;
+    
+    if (!formData.title || !formData.description || !imagePreview) {
+      alert("Please complete all fields");
+      return;
     }
-    const newItem = { id: Date.now(), title: formData.title, description: formData.description, image: imagePreview };
-    setPracticums([newItem, ...practicums]);
+
+    if (editingId) {
+      // UPDATE existing practicum
+      setPracticums(practicums.map(item => 
+        item.id === editingId 
+          ? { ...item, title: formData.title, description: formData.description, image: imagePreview }
+          : item
+      ));
+      alert("Practicum updated successfully!");
+    } else {
+      // ADD new practicum
+      const newItem = { 
+        id: Date.now(), 
+        title: formData.title, 
+        description: formData.description, 
+        image: imagePreview 
+      };
+      setPracticums([newItem, ...practicums]);
+      alert("Practicum added successfully!");
+    }
+    
     handleCloseModal();
+  };
+
+  // ✅ Handle DELETE
+  const handleDelete = (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this practicum?");
+    if (confirmDelete) {
+      setPracticums(practicums.filter(item => item.id !== id));
+      alert("Practicum deleted successfully!");
+    }
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-        setImageFile(file);
-        setImagePreview(URL.createObjectURL(file));
+      setImageFile(file);
+      setImagePreview(URL.createObjectURL(file));
     }
   };
 
@@ -65,24 +116,37 @@ const AdminPracticum = () => {
       <div className="card-grid">
         {/* ADD CARD */}
         <div className="add-card-glass" onClick={handleOpenModal}>
-            <span className="add-icon-large">+</span>
-            <span className="add-text">Add Practicum</span>
+          <span className="add-icon-large">+</span>
+          <span className="add-text">Add Practicum</span>
         </div>
 
         {/* LIST CARDS */}
         {practicums.map((item) => (
           <div key={item.id} className="practicum-card">
             <div className="card-image-wrapper">
-                {/*x */}
-                <img src={item.image} alt={item.title} className="card-image" />
-                <div className="card-actions-overlay">
-                    <button className="action-btn" title="Edit"><EditIcon/></button>
-                    <button className="action-btn" title="Delete"><TrashIcon/></button>
-                </div>
+              <img src={item.image} alt={item.title} className="card-image" />
+              <div className="card-actions-overlay">
+                {/* ✅ EDIT BUTTON */}
+                <button 
+                  className="action-btn" 
+                  title="Edit"
+                  onClick={() => handleEditModal(item)}
+                >
+                  <EditIcon/>
+                </button>
+                {/* ✅ DELETE BUTTON */}
+                <button 
+                  className="action-btn" 
+                  title="Delete"
+                  onClick={() => handleDelete(item.id)}
+                >
+                  <TrashIcon/>
+                </button>
+              </div>
             </div>
             <div className="card-content">
-                <h3 className="card-title">{item.title}</h3>
-                <p className="card-desc">{item.description}</p>
+              <h3 className="card-title">{item.title}</h3>
+              <p className="card-desc">{item.description}</p>
             </div>
           </div>
         ))}
@@ -93,52 +157,68 @@ const AdminPracticum = () => {
         <div className="modal-overlay">
           <div className="modal-box">
             <button className="modal-close-btn" onClick={handleCloseModal}>&times;</button>
-            <h2 className="modal-title">Add Practicum</h2>
+            {/* ✅ Dynamic modal title */}
+            <h2 className="modal-title">
+              {editingId ? 'Edit Practicum' : 'Add Practicum'}
+            </h2>
             
             <form onSubmit={handleSubmit}>
               <div className="modal-top-section">
                 
-                {/*image */}
+                {/* Image Upload */}
                 <div className="image-upload-box" onClick={() => fileInputRef.current.click()}>
-                    <input type="file" hidden ref={fileInputRef} onChange={handleFileChange} />
-                    {imagePreview ? (
-                        <img src={imagePreview} className="image-preview" alt="Preview"/>
-                    ) : (
-                        <>
-                            <span className="upload-icon">📷</span>
-                            <span style={{color:'#888'}}>Add Image</span>
-                        </>
-                    )}
-                </div>
-
-                {/*image right */}
-                <div className="modal-inputs-right">
-                    <div className="form-group">
-                        <label className="form-label">Title<span className="required">*</span></label>
-                        <input 
-                            name="title" 
-                            className="modal-input" 
-                            value={formData.title} 
-                            onChange={(e) => setFormData({...formData, title: e.target.value})} 
-                            placeholder="Enter Title" 
-                        />
-                    </div>
-                </div>
-              </div>
-
-              {/* desc */}
-              <div className="form-group">
-                  <label className="form-label">Practicum Description</label>
-                  <textarea 
-                      name="description" 
-                      className="modal-textarea" 
-                      value={formData.description} 
-                      onChange={(e) => setFormData({...formData, description: e.target.value})} 
-                      placeholder="Enter Practicum Description" 
+                  <input 
+                    type="file" 
+                    hidden 
+                    ref={fileInputRef} 
+                    onChange={handleFileChange}
+                    accept="image/*"
                   />
+                  {imagePreview ? (
+                    <img src={imagePreview} className="image-preview" alt="Preview"/>
+                  ) : (
+                    <>
+                      <span className="upload-icon">📷</span>
+                      <span style={{color:'#888'}}>Add Image</span>
+                    </>
+                  )}
+                </div>
+
+                {/* Title Input */}
+                <div className="modal-inputs-right">
+                  <div className="form-group">
+                    <label className="form-label">
+                      Title<span className="required">*</span>
+                    </label>
+                    <input 
+                      name="title" 
+                      className="modal-input" 
+                      value={formData.title} 
+                      onChange={(e) => setFormData({...formData, title: e.target.value})} 
+                      placeholder="Enter Title" 
+                      required
+                    />
+                  </div>
+                </div>
               </div>
 
-              <button type="submit" className="btn-publish">Publish Practicum</button>
+              {/* Description */}
+              <div className="form-group">
+                <label className="form-label">Practicum Description</label>
+                <textarea 
+                  name="description" 
+                  className="modal-textarea" 
+                  value={formData.description} 
+                  onChange={(e) => setFormData({...formData, description: e.target.value})} 
+                  placeholder="Enter Practicum Description"
+                  required
+                />
+              </div>
+
+              {/* ✅ Dynamic button text */}
+              <button type="submit" className="btn-publish">
+                {editingId ? 'Update Practicum' : 'Publish Practicum'}
+              </button>
             </form>
           </div>
         </div>
