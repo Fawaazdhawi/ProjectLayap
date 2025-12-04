@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../config/firebase';
 import '../styles/main.css';
 import '../styles/masuk.css';
 
@@ -22,41 +19,30 @@ const Regis = () => {
     setLoading(true);
     
     try {
-      
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      
-      
-      await updateProfile(userCredential.user, {
-        displayName: name
+      // API call ke backend
+      const response = await fetch('http://localhost:3000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
       });
-      
-      
-      await setDoc(doc(db, 'users', userCredential.user.uid), {
-        name: name,
-        email: email,
-        createdAt: new Date(),
-        role: 'user'
-      });
-      
-      alert('Register successful!');
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Register gagal');
+        return;
+      }
+
+      alert('Register berhasil! Silakan login.');
       navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
-      
-      
-      switch (error.code) {
-        case 'auth/email-already-in-use':
-          setError('Email sudah digunakan');
-          break;
-        case 'auth/invalid-email':
-          setError('Email tidak valid');
-          break;
-        case 'auth/weak-password':
-          setError('Password terlalu lemah (minimal 6 karakter)');
-          break;
-        default:
-          setError('Terjadi kesalahan. Silakan coba lagi.');
-      }
+      setError('Terjadi kesalahan. Pastikan backend running di localhost:3000');
     } finally {
       setLoading(false);
     }

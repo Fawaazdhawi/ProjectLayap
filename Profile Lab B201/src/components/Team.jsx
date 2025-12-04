@@ -7,20 +7,10 @@ const Team = () => {
     <section className="team-section" id="lectures">
       <div className="container">
         <h2>{teamData.title}</h2>
-        <div className="team-grid">
-          {teamData.members.map((member, index) => (
-            <div key={index} className="team-member-card">
-              <img src={member.image} alt={member.name} className="profile-pic" />
-              <h4>{member.name}</h4>
-              <p>{member.role}</p>
-            </div>
-          ))}
-        </div>
-        <p className="section-description team-description">{teamData.description}</p>
       </div>
 
       <div className="container">
-        <h2 style={{ marginTop: '50px' }}>{teamData.teamTeachingTitle}</h2>
+        <h2 style={{ marginTop: '30px' }}>{teamData.teamTeachingTitle}</h2>
         <div className="team-grid">
           {teamData.teamTeaching.map((member, index) => (
             <div key={index} className="team-member-card">
@@ -30,6 +20,23 @@ const Team = () => {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="container">
+        <h2 style={{ marginTop: '30px' }}>Lab Assistants</h2>
+        <div className="team-grid">
+          {teamData.members.map((member, index) => (
+            <div key={index} className="team-member-card">
+              <img src={member.image} alt={member.name} className="profile-pic" />
+              <h4>{member.name}</h4>
+              <p>{member.role}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="container">
+        <p className="section-description team-description">{teamData.description}</p>
         <p className="section-description team-description">{teamData.teamTeachingDescription}</p>
       </div>
     </section>

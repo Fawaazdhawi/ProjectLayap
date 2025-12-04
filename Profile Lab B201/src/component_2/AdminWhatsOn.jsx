@@ -1,16 +1,50 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "../styles/edit.css";
 import { Edit, Trash2, Plus, Image as ImageIcon } from "lucide-react";
-import newsData from "../data/content";
 
 const EditHomeSection = () => {
   // ✅ State untuk manage news list
-  const [newsList, setNewsList] = useState(newsData);
+  const [newsList, setNewsList] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [editingId, setEditingId] = useState(null); // ✅ Track editing item
+  const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({ title: '', category: '', description: '' });
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const fileInputRef = useRef(null);
+
+  // ✅ Fetch news dari backend saat component mount
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
+  const fetchNews = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('http://localhost:3000/api/content?section=whats-on');
+      const data = await response.json();
+      
+      console.log('Fetched data from API:', data);
+      
+      if (response.ok) {
+        // Format data dari API - extract category dari title atau gunakan section
+        const formattedNews = data.map(item => ({
+          ...item,
+          image: item.image_url ? `http://localhost:3000${item.image_url}` : item.image_url,
+          category: item.category || 'whats-on'
+        }));
+        console.log('Formatted news:', formattedNews);
+        setNewsList(formattedNews || []);
+      } else {
+        setError('Gagal mengambil data');
+      }
+    } catch (err) {
+      console.error('Error fetching news:', err);
+      setError('Terjadi kesalahan saat mengambil data');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // ✅ Open modal for ADD
   const handleOpenModal = () => {
@@ -26,10 +60,12 @@ const EditHomeSection = () => {
     setEditingId(item.id);
     setFormData({ 
       title: item.title, 
-      category: item.category,
-      description: item.description || ''
+      category: item.category || '',
+      description: item.content || ''
     });
-    setSelectedImage(item.image);
+    // Build full URL untuk images dari database
+    const imageUrl = item.image_url ? `http://localhost:3000${item.image_url}` : (item.image || null);
+    setSelectedImage(imageUrl);
   };
 
   const handleCloseModal = () => {
@@ -47,56 +83,161 @@ const EditHomeSection = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const imageURL = URL.createObjectURL(file);
-      setSelectedImage(imageURL);
+      // Simpan file object untuk di-upload nanti
+      setSelectedImage(file);
+      console.log('Image file selected:', file.name);
+    }
+  };
+
+  // ✅ Upload image ke backend
+  const uploadImage = async (imageFile) => {
+    try {
+      const token = localStorage.getItem('token');
+      const formData = new FormData();
+      formData.append('image', imageFile);
+
+      console.log('Uploading image:', imageFile.name, imageFile.size, imageFile.type);
+
+      const response = await fetch('http://localhost:3000/api/upload', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        body: formData
+      });
+
+      console.log('Upload response status:', response.status);
+      const data = await response.json();
+      console.log('Upload response:', data);
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Image upload failed');
+      }
+
+      return data.imageUrl; // Return URL dari server
+    } catch (error) {
+      console.error('Upload error:', error);
+      throw error;
     }
   };
 
   // ✅ Handle SUBMIT (Add or Edit)
-  const handlePublish = (e) => {
+  const handlePublish = async (e) => {
     e.preventDefault();
 
-    if (!formData.title || !formData.category || !selectedImage) {
-      alert("Please complete all required fields!");
+    if (!formData.title || !selectedImage) {
+      alert("Please complete all required fields (Title and Image)!");
       return;
     }
 
-    if (editingId) {
-      // UPDATE existing news
-      setNewsList(newsList.map(item => 
-        item.id === editingId 
-          ? { 
-              ...item, 
-              title: formData.title, 
-              category: formData.category,
-              description: formData.description,
-              image: selectedImage 
-            }
-          : item
-      ));
-      alert("News updated successfully!");
-    } else {
-      // ADD new news
-      const newItem = {
-        id: Date.now(),
-        title: formData.title,
-        category: formData.category,
-        description: formData.description,
-        image: selectedImage
-      };
-      setNewsList([newItem, ...newsList]);
-      alert("News published successfully!");
-    }
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        alert("Please login first!");
+        return;
+      }
 
-    handleCloseModal();
+      let imageUrl = selectedImage;
+
+      // Jika selectedImage adalah File object, upload terlebih dahulu
+      if (selectedImage instanceof File) {
+        console.log('Uploading image file...');
+        imageUrl = await uploadImage(selectedImage);
+      }
+
+      const contentData = {
+        title: formData.title,
+        section: 'whats-on',
+        content: formData.description || '',
+        image_url: imageUrl,
+        category: formData.category || 'NEWS'
+      };
+
+      console.log('Sending content data:', contentData);
+
+      if (editingId) {
+        // UPDATE existing content
+        const response = await fetch(`http://localhost:3000/api/content/${editingId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(contentData)
+        });
+
+        const responseData = await response.json();
+        console.log('Update response:', responseData);
+
+        if (response.ok) {
+          alert("News updated successfully!");
+          fetchNews();
+        } else {
+          alert(`Gagal update news: ${responseData.error}`);
+        }
+      } else {
+        // ADD new content
+        const response = await fetch('http://localhost:3000/api/content', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(contentData)
+        });
+
+        const responseData = await response.json();
+        console.log('Create response:', responseData);
+
+        if (response.ok) {
+          alert("News published successfully!");
+          fetchNews();
+        } else {
+          alert(`Gagal publish news: ${responseData.error}`);
+        }
+      }
+
+      handleCloseModal();
+    } catch (error) {
+      console.error('Error:', error);
+      alert(`Terjadi kesalahan saat menyimpan data: ${error.message}`);
+    }
   };
 
   // ✅ Handle DELETE
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this news?");
     if (confirmDelete) {
-      setNewsList(newsList.filter(item => item.id !== id));
-      alert("News deleted successfully!");
+      try {
+        const token = localStorage.getItem('token');
+        console.log('Token untuk delete:', token);
+        
+        if (!token) {
+          alert("Please login first!");
+          return;
+        }
+
+        const response = await fetch(`http://localhost:3000/api/content/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        console.log('Delete response status:', response.status);
+        const responseData = await response.json();
+        console.log('Delete response data:', responseData);
+
+        if (response.ok) {
+          alert("News deleted successfully!");
+          fetchNews();
+        } else {
+          alert(`Gagal delete news: ${responseData.error}`);
+        }
+      } catch (error) {
+        console.error('Delete error:', error);
+        alert(`Terjadi kesalahan saat menghapus data: ${error.message}`);
+      }
     }
   };
 
@@ -172,7 +313,7 @@ const EditHomeSection = () => {
                 <div className="image-upload" onClick={handleUploadClick}>
                   {selectedImage ? (
                     <img
-                      src={selectedImage}
+                      src={selectedImage instanceof File ? URL.createObjectURL(selectedImage) : selectedImage}
                       alt="preview"
                       className="image-preview"
                     />
@@ -204,13 +345,12 @@ const EditHomeSection = () => {
                     required
                   />
 
-                  <label>Tag*</label>
+                  <label>Tag (Optional)</label>
                   <input 
                     type="text" 
-                    placeholder="Add Tag (e.g., PROJECTS, PRACTICUM)"
+                    placeholder="Add Tag (e.g., PROJECTS, PRACTICUM, NEWS)"
                     value={formData.category}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
-                    required
                   />
                 </div>
               </div>
