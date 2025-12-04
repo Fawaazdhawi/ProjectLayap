@@ -7,9 +7,9 @@ const WhatsOn = () => {
   const scrollContainerRef = useRef(null);
   const navigate = useNavigate();
 
-  const handleClick = (path) => {
-    if (path) navigate(path);
-  }
+  // const handleClick = (path) => {
+  //   if (path) navigate(path);
+  // }
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -30,7 +30,7 @@ const WhatsOn = () => {
   };
 
   return (
-    <section className="whats-on-section">
+    <section className="whats-on-section" id='news'>
       <div className="container">
         <div className="whats-on-header">
           <h2>{whatsOnData.title}</h2>
@@ -43,11 +43,11 @@ const WhatsOn = () => {
           {whatsOnData.news.map((item, index) => (
             <div key={index} 
             className={`news-card news-card-${item.type}`}
-            onClick={() => handleClick(item.path)}     // ← Tambahkan ini
-              role="button"
-              style={{ cursor: 'pointer' }}
+            // onClick={() => handleClick(item.path)}     // ← Tambahkan ini
+            //   role="button"
+            //   style={{ cursor: 'pointer' }}
               >
-                
+
               <img src={item.image} alt={item.title} className="news-card-image" />
               <div className="news-card-overlay"></div>
               <div className="news-card-content">
