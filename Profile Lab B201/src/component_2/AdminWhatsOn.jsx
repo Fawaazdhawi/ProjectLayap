@@ -16,7 +16,7 @@ const EditHomeSection = () => {
   const handleOpenModal = () => {
     setShowModal(true);
     setEditingId(null);
-    setFormData({ title: '', category: '', description: '' });
+    setFormData({ title: '', category: '',});
     setSelectedImage(null);
   };
 
@@ -81,7 +81,6 @@ const EditHomeSection = () => {
         id: Date.now(),
         title: formData.title,
         category: formData.category,
-        description: formData.description,
         image: selectedImage
       };
       setNewsList([newItem, ...newsList]);
@@ -216,14 +215,14 @@ const EditHomeSection = () => {
               </div>
 
               {/* Description */}
-              <div className="desc-box">
+              {/* <div className="desc-box">
                 <label>News Content</label>
                 <textarea 
                   placeholder="Enter News Description"
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                 />
-              </div>
+              </div> */}
 
               {/* ✅ Dynamic button text */}
               <button type="submit" className="btn-publish">
