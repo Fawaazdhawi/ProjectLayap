@@ -3,7 +3,7 @@ export const headerData = {
   labTitle: 'LAB B201',
   labSubtitle: 'Telematics and Intelligent Multimedia Laboratory',
   navLinks: [
-    { name: 'Home', href: '/admin' },
+    { name: 'Admin', href: '/admin' },
     { name: 'Create & Edit', href: '/admin-edit' },``
   ],
 };

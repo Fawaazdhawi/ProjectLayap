@@ -11,22 +11,21 @@ const Book = () => {
 
   const handleClick = (path) => {
     if (path) navigate(path);
-    else navigate('/reservasi-pc');
   }
 
   return (
-    <section className="service-cards-section">
+    <section className="service-cards-book-section">
       <div className="container">
         <div className="service-edit-grid-2colomn">
           {serviceCardsData.map((service, index) => (
             <div
               key={index}
-              className="service-card-item"
+              className="service-card-item-book"
               onClick={() => handleClick(service.path)}
             >
-              <div className="service-card-image-placeholder">
+              {/* <div className="service-card-image-placeholder">
                 <img src={service.image} alt={service.title} />
-              </div>
+              </div> */}
               
               <h4>{service.title}</h4>
             </div>

@@ -84,7 +84,7 @@ export const teamData = {
 export const whatsOnData = {
   title: 'What\'s on B201',
   news: [
-    { type: 'large', image: '/images/Alumni.png', title: 'Congratulations to B201 Lab Assistants Graduating on Wisuda- 132!', description: '', category: 'PROJECTS' },
+    { type: 'large', image: '/images/Alumni.png', title: 'Congratulations to B201 Lab Assistants Graduating on Wisuda- 132!', description: '', category: 'PROJECTS', path: '/news/1' },
     { type: 'small', image: '/images/Proglan-Layap2.jpg', title: 'Advanced Programming Practicum Registration is Finally Open!', category: 'PRACTICUM' },
     { type: 'small', image: '/images/Basdat-Layap.jpeg', title: 'Database Management System Practicum Registration is Now Open!', category: 'PRACTICUM' },
     { type: 'small', image: '/images/23.png', title: 'Welcome to Lab ! , Class of 2023.', category: 'NEWS' },
@@ -122,11 +122,10 @@ export const serviceCardsData = [
   { title: 'Reservasi PC', path: '/reservasi-pc', image:'/images/PC-1.jpg' },
   { title: 'Printer LAB', path: '/printer-lab', image: '' },
   { title: 'Inventaris LAB', path: '/inventaris' },
-  { title: 'Create & Edit Page', path: '/admin-edit' },
+  { title: 'Create & Edit Page', path: '/admin-edit', image:'/images/ASLAB.jpeg' },
 ];
 
 export const cardData = [
-    { id: 1, title: 'Home Page', path: '/edit-home' },
     { id: 3, title: 'Practicum', path: '/edit-practicum'},
     { id: 4, title: "What's on B201", path: '/edit-whats-on' },
 ];
