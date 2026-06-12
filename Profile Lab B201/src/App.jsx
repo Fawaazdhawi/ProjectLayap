@@ -1,17 +1,17 @@
-import React from 'react';
-import Home from './pages/Home';
-import './styles/main.css';
 import { Routes, Route } from 'react-router';
-import NotFound from './pages/NotFound';
+import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
-import Booking from './pages/Booking';
 import RegisterPage from './pages/RegisterPage';
+import Booking from './pages/Booking';
+import AdminPage from './pages/AdminPage';
 import ReservasiPC from './pages/ReservasiPC';
 import Inventaris from './pages/Inventaris';
 import PrinterPage from './pages/PrinterPage';
-import AdminPage from './pages/AdminPage';
 import WhatsOnEditPage from './pages/WhatsOnEditPage';
-import PracticumEdit from './pages/PracticumEdit.jsx';
+import PracticumEdit from './pages/PracticumEdit';
+import NotFound from './pages/NotFound';
+import ProtectedRoute from './components/ProtectedRoute';
+import './styles/main.css';
 
 function App() {
   return (
@@ -20,13 +20,15 @@ function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/admin-edit" element={<AdminPage />} />
-      <Route path="/admin" element={<Booking />} />
-      <Route path="/reservasi-pc" element={<ReservasiPC />} />
-      <Route path="/inventaris" element={<Inventaris />} />
-      <Route path="/printer-lab" element={<PrinterPage />} />
-      <Route path="/edit-whats-on" element={<WhatsOnEditPage />} /> 
-      <Route path="/edit-practicum" element={<PracticumEdit />} />
+
+      <Route path="/admin" element={<ProtectedRoute><Booking /></ProtectedRoute>} />
+      <Route path="/admin-edit" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
+      <Route path="/reservasi-pc" element={<ProtectedRoute><ReservasiPC /></ProtectedRoute>} />
+      <Route path="/inventaris" element={<ProtectedRoute><Inventaris /></ProtectedRoute>} />
+      <Route path="/printer-lab" element={<ProtectedRoute><PrinterPage /></ProtectedRoute>} />
+      <Route path="/edit-whats-on" element={<ProtectedRoute><WhatsOnEditPage /></ProtectedRoute>} />
+      <Route path="/edit-practicum" element={<ProtectedRoute><PracticumEdit /></ProtectedRoute>} />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

@@ -1,17 +1,18 @@
-import Admin from '../components/Admin.jsx';
-import Header from '../components/Header3.jsx';
-import Footer from '../components/Footer.jsx';
+import Admin from '../components/Admin';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { adminNavLinks } from '../data/content';
 
 const AdminPage = () => {
   return (
     <>
-        <Header />
-        <main>
-            <Admin />
-        </main>
-        <Footer />
+      <Header navLinks={adminNavLinks} />
+      <main>
+        <Admin />
+      </main>
+      <Footer />
     </>
-  );  
+  );
 };
 
 export default AdminPage;

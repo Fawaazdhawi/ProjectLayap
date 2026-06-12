@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { serviceCardsData } from '../data/reserve';
 import ReservationModal from './ReservationModal';
 import '../styles/main.css';
@@ -19,23 +18,20 @@ const BookPC = () => {
     setSelectedPC(null);
   };
 
-  const handleReservationSubmit = (reservationData) => {
-    console.log('Reservation data submitted:', reservationData);
-    alert(`Reservasi untuk ${reservationData.pcTitle || 'PC'} berhasil!`);
-  };
-
   return (
     <section className="service-cards-section">
       <div className="container">
-        <h1 style={{ marginBottom: '50px', textAlign: 'center', color: 'white' }}>Lab B201 PC Reservation</h1>        
+        <h1 style={{ marginBottom: '50px', textAlign: 'center', color: 'white' }}>
+          Lab B201 PC Reservation
+        </h1>
         <div className="service-edit-grid">
-          {serviceCardsData.map((service, index) => (
+          {serviceCardsData.map((service) => (
             <div
-              key={index}
+              key={service.title}
               className="service-card-item"
               onClick={() => handleCardClick(service)}
             >
-              <div className="service-card-image-placeholder">  
+              <div className="service-card-image-placeholder">
                 {service.Image && <img src={service.Image} alt={service.title} />}
               </div>
               <h4>{service.title}</h4>
@@ -48,7 +44,7 @@ const BookPC = () => {
         <ReservationModal
           pc={selectedPC}
           onClose={handleCloseModal}
-          onSubmit={handleReservationSubmit}
+          onSubmit={() => {}}
         />
       )}
     </section>

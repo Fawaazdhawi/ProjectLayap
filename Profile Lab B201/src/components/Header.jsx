@@ -1,8 +1,9 @@
-import React from 'react';
 import { headerData } from '../data/content';
 import '../styles/main.css';
 
-const Header = () => {
+const Header = ({ navLinks }) => {
+  const links = navLinks ?? headerData.navLinks;
+
   return (
     <header className="main-header">
       <div className="header-container">
@@ -14,7 +15,7 @@ const Header = () => {
           </div>
         </div>
         <nav className="nav-menu">
-          {headerData.navLinks.map((link, index) => (
+          {links.map((link, index) => (
             <a key={index} href={link.href} className="nav-link">
               {link.name}
             </a>

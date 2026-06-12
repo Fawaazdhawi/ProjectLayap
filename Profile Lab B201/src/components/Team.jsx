@@ -1,36 +1,36 @@
 import React from 'react';
 import { teamData } from '../data/content';
+import useScrollReveal from '../hooks/useScrollReveal';
 import '../styles/main.css';
 
 const Team = () => {
+  const [ref2, isVisible2] = useScrollReveal(0.1);
+
   return (
     <section className="team-section" id="lectures">
-      <div className="container">
-        <h2>{teamData.title}</h2>
-        <div className="team-grid">
-          {teamData.members.map((member, index) => (
-            <div key={index} className="team-member-card">
-              <img src={member.image} alt={member.name} className="profile-pic" />
-              <h4>{member.name}</h4>
-              <p>{member.role}</p>
-            </div>
-          ))}
-        </div>
-        <p className="section-description team-description">{teamData.description}</p>
-      </div>
-
-      <div className="container">
-        <h2 style={{ marginTop: '50px' }}>{teamData.teamTeachingTitle}</h2>
+      <div className="container" ref={ref2}>
+        <h2 className={`reveal-up ${isVisible2 ? 'active' : ''}`}>
+          {teamData.title}
+        </h2>
         <div className="team-grid">
           {teamData.teamTeaching.map((member, index) => (
-            <div key={index} className="team-member-card">
+            <div
+              key={index}
+              className={`team-member-card reveal-card ${isVisible2 ? 'active' : ''}`}
+              style={{ transitionDelay: `${150 + index * 80}ms` }}
+            >
               <img src={member.image} alt={member.name} className="profile-pic" />
               <h4>{member.name}</h4>
               <p>{member.role}</p>
             </div>
           ))}
         </div>
-        <p className="section-description team-description">{teamData.teamTeachingDescription}</p>
+        <p
+          className={`section-description team-description reveal-up ${isVisible2 ? 'active' : ''}`}
+          style={{ transitionDelay: '600ms' }}
+        >
+          {teamData.teamTeachingDescription}
+        </p>
       </div>
     </section>
   );

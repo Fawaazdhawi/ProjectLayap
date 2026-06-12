@@ -314,3 +314,35 @@
 .change-image-btn:hover {
     background: rgba(0,0,0,0.9);
 }
+
+/* Inline delete confirmation */
+.confirm-delete-inline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,0,0,0.75);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.confirm-yes-btn {
+    background: #c62828;
+    color: #fff;
+    border: none;
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.confirm-no-btn {
+    background: #555;
+    color: #fff;
+    border: none;
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}

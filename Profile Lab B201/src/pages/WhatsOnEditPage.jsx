@@ -1,17 +1,18 @@
-import AdminHome from '../component_2/AdminWhatsOn.jsx';
-import Header from '../components/Header3.jsx';
-import Footer from '../components/Footer.jsx';
+import AdminWhatsOn from '../components/admin/AdminWhatsOn';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { adminNavLinks } from '../data/content';
 
-const HomeEditPage = () => {
+const WhatsOnEditPage = () => {
   return (
     <>
-        <Header />
-        <main>
-            <AdminHome />
-        </main>
-        <Footer />
+      <Header navLinks={adminNavLinks} />
+      <main>
+        <AdminWhatsOn />
+      </main>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default HomeEditPage
+export default WhatsOnEditPage;

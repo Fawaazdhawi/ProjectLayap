@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router';
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
+import { Eye, EyeOff } from 'lucide-react';
 import { auth, db } from '../config/firebase';
 import '../styles/main.css';
 import '../styles/masuk.css';
+
+const ERROR_MESSAGES = {
+  'auth/email-already-in-use': 'Email is already in use',
+  'auth/invalid-email': 'Invalid email address',
+  'auth/weak-password': 'Password too weak (minimum 6 characters)',
+};
 
 const Regis = () => {
   const [name, setName] = useState('');
@@ -20,43 +26,18 @@ const Regis = () => {
     e.preventDefault();
     setError('');
     setLoading(true);
-    
     try {
-      
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      
-      
-      await updateProfile(userCredential.user, {
-        displayName: name
-      });
-      
-      
+      await updateProfile(userCredential.user, { displayName: name });
       await setDoc(doc(db, 'users', userCredential.user.uid), {
-        name: name,
-        email: email,
+        name,
+        email,
         createdAt: new Date(),
-        role: 'user'
+        role: 'user',
       });
-      
-      alert('Register successful!');
       navigate('/login');
-    } catch (error) {
-      console.error('Registration error:', error);
-      
-      
-      switch (error.code) {
-        case 'auth/email-already-in-use':
-          setError('Email sudah digunakan');
-          break;
-        case 'auth/invalid-email':
-          setError('Email tidak valid');
-          break;
-        case 'auth/weak-password':
-          setError('Password terlalu lemah (minimal 6 karakter)');
-          break;
-        default:
-          setError('Terjadi kesalahan. Silakan coba lagi.');
-      }
+    } catch (err) {
+      setError(ERROR_MESSAGES[err.code] ?? 'An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -67,12 +48,12 @@ const Regis = () => {
       <div className="login-container">
         <div className="login-form-card">
           <h3>Register</h3>
-          {error && <p style={{ color: '#ff4444', marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</p>}
+          {error && <p className="auth-error">{error}</p>}
           <form onSubmit={handleRegister}>
             <div className="input-group">
               <input
                 type="text"
-                placeholder="Name"
+                placeholder="Full Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -89,7 +70,7 @@ const Regis = () => {
                 disabled={loading}
               />
             </div>
-            <div className="input-group">
+            <div className="input-group password-group">
               <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
@@ -99,20 +80,21 @@ const Regis = () => {
                 disabled={loading}
                 minLength="6"
               />
-              <span
+              <button
+                type="button"
                 className="password-toggle"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowPassword((v) => !v)}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-              </span>
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
             <button type="submit" className="login-button" disabled={loading}>
-              {loading ? 'Memproses...' : 'Register Account'}
+              {loading ? 'Processing...' : 'Register Account'}
             </button>
           </form>
           <div className="register-link">
-            <p>Sudah punya akun? <br />
-              <Link to="/login">Login</Link>
-            </p>
+            <p>Already have an account? <Link to="/login">Sign In</Link></p>
           </div>
         </div>
       </div>

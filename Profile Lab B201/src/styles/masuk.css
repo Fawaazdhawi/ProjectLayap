@@ -50,17 +50,41 @@
     border-color: var(--accent-color);
     }
 
+    .password-group {
+    position: relative;
+    }
+
+    .password-group input {
+    padding-right: 3rem;
+    }
+
     .password-toggle {
     position: absolute;
-    right: 15px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
+    background: none;
+    border: none;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    padding: 0;
     }
 
-    .password-toggle img {
-    height: 24px;
-    width: 24px;
+    .password-toggle:hover {
+    color: var(--text-color);
+    }
+
+    .auth-error {
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    background: rgba(198, 40, 40, 0.15);
+    border: 1px solid rgba(198, 40, 40, 0.4);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
     }
 
     .login-button {

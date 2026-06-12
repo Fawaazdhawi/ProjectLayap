@@ -1,9 +1,9 @@
 const Inventaris = () => {
-    return (
-        <div>
-            <h2> Inventaris Page </h2>
-        </div>
-    )
-}   
+  return (
+    <div>
+      <h2>Lab Inventory</h2>
+    </div>
+  );
+};
 
 export default Inventaris;
