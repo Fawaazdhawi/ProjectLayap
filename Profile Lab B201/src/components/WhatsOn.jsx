@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { useNavigate } from 'react-router';
 import { defaultNewsData } from '../data/content';
 
 const CARD_BACKGROUNDS = [
@@ -13,21 +12,14 @@ const CARD_BACKGROUNDS = [
 ];
 
 const WhatsOn = () => {
-  const [news, setNews] = useState(defaultNewsData);
+  const navigate = useNavigate();
+  const [news] = useState(defaultNewsData);
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef(null);
   const scrollRef = useRef(null);
   const activeIndexRef = useRef(0);
   const resettingRef = useRef(false);
   const inViewRef = useRef(true);
-
-  useEffect(() => {
-    const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'));
-    return onSnapshot(q, (snapshot) => {
-      const data = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
-      setNews(data.length > 0 ? data : defaultNewsData);
-    });
-  }, []);
 
   // Track whether this section is actually visible in the viewport
   useEffect(() => {
@@ -153,6 +145,7 @@ const WhatsOn = () => {
           <div
             key={`${item.id}-${index}`}
             data-card={index}
+            onClick={() => navigate(`/news/${item.id}`)}
             style={{
               width: '90vw',
               maxWidth: '900px',
@@ -163,6 +156,7 @@ const WhatsOn = () => {
               background: CARD_BACKGROUNDS[index % CARD_BACKGROUNDS.length],
               display: 'flex',
               flexDirection: 'column',
+              cursor: 'pointer',
             }}
           >
             <div style={{ flex: 1, minHeight: 0, display: 'flex' }}>
@@ -183,7 +177,10 @@ const WhatsOn = () => {
                   <p style={{ color: 'white', fontSize: '30px', fontWeight: 700, lineHeight: 1.25, margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                     {item.title}
                   </p>
-                  <button style={{ background: 'white', color: 'black', fontSize: '16px', fontWeight: 600, borderRadius: '999px', padding: '10px 24px', border: 'none', cursor: 'pointer', fontFamily: 'inherit', marginTop: '4px' }}>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); navigate(`/news/${item.id}`); }}
+                    style={{ background: 'white', color: 'black', fontSize: '16px', fontWeight: 600, borderRadius: '999px', padding: '10px 24px', border: 'none', cursor: 'pointer', fontFamily: 'inherit', marginTop: '4px' }}
+                  >
                     Read more
                   </button>
                 </div>

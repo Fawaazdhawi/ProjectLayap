@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported } from "firebase/analytics";
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
@@ -15,7 +15,13 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-getAnalytics(app);
+
+// Analytics is optional; never let it crash the whole app.
+isSupported()
+  .then((supported) => {
+    if (supported && firebaseConfig.measurementId) getAnalytics(app);
+  })
+  .catch(() => {});
 
 export const db = getFirestore(app);
 export const auth = getAuth(app);

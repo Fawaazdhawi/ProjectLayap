@@ -10,14 +10,14 @@ const VideoSection = () => {
 
   return (
     <section id="about-lab" style={{ background: '#fff' }}>
+      <div className="container" style={{ padding: '6rem 0' }}>
 
-      {/* ── Video ── */}
-      <div style={{ padding: '5rem 0' }}>
+        {/* ── About Our Lab ── */}
         <div
-          className={`container reveal-up ${isVideoVisible ? 'active' : ''}`}
+          className={`reveal-up ${isVideoVisible ? 'active' : ''}`}
           ref={refVideo}
         >
-          <div style={{ borderLeft: '4px solid #c0392b', paddingLeft: '1rem', marginBottom: '1.5rem' }}>
+          <div style={{ borderLeft: '4px solid #c0392b', paddingLeft: '1.25rem', marginBottom: '2rem' }}>
             <h2 className="video-section-title">About Our Lab</h2>
             <p className="video-section-subtitle" style={{ marginBottom: 0 }}>
               Watch the Department of Computer Engineering FTEIC-ITS profile
@@ -34,100 +34,73 @@ const VideoSection = () => {
             />
           </div>
         </div>
-      </div>
 
-      {/* ── Our Culture and Values ── */}
-      <div
-        style={{
-          position: 'relative',
-          overflow: 'hidden',
-          minHeight: '500px',
-          height: '65vh',
-          maxHeight: '680px',
-        }}
-      >
-        {/* Crossfading background images */}
-        {valuesData.tabs.map((tab) => (
-          <img
-            key={tab.id}
-            src={tab.image}
-            alt=""
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              opacity: activeTab === tab.id ? 1 : 0,
-              transition: 'opacity 0.85s ease',
-              zIndex: 0,
-            }}
-          />
-        ))}
-
-        {/* Dark overlay */}
+        {/* ── Our Culture and Values ── */}
         <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'rgba(0,0,0,0.65)',
-            zIndex: 1,
-            pointerEvents: 'none',
-          }}
-        />
-
-        {/* Content */}
-        <div
-          className={`container reveal-up ${isCultureVisible ? 'active' : ''}`}
+          className={`reveal-up ${isCultureVisible ? 'active' : ''}`}
           ref={refCulture}
-          style={{
-            position: 'relative',
-            zIndex: 2,
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            padding: '4rem 0',
-          }}
+          style={{ marginTop: '6rem' }}
         >
-          <div style={{ borderLeft: '4px solid #c0392b', paddingLeft: '1.25rem', marginBottom: '1.5rem' }}>
-            <h2 style={{ color: '#fff', lineHeight: 1.2, marginBottom: 0 }}>
+          <div style={{ borderLeft: '4px solid #c0392b', paddingLeft: '1.25rem', marginBottom: '2rem' }}>
+            <h2 style={{ color: '#1a1a1a', lineHeight: 1.2, marginBottom: 0 }}>
               {valuesData.title}
             </h2>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1.75rem' }}>
-            {valuesData.tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`about-tab-btn ${activeTab === tab.id ? 'about-tab-active' : ''}`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
-          <div style={{ maxWidth: '520px' }}>
-            {valuesData.tabs.map((tab) => (
-              <div
-                key={tab.id}
-                style={{
-                  display: activeTab === tab.id ? 'block' : 'none',
-                  animation: activeTab === tab.id ? 'fadeIn 0.4s ease' : 'none',
-                }}
-              >
-                <p style={{ color: 'rgba(255,255,255,0.78)', lineHeight: 1.85, fontSize: '1rem', margin: 0 }}>
-                  {tab.content}
-                </p>
+          <div className="culture-grid">
+            {/* Left: tabs + text */}
+            <div>
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1.75rem' }}>
+                {valuesData.tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`about-tab-btn ${activeTab === tab.id ? 'about-tab-active' : ''}`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
-            ))}
+
+              {valuesData.tabs.map((tab) => (
+                <div
+                  key={tab.id}
+                  style={{
+                    display: activeTab === tab.id ? 'block' : 'none',
+                    animation: activeTab === tab.id ? 'fadeIn 0.4s ease' : 'none',
+                  }}
+                >
+                  <p style={{ color: '#555', lineHeight: 1.85, fontSize: '1.05rem', margin: 0 }}>
+                    {tab.content}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Right: crossfading image card */}
+            <div className="culture-image-card">
+              {valuesData.tabs.map((tab) => (
+                <img
+                  key={tab.id}
+                  src={tab.image}
+                  alt={tab.label}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    opacity: activeTab === tab.id ? 1 : 0,
+                    transition: 'opacity 0.7s ease',
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </section>
   );
 };

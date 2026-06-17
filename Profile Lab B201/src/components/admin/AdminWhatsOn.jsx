@@ -10,7 +10,7 @@ import { useToast } from '../../hooks/useToast';
 import Toast from '../Toast';
 import '../../styles/edit.css';
 
-const EMPTY_FORM = { title: '', category: '' };
+const EMPTY_FORM = { title: '', category: '', content: '' };
 
 const AdminWhatsOn = () => {
   const [newsList, setNewsList] = useState([]);
@@ -44,7 +44,7 @@ const AdminWhatsOn = () => {
 
   const openEditModal = (item) => {
     setEditingId(item.id);
-    setFormData({ title: item.title, category: item.category });
+    setFormData({ title: item.title, category: item.category, content: item.content || '' });
     setImageFile(null);
     setImagePreview(item.image);
     setShowModal(true);
@@ -86,6 +86,7 @@ const AdminWhatsOn = () => {
         await updateDoc(doc(db, 'news', editingId), {
           title: formData.title,
           category: formData.category,
+          content: formData.content,
           image: imageUrl,
         });
         showToast('News updated successfully');
@@ -93,6 +94,7 @@ const AdminWhatsOn = () => {
         await addDoc(collection(db, 'news'), {
           title: formData.title,
           category: formData.category,
+          content: formData.content,
           image: imageUrl,
           createdAt: serverTimestamp(),
         });
@@ -206,6 +208,14 @@ const AdminWhatsOn = () => {
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     required
+                  />
+                  <label>Article Content</label>
+                  <textarea
+                    placeholder="Write the article body here. Separate paragraphs with a blank line."
+                    value={formData.content}
+                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                    rows={8}
+                    style={{ resize: 'vertical', fontFamily: 'inherit' }}
                   />
                 </div>
               </div>

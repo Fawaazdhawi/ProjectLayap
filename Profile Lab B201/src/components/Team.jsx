@@ -13,17 +13,36 @@ const Team = () => {
           {teamData.title}
         </h2>
         <div className="team-grid">
-          {teamData.teamTeaching.map((member, index) => (
-            <div
-              key={index}
-              className={`team-member-card reveal-card ${isVisible2 ? 'active' : ''}`}
-              style={{ transitionDelay: `${150 + index * 80}ms` }}
-            >
-              <img src={member.image} alt={member.name} className="profile-pic" />
-              <h4>{member.name}</h4>
-              <p>{member.role}</p>
-            </div>
-          ))}
+          {teamData.teamTeaching.map((member, index) => {
+            const cardContent = (
+              <>
+                <img src={member.image} alt={member.name} className="profile-pic" />
+                <h4>{member.name}</h4>
+                <p>{member.role}</p>
+              </>
+            );
+
+            return member.link ? (
+              <a
+                key={index}
+                href={member.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`team-member-card reveal-card ${isVisible2 ? 'active' : ''}`}
+                style={{ transitionDelay: `${150 + index * 80}ms`, textDecoration: 'none', color: 'inherit' }}
+              >
+                {cardContent}
+              </a>
+            ) : (
+              <div
+                key={index}
+                className={`team-member-card reveal-card ${isVisible2 ? 'active' : ''}`}
+                style={{ transitionDelay: `${150 + index * 80}ms` }}
+              >
+                {cardContent}
+              </div>
+            );
+          })}
         </div>
         <p
           className={`section-description team-description reveal-up ${isVisible2 ? 'active' : ''}`}
