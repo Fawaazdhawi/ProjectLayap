@@ -1,7 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { Eye, EyeOff } from 'lucide-react';
+import { auth } from '../config/firebase';
 import '../styles/main.css';
 import '../styles/masuk.css';
+
+const ERROR_MESSAGES = {
+  'auth/invalid-email': 'Invalid email address',
+  'auth/user-not-found': 'Account not found',
+  'auth/wrong-password': 'Incorrect password',
+  'auth/invalid-credential': 'Incorrect email or password',
+};
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,34 +25,11 @@ const Login = () => {
     e.preventDefault();
     setError('');
     setLoading(true);
-    
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.error || 'Login gagal');
-        return;
-      }
-
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('admin', JSON.stringify(data.admin));
-
-      alert('Login berhasil!');
+      await signInWithEmailAndPassword(auth, email, password);
       navigate('/admin');
-    } catch (error) {
-      console.error('Login error:', error);
-      setError('Terjadi kesalahan. Pastikan backend running di localhost:3000');
+    } catch (err) {
+      setError(ERROR_MESSAGES[err.code] ?? 'An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -52,8 +39,8 @@ const Login = () => {
     <section className="login-section">
       <div className="login-container">
         <div className="login-form-card">
-          <h3>Masuk</h3>
-          {error && <p style={{ color: '#ff4444', marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</p>}
+          <h3>Sign In</h3>
+          {error && <p className="auth-error">{error}</p>}
           <form onSubmit={handleLogin}>
             <div className="input-group">
               <input
@@ -65,7 +52,7 @@ const Login = () => {
                 disabled={loading}
               />
             </div>
-            <div className="input-group">
+            <div className="input-group password-group">
               <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
@@ -74,20 +61,21 @@ const Login = () => {
                 required
                 disabled={loading}
               />
-              <span
+              <button
+                type="button"
                 className="password-toggle"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowPassword((v) => !v)}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-              </span>
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
             <button type="submit" className="login-button" disabled={loading}>
-              {loading ? 'Memproses...' : 'Masuk'}
+              {loading ? 'Processing...' : 'Sign In'}
             </button>
           </form>
           <div className="register-link">
-            <p>Belum punya akun? 
-              <Link to="/register">Daftar</Link>
-            </p>
+            <p>Don't have an account? <Link to="/register">Register</Link></p>
           </div>
         </div>
       </div>

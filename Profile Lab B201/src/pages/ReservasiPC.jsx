@@ -1,17 +1,18 @@
-import BookPC from "../components/BookPC";
-import Header from "../components/Header3";
-import Footer from "../components/Footer";
+import BookPC from '../components/BookPC';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { adminNavLinks } from '../data/content';
 
 const ReservasiPC = () => {
   return (
-    <>  
-        <Header />
-        <main>
-            <BookPC />
-        </main>
-        <Footer />
+    <>
+      <Header navLinks={adminNavLinks} />
+      <main>
+        <BookPC />
+      </main>
+      <Footer />
     </>
-  )
-}   
+  );
+};
 
 export default ReservasiPC;

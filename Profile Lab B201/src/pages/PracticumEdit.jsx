@@ -1,11 +1,12 @@
-import AdminPracticum from '../component_2/AdminPracticum.jsx';
-import Header from '../components/Header3.jsx';
-import Footer from '../components/Footer.jsx';
+import AdminPracticum from '../components/admin/AdminPracticum';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { adminNavLinks } from '../data/content';
 
 const PracticumEdit = () => {
   return (
     <>
-      <Header />
+      <Header navLinks={adminNavLinks} />
       <main>
         <AdminPracticum />
       </main>

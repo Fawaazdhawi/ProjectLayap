@@ -1,0 +1,17 @@
+# Claude AI local files
+.claude/
+
+# Environment variables (Firebase keys, etc.)
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# OS
+.DS_Store

@@ -3,7 +3,7 @@ export const headerData = {
   labTitle: 'LAB B201',
   labSubtitle: 'Telematics and Intelligent Multimedia Laboratory',
   navLinks: [
-    { name: 'Home', href: '/home' },
+    { name: 'News', href: '#news' },
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Practicum', href: '#practicum' },
@@ -11,12 +11,17 @@ export const headerData = {
   ],
 };
 
+export const adminNavLinks = [
+  { name: 'Admin', href: '/admin' },
+  { name: 'Create & Edit', href: '/admin-edit' },
+];
+
 export const aboutData = {
-    title: 'Welcome to Our Lab.',
-    aboutTitle: 'Computer Engineering ITS Video Profile',
-    description: 'B201 Lab - Telematics and Intelligent Multimedia is a laboratory under the Department of Computer Engineering at ITS that focuses on research and development in telematics, multimedia, deep learning and game technology.',
-    image: '/images/Thumbnail.png',
-    videoUrl: 'https://www.youtube.com/embed/pJ7XZRFgeBU',
+  title: 'Welcome to Our Lab.',
+  aboutTitle: 'Computer Engineering ITS Video Profile',
+  description: 'B201 Lab - Telematics and Intelligent Multimedia is a laboratory under the Department of Computer Engineering at ITS that focuses on research and development in telematics, multimedia, deep learning and game technology.',
+  image: '/images/Thumbnail.png',
+  videoUrl: 'https://www.youtube.com/embed/pJ7XZRFgeBU',
 };
 
 export const valuesData = {
@@ -25,7 +30,7 @@ export const valuesData = {
     {
       id: 'collaboration',
       label: 'Collaboration',
-      content: 'Our team is the best of the best. Collaboration isn\'t just about working together, but also about working in a structured and efficient manner.',
+      content: "Our team is the best of the best. Collaboration isn't just about working together, but also about working in a structured and efficient manner.",
       image: '/images/Kondisi_lab3.jpg',
     },
     {
@@ -47,16 +52,32 @@ export const whatWeDoData = {
   title: 'What we do?',
   description: 'At Lab B201, we conduct research and development in various areas, including computer networks, multimedia processing, artificial intelligence and deep learning applications, machine learning in health informatics, as well as game technology focusing on computational intelligence and dynamic difficulty adjustment.',
   services: [
-    { image: '/images/App.png', title: 'Web & App Development' },
-    { image: '/images/Legion-2.png', title: 'Game Design & Development' },
-    { image: '/images/deep_learning.png', title: 'Artificial Intelligence & Deep Learning Application' },
-    { image: '/images/Praktikum.png', title: 'Project & Practicum' },
+    {
+      image: '/images/App.png',
+      title: 'Web & App Development',
+      description: 'We build modern, scalable web and mobile applications using cutting-edge frameworks and technologies, from UI/UX design to full-stack deployment.',
+    },
+    {
+      image: '/images/Legion-2.png',
+      title: 'Game Design & Development',
+      description: 'Our team develops immersive games with a focus on computational intelligence, procedural generation, and dynamic difficulty adjustment systems.',
+    },
+    {
+      image: '/images/deep_learning.png',
+      title: 'Artificial Intelligence & Deep Learning',
+      description: 'We conduct research in AI and deep learning, applying neural networks to computer vision, natural language processing, and health informatics.',
+    },
+    {
+      image: '/images/Praktikum.png',
+      title: 'Project & Practicum',
+      description: 'Students gain hands-on experience through structured practicums covering advanced programming, database systems, and real-world engineering projects.',
+    },
   ],
 };
 
 export const praktikumData = {
   title: 'B201 Practicum',
-  description: 'Lab B201 offers two main practicums for students: Advanced Programming Practicum and Database Practicum. Both practicums are conducted during the even semester and are designed to strengthen students’ technical foundation through hands-on learning with practical implementation and problem solving.',
+  description: "Lab B201 offers two main practicums for students: Advanced Programming Practicum and Database Practicum. Both practicums are conducted during the even semester and are designed to strengthen students' technical foundation through hands-on learning with practical implementation and problem solving.",
   courses: [
     { image: '/images/Proglan-Layap2.jpg', title: 'Advanced Programming Practicum', description: 'A practicum focused on developing advanced programming skills using modern technologies and structured software development methodologies, emphasizing Object-Oriented Programming (OOP) principles and C++ implementation.' },
     { image: '/images/Basdat-Layap.jpeg', title: 'Database Management System Practicum', description: 'A practicum that teaches the concepts and implementation of databases, including database design, query optimization, and data management for large-scale applications.' },
@@ -71,44 +92,33 @@ export const teamData = {
   teamTeachingTitle: 'Lecturer',
   teamTeaching: [
     { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/197003131995120001_Departemen-Teknik-Komputer-683x1024.jpg', name: 'Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.', role: 'Head of Lab B201' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/198504032012121001_Departemen-Teknik-Komputer-682x1024.jpg', name: 'Reza Fuad Rachmadi, S.T., M.T., Ph.D', role: 'Dosen Pengampu' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/Pak-surya.png', name: 'Dr. Surya Sumpeno, S.T., M.Sc.', role: 'Dosen Pengampu' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/196912091997031002_Departemen-Teknik-Komputer-1-682x1024.png', name: 'Mochamad Hariadi, S.T.,M.Sc.,Ph.D', role: 'Dosen Pengampu' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/Pak-ketut.jpg', name: 'Prof. Dr. I Ketut Eddy Purnama, S.T., M.T.', role: 'Dosen Pengampu' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/bu-susi.png', name: 'Dr. Susi Juniastuti, S.T.,M.Eng.', role: 'Dosen Pengampu' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2023/11/Bakground-Putih.png', name: 'Arta Kusuma Hernanda, S.T., M.T..', role: 'Dosen Pengampu' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/198504032012121001_Departemen-Teknik-Komputer-682x1024.jpg', name: 'Reza Fuad Rachmadi, S.T., M.T., Ph.D', role: 'Lecturer' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/Pak-surya.png', name: 'Dr. Surya Sumpeno, S.T., M.Sc.', role: 'Lecturer' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/196912091997031002_Departemen-Teknik-Komputer-1-682x1024.png', name: 'Mochamad Hariadi, S.T.,M.Sc.,Ph.D', role: 'Lecturer' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/Pak-ketut.jpg', name: 'Prof. Dr. I Ketut Eddy Purnama, S.T., M.T.', role: 'Lecturer' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/bu-susi.png', name: 'Dr. Susi Juniastuti, S.T.,M.Eng.', role: 'Lecturer' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2023/11/Bakground-Putih.png', name: 'Arta Kusuma Hernanda, S.T., M.T..', role: 'Lecturer' },
   ],
-  teamTeachingDescription: 'Tim pengajar yang berpengalaman dalam bidang telematika dan multimedia cerdas, yang berkomitmen untuk memberikan pendidikan berkualitas tinggi dan membimbing mahasiswa dalam pengembangan teknologi terdepan.',
-};
-
-export const whatsOnData = {
-  title: 'What\'s on B201',
-  news: [
-    { type: 'large', image: '/images/Alumni.png', title: 'Congratulations to B201 Lab Assistants Graduating on Wisuda- 132!', description: '', category: 'PROJECTS', path: '/news/1' },
-    { type: 'small', image: '/images/Proglan-Layap2.jpg', title: 'Advanced Programming Practicum Registration is Finally Open!', category: 'PRACTICUM' },
-    { type: 'small', image: '/images/Basdat-Layap.jpeg', title: 'Database Management System Practicum Registration is Now Open!', category: 'PRACTICUM' },
-    { type: 'small', image: '/images/23.png', title: 'Welcome to Lab ! , Class of 2023.', category: 'NEWS' },
-    { type: 'small', image: '/images/Legion-2.png', title: 'B201 lab Game Development Team Wins National Game Competition!', category: 'ACHIEVEMENT' },
-  ],
+  teamTeachingDescription: 'An experienced team of educators in telematics and intelligent multimedia, committed to delivering high-quality education and guiding students in the development of cutting-edge technology.',
 };
 
 export const contactData = {
   title: 'Contact us',
   details: [
-    { 
-      label: 'Address', 
+    {
+      label: 'Address',
       value: 'Laboratorium B201 Telematika, Departemen Teknik Komputer, Institut Teknologi Sepuluh Nopember, Gedung A, B dan AJ, Kampus ITS Sukolilo, Surabaya, Jawa Timur 60111, ID',
-      icon: '/images/address.png' 
+      icon: '/images/address.png',
     },
-    { 
-      label: 'Email', 
+    {
+      label: 'Email',
       value: 'lab.b201@its.ac.id',
-      icon: '/images/email.png' 
+      icon: '/images/email.png',
     },
-    { 
-      label: 'Phone', 
+    {
+      label: 'Phone',
       value: '+62 31 5994251',
-      icon: '/images/phone.png' 
+      icon: '/images/phone.png',
     },
   ],
 };
@@ -117,38 +127,35 @@ export const footerData = {
   text: '© 2025 Lab B201 Profile. All Rights Reserved.',
 };
 
-
 export const serviceCardsData = [
-  { title: 'Reservasi PC', path: '/reservasi-pc', image:'/images/PC-1.jpg' },
-  { title: 'Printer LAB', path: '/printer-lab', image: '' },
-  { title: 'Inventaris LAB', path: '/inventaris' },
-  { title: 'Create & Edit Page', path: '/admin-edit', image:'/images/ASLAB.jpeg' },
+  { title: 'PC Reservation', path: '/reservasi-pc', image: '/images/PC-1.jpg' },
+  { title: 'Lab Printer', path: '/printer-lab', image: '' },
+  { title: 'Lab Inventory', path: '/inventaris' },
+  { title: 'Create & Edit Page', path: '/admin-edit', image: '/images/ASLAB.jpeg' },
 ];
 
 export const cardData = [
-    { id: 3, title: 'Practicum', path: '/edit-practicum'},
-    { id: 4, title: "What's on B201", path: '/edit-whats-on' },
+  { id: 3, title: 'Practicum', path: '/edit-practicum' },
+  { id: 4, title: "What's on B201", path: '/edit-whats-on' },
 ];
 
-const newsData = [
+export const defaultNewsData = [
   {
-    id: 1,
-    title: "Congratulations to B201 Lab Assistants Graduating on Wisuda-132!",
-    category: "PROJECTS",
-    image: "/images/Alumni.png",
+    id: 'default-1',
+    title: 'Welcome to B201 Telematics Lab ITS',
+    category: 'INFO',
+    image: '/images/Kondisi_lab1.jpg',
   },
   {
-    id: 2,
-    title: "Advanced Programming Practicum Registration is Finally Open!",
-    category: "PRACTICUM",
-    image: "/images/Proglan-Layap2.jpg",
+    id: 'default-2',
+    title: 'Advanced Programming Practicum — Even Semester',
+    category: 'PRACTICUM',
+    image: '/images/Proglan-Layap2.jpg',
   },
   {
-    id: 3,
-    title: "Database Management System Practicum Registration is Open!",
-    category: "PRACTICUM",
-    image: "/images/Basdat-Layap.jpeg",
+    id: 'default-3',
+    title: 'Deep Learning & Intelligent Multimedia Research',
+    category: 'RESEARCH',
+    image: '/images/deep_learning.png',
   },
 ];
-
-export default newsData;
