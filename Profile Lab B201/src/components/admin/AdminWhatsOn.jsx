@@ -213,6 +213,14 @@ const AdminWhatsOn = () => {
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     required
                   />
+                  <label>Article Content</label>
+                  <textarea
+                    placeholder="Write the article body here. Separate paragraphs with a blank line."
+                    value={formData.content}
+                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                    rows={8}
+                    style={{ resize: 'vertical', fontFamily: 'inherit' }}
+                  />
                 </div>
               </div>
 

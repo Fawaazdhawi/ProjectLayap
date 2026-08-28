@@ -4,7 +4,7 @@ export const headerData = {
   labSubtitle: 'Telematics and Intelligent Multimedia Laboratory',
   navLinks: [
     { name: 'News', href: '#news' },
-    { name: 'About', href: '#about' },
+    { name: 'About', href: '/about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Practicum', href: '#practicum' },
     { name: 'Lectures', href: '#lectures' },
@@ -90,13 +90,13 @@ export const teamData = {
   ],
   teamTeachingTitle: 'Lecturer',
   teamTeaching: [
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/197003131995120001_Departemen-Teknik-Komputer-683x1024.jpg', name: 'Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.', role: 'Head of Lab B201' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/198504032012121001_Departemen-Teknik-Komputer-682x1024.jpg', name: 'Reza Fuad Rachmadi, S.T., M.T., Ph.D', role: 'Lecturer' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/Pak-surya.png', name: 'Dr. Surya Sumpeno, S.T., M.Sc.', role: 'Lecturer' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/196912091997031002_Departemen-Teknik-Komputer-1-682x1024.png', name: 'Mochamad Hariadi, S.T.,M.Sc.,Ph.D', role: 'Lecturer' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/Pak-ketut.jpg', name: 'Prof. Dr. I Ketut Eddy Purnama, S.T., M.T.', role: 'Lecturer' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/bu-susi.png', name: 'Dr. Susi Juniastuti, S.T.,M.Eng.', role: 'Lecturer' },
-    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2023/11/Bakground-Putih.png', name: 'Arta Kusuma Hernanda, S.T., M.T..', role: 'Lecturer' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/197003131995120001_Departemen-Teknik-Komputer-683x1024.jpg', name: 'Dr. Supeno Mardi Susiki Nugroho, S.T., M.T.', role: 'Head of Lab B201', link: 'https://www.its.ac.id/komputer/id/dosen-staf/dosen/supeno-mardi-susiki-nugroho/' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/198504032012121001_Departemen-Teknik-Komputer-682x1024.jpg', name: 'Reza Fuad Rachmadi, S.T., M.T., Ph.D', role: 'Lecturer', link: 'https://www.its.ac.id/komputer/id/dosen-staf/dosen/reza-fuad-rachmadi/' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/Pak-surya.png', name: 'Dr. Surya Sumpeno, S.T., M.Sc.', role: 'Lecturer', link: 'https://www.its.ac.id/komputer/id/dosen-staf/dosen/surya-sumpeno-4/' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2020/07/196912091997031002_Departemen-Teknik-Komputer-1-682x1024.png', name: 'Mochamad Hariadi, S.T.,M.Sc.,Ph.D', role: 'Lecturer', link: 'https://www.its.ac.id/komputer/id/dosen-staf/dosen/mochamad-hariadi-4/' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/Pak-ketut.jpg', name: 'Prof. Dr. I Ketut Eddy Purnama, S.T., M.T.', role: 'Lecturer', link: 'https://www.its.ac.id/komputer/id/dosen-staf/dosen/i-ketut-eddy-purnama/' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2022/10/bu-susi.png', name: 'Dr. Susi Juniastuti, S.T.,M.Eng.', role: 'Lecturer', link: 'https://www.its.ac.id/komputer/id/dosen-staf/dosen/susi-juniastuti/' },
+    { image: 'https://www.its.ac.id/komputer/wp-content/uploads/sites/28/2023/11/Bakground-Putih.png', name: 'Arta Kusuma Hernanda, S.T., M.T..', role: 'Lecturer', link: 'https://www.its.ac.id/komputer/id/dosen-staf/dosen/arta-kusuma-hernanda/' },
   ],
   teamTeachingDescription: 'An experienced team of educators in telematics and intelligent multimedia, committed to delivering high-quality education and guiding students in the development of cutting-edge technology.',
 };
@@ -142,20 +142,35 @@ export const defaultNewsData = [
     title: 'Welcome to B201 Telematics Lab ITS',
     category: 'INFO',
     image: '/images/Kondisi_lab1.jpg',
-    content: 'Lab B201 is the Telematics and Intelligent Multimedia Laboratory under the Department of Computer Engineering at ITS, focusing on research and development in telematics, multimedia, deep learning, and game technology.',
+    date: 'June 10, 2026',
+    content: `B201 Telematics and Intelligent Multimedia Laboratory is part of the Department of Computer Engineering, FTEIC-ITS. The lab serves as a hub for teaching, research, and student collaboration in telematics and multimedia technology.
+
+Equipped with modern computing facilities, B201 supports a wide range of practicum activities and research projects. Students and lecturers work side by side to explore emerging technologies and build real-world solutions.
+
+We warmly welcome new students and visitors to get to know the lab, its people, and the work we do every day.`,
   },
   {
     id: 'default-2',
     title: 'Advanced Programming Practicum — Even Semester',
     category: 'PRACTICUM',
     image: '/images/Proglan-Layap2.jpg',
-    content: 'This practicum focuses on developing advanced programming skills using modern technologies and structured software development methodologies, emphasizing Object-Oriented Programming (OOP) principles and C++ implementation.',
+    date: 'May 28, 2026',
+    content: `The Advanced Programming Practicum returns this even semester with an updated curriculum focused on modern software development practices.
+
+Participants will work through hands-on modules covering data structures, object-oriented design, and practical problem solving. Each session is guided by experienced lab assistants who provide direct feedback.
+
+Registration and the full schedule are available through the lab assistants. Make sure to prepare your development environment before the first meeting.`,
   },
   {
     id: 'default-3',
     title: 'Deep Learning & Intelligent Multimedia Research',
     category: 'RESEARCH',
     image: '/images/deep_learning.png',
-    content: 'Our research team conducts studies in AI and deep learning, applying neural networks to computer vision, natural language processing, and health informatics.',
+    date: 'May 15, 2026',
+    content: `Research at B201 spans deep learning, computer vision, and intelligent multimedia systems. Our teams investigate how machines can perceive, understand, and generate visual and audio content.
+
+Ongoing projects include image recognition, video analysis, and multimedia processing pipelines. Students have the opportunity to join these projects and contribute to published work.
+
+If you are interested in research collaboration, reach out to the lab to learn about current openings and topics.`,
   },
 ];

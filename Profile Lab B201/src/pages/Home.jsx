@@ -2,7 +2,6 @@ import React from 'react';
 import Header from '../components/Header';
 import WhatsOn from '../components/WhatsOn';
 import About from '../components/About';
-import VideoSection from '../components/VideoSection';
 import WhatWeDo from '../components/WhatWeDo';
 import Praktikum from '../components/Praktikum';
 import Team from '../components/Team';
@@ -16,7 +15,6 @@ const Home = () => {
       <main>
         <WhatsOn />
         <About />
-        <VideoSection />
         <WhatWeDo />
         <Praktikum />
         <Team />

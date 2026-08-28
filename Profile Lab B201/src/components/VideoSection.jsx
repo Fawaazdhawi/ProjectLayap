@@ -49,10 +49,9 @@ const VideoSection = () => {
   return (
     <section id="about-lab" style={{ background: '#fff', paddingBottom: 0 }}>
 
-      {/* ── Video ── */}
-      <div style={{ padding: '5rem 0' }}>
+        {/* ── About Our Lab ── */}
         <div
-          className={`container reveal-up ${isVideoVisible ? 'active' : ''}`}
+          className={`reveal-up ${isVideoVisible ? 'active' : ''}`}
           ref={refVideo}
         >
           <div style={{ borderLeft: '4px solid #c0392b', paddingLeft: '1rem', marginBottom: '1.5rem' }}>
@@ -72,7 +71,6 @@ const VideoSection = () => {
             />
           </div>
         </div>
-      </div>
 
       {/* ── Our Culture and Values ── */}
       <div
@@ -107,28 +105,9 @@ const VideoSection = () => {
 
         {/* Dark overlay */}
         <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'rgba(0,0,0,0.65)',
-            zIndex: 1,
-            pointerEvents: 'none',
-          }}
-        />
-
-        {/* Content */}
-        <div
-          className={`container reveal-up ${isCultureVisible ? 'active' : ''}`}
+          className={`reveal-up ${isCultureVisible ? 'active' : ''}`}
           ref={refCulture}
-          style={{
-            position: 'relative',
-            zIndex: 2,
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            padding: '4rem 0',
-          }}
+          style={{ marginTop: '6rem' }}
         >
           <div style={{ borderLeft: '4px solid #c0392b', paddingLeft: '1.25rem', marginBottom: '1.5rem' }}>
             <h2 style={{ color: '#fff', lineHeight: 1.2, marginBottom: 0 }}>
@@ -164,8 +143,8 @@ const VideoSection = () => {
             ))}
           </div>
         </div>
-      </div>
 
+      </div>
     </section>
   );
 };

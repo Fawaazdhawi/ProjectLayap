@@ -170,6 +170,7 @@ const WhatsOn = () => {
           <div
             key={`${item.id}-${index}`}
             data-card={index}
+            onClick={() => navigate(`/news/${item.id}`)}
             style={{
               width: '90vw',
               maxWidth: '900px',
@@ -180,6 +181,7 @@ const WhatsOn = () => {
               background: CARD_BACKGROUNDS[index % CARD_BACKGROUNDS.length],
               display: 'flex',
               flexDirection: 'column',
+              cursor: 'pointer',
             }}
           >
             <div style={{ flex: 1, minHeight: 0, display: 'flex' }}>
@@ -201,7 +203,7 @@ const WhatsOn = () => {
                     {item.title}
                   </p>
                   <button
-                    onClick={() => navigate(`/news/${item.id}`)}
+                    onClick={(e) => { e.stopPropagation(); navigate(`/news/${item.id}`); }}
                     style={{ background: 'white', color: 'black', fontSize: '16px', fontWeight: 600, borderRadius: '999px', padding: '10px 24px', border: 'none', cursor: 'pointer', fontFamily: 'inherit', marginTop: '4px' }}
                   >
                     Read more
