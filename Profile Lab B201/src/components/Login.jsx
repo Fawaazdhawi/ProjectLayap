@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router';
 import { Eye, EyeOff } from 'lucide-react';
-import { auth } from '../config/firebase';
+import { supabase } from '../config/supabase';
 import '../styles/main.css';
 import '../styles/masuk.css';
 
-const ERROR_MESSAGES = {
-  'auth/invalid-email': 'Invalid email address',
-  'auth/user-not-found': 'Account not found',
-  'auth/wrong-password': 'Incorrect password',
-  'auth/invalid-credential': 'Incorrect email or password',
+const mapAuthError = (error) => {
+  const message = (error?.message || '').toLowerCase();
+  if (message.includes('invalid login credentials')) return 'Incorrect email or password';
+  if (message.includes('email not confirmed')) return 'Please confirm your email before logging in';
+  if (message.includes('invalid email') || message.includes('unable to validate email')) return 'Invalid email address';
+  return 'An error occurred. Please try again.';
 };
 
 const Login = () => {
@@ -26,10 +26,14 @@ const Login = () => {
     setError('');
     setLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate('/admin');
+      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+      if (signInError) {
+        setError(mapAuthError(signInError));
+        return;
+      }
+      navigate('/admin-edit');
     } catch (err) {
-      setError(ERROR_MESSAGES[err.code] ?? 'An error occurred. Please try again.');
+      setError(mapAuthError(err));
     } finally {
       setLoading(false);
     }
@@ -74,9 +78,6 @@ const Login = () => {
               {loading ? 'Processing...' : 'Sign In'}
             </button>
           </form>
-          <div className="register-link">
-            <p>Don't have an account? <Link to="/register">Register</Link></p>
-          </div>
         </div>
       </div>
     </section>

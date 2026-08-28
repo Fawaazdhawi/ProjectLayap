@@ -1,9 +1,27 @@
+import { useState, useEffect } from 'react';
 import { aboutData } from '../data/content';
+import { supabase } from '../config/supabase';
 import useScrollReveal from '../hooks/useScrollReveal';
 import '../styles/main.css';
 
+const FALLBACK = {
+  headingLine1: 'Welcome to',
+  headingLine2: 'B201 Lab',
+  description: aboutData.description,
+  image: aboutData.image,
+};
+
 const About = () => {
   const [ref, isVisible] = useScrollReveal(0.1);
+  const [settings, setSettings] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    supabase.from('site_settings').select('*').single().then(({ data, error }) => {
+      if (!error && mounted) setSettings(data);
+    });
+    return () => { mounted = false; };
+  }, []);
 
   return (
     <section
@@ -16,9 +34,9 @@ const About = () => {
         maxHeight: '580px',
       }}
     >
-      {/* Static background */}
+      {/* Background */}
       <img
-        src="/images/Kondisi_lab1.jpg"
+        src={settings?.about_background_image ?? FALLBACK.image}
         alt=""
         aria-hidden="true"
         style={{
@@ -59,7 +77,7 @@ const About = () => {
       >
         <div style={{ borderLeft: '4px solid #c0392b', paddingLeft: '1.25rem', marginBottom: '1.25rem' }}>
           <h2 style={{ color: '#fff', lineHeight: 1.2, marginBottom: '0.5rem' }}>
-            Welcome to<br />B201 Lab
+            {settings?.about_heading_line1 ?? FALLBACK.headingLine1}<br />{settings?.about_heading_line2 ?? FALLBACK.headingLine2}
           </h2>
         </div>
 
@@ -71,7 +89,7 @@ const About = () => {
             maxWidth: '560px',
           }}
         >
-          {aboutData.description}
+          {settings?.about_description ?? FALLBACK.description}
         </p>
       </div>
     </section>

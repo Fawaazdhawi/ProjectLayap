@@ -12,7 +12,6 @@ export const headerData = {
 };
 
 export const adminNavLinks = [
-  { name: 'Admin', href: '/admin' },
   { name: 'Create & Edit', href: '/admin-edit' },
 ];
 
@@ -127,16 +126,14 @@ export const footerData = {
   text: '© 2025 Lab B201 Profile. All Rights Reserved.',
 };
 
-export const serviceCardsData = [
-  { title: 'PC Reservation', path: '/reservasi-pc', image: '/images/PC-1.jpg' },
-  { title: 'Lab Printer', path: '/printer-lab', image: '' },
-  { title: 'Lab Inventory', path: '/inventaris' },
-  { title: 'Create & Edit Page', path: '/admin-edit', image: '/images/ASLAB.jpeg' },
-];
-
 export const cardData = [
   { id: 3, title: 'Practicum', path: '/edit-practicum' },
   { id: 4, title: "What's on B201", path: '/edit-whats-on' },
+  { id: 5, title: 'What We Do', path: '/edit-whatwedo' },
+  { id: 6, title: 'Culture & Values', path: '/edit-culture' },
+  { id: 7, title: 'Team', path: '/edit-team' },
+  { id: 8, title: 'Contact', path: '/edit-contact' },
+  { id: 9, title: 'Site Settings', path: '/edit-settings' },
 ];
 
 export const defaultNewsData = [
@@ -145,17 +142,20 @@ export const defaultNewsData = [
     title: 'Welcome to B201 Telematics Lab ITS',
     category: 'INFO',
     image: '/images/Kondisi_lab1.jpg',
+    content: 'Lab B201 is the Telematics and Intelligent Multimedia Laboratory under the Department of Computer Engineering at ITS, focusing on research and development in telematics, multimedia, deep learning, and game technology.',
   },
   {
     id: 'default-2',
     title: 'Advanced Programming Practicum — Even Semester',
     category: 'PRACTICUM',
     image: '/images/Proglan-Layap2.jpg',
+    content: 'This practicum focuses on developing advanced programming skills using modern technologies and structured software development methodologies, emphasizing Object-Oriented Programming (OOP) principles and C++ implementation.',
   },
   {
     id: 'default-3',
     title: 'Deep Learning & Intelligent Multimedia Research',
     category: 'RESEARCH',
     image: '/images/deep_learning.png',
+    content: 'Our research team conducts studies in AI and deep learning, applying neural networks to computer vision, natural language processing, and health informatics.',
   },
 ];

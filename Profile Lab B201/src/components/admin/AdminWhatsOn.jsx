@@ -1,16 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import {
-  collection, addDoc, updateDoc, deleteDoc,
-  doc, onSnapshot, serverTimestamp, query, orderBy,
-} from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Edit, Trash2, Plus, Image as ImageIcon } from 'lucide-react';
-import { db, storage } from '../../config/firebase';
+import { supabase } from '../../config/supabase';
 import { useToast } from '../../hooks/useToast';
 import Toast from '../Toast';
 import '../../styles/edit.css';
 
-const EMPTY_FORM = { title: '', category: '' };
+const EMPTY_FORM = { title: '', category: '', content: '' };
 
 const AdminWhatsOn = () => {
   const [newsList, setNewsList] = useState([]);
@@ -26,12 +21,22 @@ const AdminWhatsOn = () => {
   const { toast, showToast } = useToast();
 
   useEffect(() => {
-    const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      setNewsList(snapshot.docs.map((d) => ({ id: d.id, ...d.data() })));
+    const fetchNews = async () => {
+      const { data, error } = await supabase
+        .from('news')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (!error) setNewsList(data ?? []);
       setLoading(false);
-    });
-    return unsubscribe;
+    };
+    fetchNews();
+
+    const channel = supabase
+      .channel('admin:news')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'news' }, fetchNews)
+      .subscribe();
+
+    return () => supabase.removeChannel(channel);
   }, []);
 
   const openAddModal = () => {
@@ -44,7 +49,7 @@ const AdminWhatsOn = () => {
 
   const openEditModal = (item) => {
     setEditingId(item.id);
-    setFormData({ title: item.title, category: item.category });
+    setFormData({ title: item.title, category: item.category, content: item.content ?? '' });
     setImageFile(null);
     setImagePreview(item.image);
     setShowModal(true);
@@ -67,9 +72,11 @@ const AdminWhatsOn = () => {
   };
 
   const uploadImage = async (file) => {
-    const storageRef = ref(storage, `news/${Date.now()}_${file.name}`);
-    await uploadBytes(storageRef, file);
-    return getDownloadURL(storageRef);
+    const filePath = `${Date.now()}_${file.name}`;
+    const { error: uploadError } = await supabase.storage.from('news').upload(filePath, file);
+    if (uploadError) throw uploadError;
+    const { data } = supabase.storage.from('news').getPublicUrl(filePath);
+    return data.publicUrl;
   };
 
   const handleSubmit = async (e) => {
@@ -83,19 +90,17 @@ const AdminWhatsOn = () => {
       const imageUrl = imageFile ? await uploadImage(imageFile) : imagePreview;
 
       if (editingId) {
-        await updateDoc(doc(db, 'news', editingId), {
-          title: formData.title,
-          category: formData.category,
-          image: imageUrl,
-        });
+        const { error } = await supabase
+          .from('news')
+          .update({ title: formData.title, category: formData.category, content: formData.content, image: imageUrl })
+          .eq('id', editingId);
+        if (error) throw error;
         showToast('News updated successfully');
       } else {
-        await addDoc(collection(db, 'news'), {
-          title: formData.title,
-          category: formData.category,
-          image: imageUrl,
-          createdAt: serverTimestamp(),
-        });
+        const { error } = await supabase
+          .from('news')
+          .insert({ title: formData.title, category: formData.category, content: formData.content, image: imageUrl });
+        if (error) throw error;
         showToast('News published successfully');
       }
       closeModal();
@@ -109,7 +114,8 @@ const AdminWhatsOn = () => {
 
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, 'news', id));
+      const { error } = await supabase.from('news').delete().eq('id', id);
+      if (error) throw error;
       showToast('News deleted successfully');
     } catch (err) {
       console.error(err);
@@ -208,6 +214,17 @@ const AdminWhatsOn = () => {
                     required
                   />
                 </div>
+              </div>
+
+              <div className="input-side" style={{ marginTop: '1rem' }}>
+                <label>Full Content</label>
+                <textarea
+                  placeholder="Full article content shown on the news detail page"
+                  value={formData.content}
+                  onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                  rows={6}
+                  style={{ width: '100%', resize: 'vertical' }}
+                />
               </div>
 
               <button type="submit" className="btn-publish" disabled={submitting}>

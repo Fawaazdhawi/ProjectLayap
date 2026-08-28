@@ -1,12 +1,43 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { whatWeDoData } from '../data/content';
+import { supabase } from '../config/supabase';
 import useScrollReveal from '../hooks/useScrollReveal';
 import '../styles/main.css';
 
 const WhatWeDo = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [ref, isVisible] = useScrollReveal(0.1);
-  const services = whatWeDoData.services;
+  const [services, setServices] = useState(whatWeDoData.services);
+  const [settings, setSettings] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    supabase.from('site_settings').select('*').single().then(({ data, error }) => {
+      if (!error && mounted) setSettings(data);
+    });
+    return () => { mounted = false; };
+  }, []);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      const { data, error } = await supabase
+        .from('whatwedo_services')
+        .select('*')
+        .order('created_at', { ascending: true });
+      if (!error) {
+        setServices(data && data.length > 0 ? data : whatWeDoData.services);
+        setActiveSlide((i) => (data && i >= data.length ? 0 : i));
+      }
+    };
+    fetchServices();
+
+    const channel = supabase
+      .channel('public:whatwedo_services')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'whatwedo_services' }, fetchServices)
+      .subscribe();
+
+    return () => supabase.removeChannel(channel);
+  }, []);
 
   const prev = useCallback(() => {
     setActiveSlide(i => (i - 1 + services.length) % services.length);
@@ -82,8 +113,13 @@ const WhatWeDo = () => {
         {/* Red accent bar + label + title */}
         <div style={{ borderLeft: '4px solid #c0392b', paddingLeft: '1.25rem', marginBottom: '1.5rem' }}>
           <p style={{ color: '#c0392b', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', margin: '0 0 0.5rem' }}>
-            What We Do
+            {settings?.whatwedo_title ?? 'What We Do'}
           </p>
+          {settings?.whatwedo_description && (
+            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', lineHeight: 1.7, maxWidth: '480px', margin: '0 0 1rem' }}>
+              {settings.whatwedo_description}
+            </p>
+          )}
           <h2
             key={activeSlide}
             style={{

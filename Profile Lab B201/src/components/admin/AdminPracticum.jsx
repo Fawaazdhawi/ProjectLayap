@@ -1,11 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import {
-  collection, addDoc, updateDoc, deleteDoc,
-  doc, onSnapshot, serverTimestamp, query, orderBy,
-} from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Edit, Trash2, Plus, Image as ImageIcon } from 'lucide-react';
-import { db, storage } from '../../config/firebase';
+import { supabase } from '../../config/supabase';
 import { useToast } from '../../hooks/useToast';
 import Toast from '../Toast';
 import '../../styles/edit2.css';
@@ -26,12 +21,22 @@ const AdminPracticum = () => {
   const { toast, showToast } = useToast();
 
   useEffect(() => {
-    const q = query(collection(db, 'practicums'), orderBy('createdAt', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      setPracticums(snapshot.docs.map((d) => ({ id: d.id, ...d.data() })));
+    const fetchPracticums = async () => {
+      const { data, error } = await supabase
+        .from('practicums')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (!error) setPracticums(data ?? []);
       setLoading(false);
-    });
-    return unsubscribe;
+    };
+    fetchPracticums();
+
+    const channel = supabase
+      .channel('admin:practicums')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'practicums' }, fetchPracticums)
+      .subscribe();
+
+    return () => supabase.removeChannel(channel);
   }, []);
 
   const openAddModal = () => {
@@ -67,9 +72,11 @@ const AdminPracticum = () => {
   };
 
   const uploadImage = async (file) => {
-    const storageRef = ref(storage, `practicums/${Date.now()}_${file.name}`);
-    await uploadBytes(storageRef, file);
-    return getDownloadURL(storageRef);
+    const filePath = `${Date.now()}_${file.name}`;
+    const { error: uploadError } = await supabase.storage.from('practicums').upload(filePath, file);
+    if (uploadError) throw uploadError;
+    const { data } = supabase.storage.from('practicums').getPublicUrl(filePath);
+    return data.publicUrl;
   };
 
   const handleSubmit = async (e) => {
@@ -83,19 +90,17 @@ const AdminPracticum = () => {
       const imageUrl = imageFile ? await uploadImage(imageFile) : imagePreview;
 
       if (editingId) {
-        await updateDoc(doc(db, 'practicums', editingId), {
-          title: formData.title,
-          description: formData.description,
-          image: imageUrl,
-        });
+        const { error } = await supabase
+          .from('practicums')
+          .update({ title: formData.title, description: formData.description, image: imageUrl })
+          .eq('id', editingId);
+        if (error) throw error;
         showToast('Practicum updated successfully');
       } else {
-        await addDoc(collection(db, 'practicums'), {
-          title: formData.title,
-          description: formData.description,
-          image: imageUrl,
-          createdAt: serverTimestamp(),
-        });
+        const { error } = await supabase
+          .from('practicums')
+          .insert({ title: formData.title, description: formData.description, image: imageUrl });
+        if (error) throw error;
         showToast('Practicum added successfully');
       }
       closeModal();
@@ -109,7 +114,8 @@ const AdminPracticum = () => {
 
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, 'practicums', id));
+      const { error } = await supabase.from('practicums').delete().eq('id', id);
+      if (error) throw error;
       showToast('Practicum deleted successfully');
     } catch (err) {
       console.error(err);

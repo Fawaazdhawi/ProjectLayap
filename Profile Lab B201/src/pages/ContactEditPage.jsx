@@ -1,18 +1,18 @@
-import Book from '../components/Book';
+import AdminContact from '../components/admin/AdminContact';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { adminNavLinks } from '../data/content';
 
-const Booking = () => {
+const ContactEditPage = () => {
   return (
     <>
       <Header navLinks={adminNavLinks} />
       <main>
-        <Book />
+        <AdminContact />
       </main>
       <Footer />
     </>
   );
 };
 
-export default Booking;
+export default ContactEditPage;

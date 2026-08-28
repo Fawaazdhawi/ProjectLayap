@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { useNavigate } from 'react-router';
+import { supabase } from '../config/supabase';
 import { defaultNewsData } from '../data/content';
 
 const CARD_BACKGROUNDS = [
@@ -13,6 +13,7 @@ const CARD_BACKGROUNDS = [
 ];
 
 const WhatsOn = () => {
+  const navigate = useNavigate();
   const [news, setNews] = useState(defaultNewsData);
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef(null);
@@ -22,11 +23,27 @@ const WhatsOn = () => {
   const inViewRef = useRef(true);
 
   useEffect(() => {
-    const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'));
-    return onSnapshot(q, (snapshot) => {
-      const data = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
-      setNews(data.length > 0 ? data : defaultNewsData);
-    });
+    let mounted = true;
+    const fetchNews = async () => {
+      const { data, error } = await supabase
+        .from('news')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (!error && mounted) {
+        setNews(data && data.length > 0 ? data : defaultNewsData);
+      }
+    };
+    fetchNews();
+
+    const channel = supabase
+      .channel('public:news')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'news' }, fetchNews)
+      .subscribe();
+
+    return () => {
+      mounted = false;
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   // Track whether this section is actually visible in the viewport
@@ -183,7 +200,10 @@ const WhatsOn = () => {
                   <p style={{ color: 'white', fontSize: '30px', fontWeight: 700, lineHeight: 1.25, margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                     {item.title}
                   </p>
-                  <button style={{ background: 'white', color: 'black', fontSize: '16px', fontWeight: 600, borderRadius: '999px', padding: '10px 24px', border: 'none', cursor: 'pointer', fontFamily: 'inherit', marginTop: '4px' }}>
+                  <button
+                    onClick={() => navigate(`/news/${item.id}`)}
+                    style={{ background: 'white', color: 'black', fontSize: '16px', fontWeight: 600, borderRadius: '999px', padding: '10px 24px', border: 'none', cursor: 'pointer', fontFamily: 'inherit', marginTop: '4px' }}
+                  >
                     Read more
                   </button>
                 </div>

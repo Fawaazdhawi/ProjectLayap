@@ -168,6 +168,13 @@ img {
     width: calc(100% - 2rem);
 }
 
+.nav-logout {
+    background: none;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
 
 .about-section {
     background-color: var(--bg-color);

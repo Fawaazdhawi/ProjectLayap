@@ -1,18 +1,17 @@
-import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Regis from '../components/Regis';
+import NewsDetail from '../components/NewsDetail';
 
-const RegisterPage = () => {
+const NewsDetailPage = () => {
   return (
     <>
       <Header />
       <main>
-        <Regis />
+        <NewsDetail />
       </main>
       <Footer />
     </>
   );
 };
 
-export default RegisterPage;
+export default NewsDetailPage;

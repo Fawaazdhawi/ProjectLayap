@@ -1,18 +1,18 @@
-import BookPC from '../components/BookPC';
+import AdminTeam from '../components/admin/AdminTeam';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { adminNavLinks } from '../data/content';
 
-const ReservasiPC = () => {
+const TeamEditPage = () => {
   return (
     <>
       <Header navLinks={adminNavLinks} />
       <main>
-        <BookPC />
+        <AdminTeam />
       </main>
       <Footer />
     </>
   );
 };
 
-export default ReservasiPC;
+export default TeamEditPage;
